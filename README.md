@@ -1,7 +1,7 @@
-# ktx2-parse
+# ktx-parse
 
 ![Status](https://img.shields.io/badge/status-incomplete-orange.svg)
-[![License](https://img.shields.io/badge/license-MIT-007ec6.svg)](https://github.com/donmccurdy/KTX2-Parse/blob/master/LICENSE)
+[![License](https://img.shields.io/badge/license-MIT-007ec6.svg)](https://github.com/donmccurdy/KTX-Parse/blob/master/LICENSE)
 
 *KTX 2.0 (.ktx2) parser and serializer.*
 
@@ -10,12 +10,12 @@
 ## Quickstart
 
 ```
-npm install --save ktx2-parse
+npm install --save ktx-parse
 ```
 
 ```js
 const fs = require('fs');
-const { read, write } = require('ktx2-parse');
+const { read, write } = require('ktx-parse');
 
 // Read data.
 const inData = fs.readFileSync('./input.ktx2'); // (a) Node.js

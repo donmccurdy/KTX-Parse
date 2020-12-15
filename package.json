@@ -1,12 +1,12 @@
 {
-  "name": "ktx2-parse",
+  "name": "ktx-parse",
   "version": "0.0.1",
   "description": "KTX 2.0 (.ktx2) parser and serializer.",
   "source": "src/index.ts",
-  "main": "dist/ktx2-parse.js",
-  "module": "dist/ktx2-parse.modern.js",
+  "main": "dist/ktx-parse.js",
+  "module": "dist/ktx-parse.modern.js",
   "types": "dist/index.d.ts",
-  "repository": "https://github.com/github:donmccurdy/KTX2-Parse",
+  "repository": "https://github.com/github:donmccurdy/ktx-parse",
   "author": "Don McCurdy <dm@donmccurdy.com>",
   "license": "MIT",
   "scripts": {
