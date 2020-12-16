@@ -2,6 +2,7 @@
 
 ![Status](https://img.shields.io/badge/status-incomplete-orange.svg)
 [![License](https://img.shields.io/badge/license-MIT-007ec6.svg)](https://github.com/donmccurdy/KTX-Parse/blob/master/LICENSE)
+[![CI](https://github.com/donmccurdy/KTX-parse/workflows/CI/badge.svg?branch=main&event=push)](https://github.com/donmccurdy/KTX-parse/actions?query=workflow%3ACI)
 
 *KTX 2.0 (.ktx2) parser and serializer.*
 
