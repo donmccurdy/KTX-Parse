@@ -14,7 +14,9 @@
     "watch": "microbundle watch --format modern,cjs --define PACKAGE_VERSION=$npm_package_version",
     "watch:debug": "microbundle watch --no-compress --format modern,cjs --define PACKAGE_VERSION=$npm_package_version",
     "test": "ts-node node_modules/tape/bin/tape test/test.ts | tap-spec",
-    "coverage": "nyc --reporter=lcov --reporter=text ts-node node_modules/tape/bin/tape test/test.ts"
+    "coverage": "nyc --reporter=lcov --reporter=text ts-node node_modules/tape/bin/tape test/test.ts",
+    "preversion": "yarn dist && yarn test",
+    "postpublish": "git push && git push --tags"
   },
   "devDependencies": {
     "@types/tape": "^4.13.0",

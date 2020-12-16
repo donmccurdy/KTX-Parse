@@ -28,15 +28,10 @@ export class BufferReader {
 	}
 
 	_nextUint64() {
-		// https://stackoverflow.com/questions/53103695/
 		const left = this._dataView.getUint32(this._offset, this._littleEndian);
 		const right = this._dataView.getUint32(this._offset + 4, this._littleEndian);
-		const value = this._littleEndian ? left + (2 ** 32 * right) : (2 ** 32 * left) + right;
-
-		if (!Number.isSafeInteger(value)) {
-			console.warn(value + ' exceeds MAX_SAFE_INTEGER. Precision may be lost.');
-		}
-
+		// const value = this._littleEndian ? left + (2 ** 32 * right) : (2 ** 32 * left) + right;
+		const value = left + (2 ** 32 * right);
 		this._offset += 8;
 		return value;
 	}

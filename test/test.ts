@@ -5,6 +5,11 @@ import * as path from 'path';
 import * as test from 'tape';
 import { Container, read } from '../';
 
+test('read::invalid', t => {
+	t.throws(() => read(new Uint8Array(10)), /Missing KTX 2\.0 identifier/, 'rejects invalid header');
+	t.end();
+});
+
 test('read::etc1s', t => {
 	const container = read(fs.readFileSync(path.join(__dirname, 'data', 'test_etc1s.ktx2')));
 
