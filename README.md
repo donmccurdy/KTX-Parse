@@ -5,7 +5,7 @@
 [![Minzipped size](https://badgen.net/bundlephobia/minzip/ktx-parse)](https://bundlephobia.com/result?p=ktx-parse)
 [![License](https://img.shields.io/badge/license-MIT-007ec6.svg)](https://github.com/donmccurdy/KTX-Parse/blob/main/LICENSE)
 [![CI](https://github.com/donmccurdy/KTX-parse/workflows/CI/badge.svg?branch=main&event=push)](https://github.com/donmccurdy/KTX-parse/actions?query=workflow%3ACI)
-[![Coverage Status](https://coveralls.io/repos/github/donmccurdy/KTX2-parse/badge.svg?branch=main)](https://coveralls.io/github/donmccurdy/KTX2-parse?branch=main)
+[![Coverage Status](https://coveralls.io/repos/github/donmccurdy/KTX-Parse/badge.svg?branch=main)](https://coveralls.io/github/donmccurdy/KTX-Parse?branch=main)
 
 *KTX 2.0 (.ktx2) parser and serializer.*
 
