@@ -3,8 +3,8 @@
 ///////////////////////////////////////////////////
 
 export interface KTX2Level {
-    data: Uint8Array;
-    uncompressedByteLength: number;
+	data: Uint8Array;
+	uncompressedByteLength: number;
 }
 
 export enum KTX2SupercompressionScheme {
