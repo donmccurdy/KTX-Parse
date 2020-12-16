@@ -6,7 +6,7 @@
   "main": "dist/ktx-parse.js",
   "module": "dist/ktx-parse.modern.js",
   "types": "dist/index.d.ts",
-  "repository": "https://github.com/github:donmccurdy/ktx-parse",
+  "repository": "github:donmccurdy/ktx-parse",
   "author": "Don McCurdy <dm@donmccurdy.com>",
   "license": "MIT",
   "scripts": {
@@ -16,7 +16,7 @@
     "test": "ts-node node_modules/tape/bin/tape test/test.ts | tap-spec",
     "coverage": "nyc --reporter=lcov --reporter=text ts-node node_modules/tape/bin/tape test/test.ts",
     "preversion": "yarn dist && yarn test",
-    "postpublish": "git push && git push --tags"
+    "postpublish": "git push && git push --tags && npm publish"
   },
   "devDependencies": {
     "@types/tape": "^4.13.0",
