@@ -7,7 +7,7 @@ export interface KTX2Level {
     uncompressedByteLength: number;
 }
 
-export enum KTX2SupercompressionSchema {
+export enum KTX2SupercompressionScheme {
 	NONE = 0,
 	BASISLZ = 1,
 	ZSTD = 2,
