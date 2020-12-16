@@ -30,6 +30,7 @@ export class BufferReader {
 	_nextUint64() {
 		const left = this._dataView.getUint32(this._offset, this._littleEndian);
 		const right = this._dataView.getUint32(this._offset + 4, this._littleEndian);
+		// TODO(cleanup): Just test this...
 		// const value = this._littleEndian ? left + (2 ** 32 * right) : (2 ** 32 * left) + right;
 		const value = left + (2 ** 32 * right);
 		this._offset += 8;
@@ -39,5 +40,22 @@ export class BufferReader {
 	_skip(bytes: number) {
 		this._offset += bytes;
 		return this;
+	}
+
+	_scan(maxByteLength: number, term: number = 0x00): Uint8Array {
+		const byteOffset = this._offset;
+		let byteLength = 0;
+		while (this._dataView.getUint8(this._offset) !== term && byteLength < maxByteLength) {
+			byteLength++;
+			this._offset++;
+		}
+
+		if (byteLength < maxByteLength) this._offset++;
+
+		return new Uint8Array(
+			this._dataView.buffer,
+			this._dataView.byteOffset + byteOffset,
+			byteLength
+		);
 	}
 }

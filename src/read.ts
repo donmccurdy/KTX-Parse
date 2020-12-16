@@ -1,6 +1,7 @@
 import { BufferReader } from './buffer-reader';
 import { Container } from './container';
 import { KTX2DataFormatDescriptor, KTX2_ID } from './ktx2-schema';
+import { decodeText } from './util';
 
 export function read(data: Uint8Array): Container {
 
@@ -8,8 +9,7 @@ export function read(data: Uint8Array): Container {
 	// KTX 2.0 Identifier.
 	///////////////////////////////////////////////////
 
-	const idByteLength = 12;
-	const id = new Uint8Array(data, 0, idByteLength);
+	const id = new Uint8Array(data, 0, KTX2_ID.length);
 	if (id[0] !== KTX2_ID[0] || // '´'
 		id[1] !== KTX2_ID[1] || // 'K'
 		id[2] !== KTX2_ID[2] || // 'T'
@@ -23,7 +23,7 @@ export function read(data: Uint8Array): Container {
 		id[10] !== KTX2_ID[10] || // '\x1A'
 		id[11] !== KTX2_ID[11] // '\n'
 	) {
-		throw new Error( 'Missing KTX 2.0 identifier.' );
+		throw new Error('Missing KTX 2.0 identifier.');
 	}
 
 	const container = new Container();
@@ -33,7 +33,7 @@ export function read(data: Uint8Array): Container {
 	///////////////////////////////////////////////////
 
 	const headerByteLength = 17 * Uint32Array.BYTES_PER_ELEMENT;
-	const headerReader = new BufferReader( data, idByteLength, headerByteLength, true );
+	const headerReader = new BufferReader(data, KTX2_ID.length, headerByteLength, true);
 
 	container.vkFormat = headerReader._nextUint32();
 	container.typeSize = headerReader._nextUint32();
@@ -57,7 +57,7 @@ export function read(data: Uint8Array): Container {
 	///////////////////////////////////////////////////
 
 	const levelByteLength = container.levelCount * 3 * 8;
-	const levelReader = new BufferReader(data, idByteLength + headerByteLength, levelByteLength, true);
+	const levelReader = new BufferReader(data, KTX2_ID.length + headerByteLength, levelByteLength, true);
 
 	for (let i = 0; i < container.levelCount; i ++) {
 		container.levelIndex.push({
@@ -73,12 +73,10 @@ export function read(data: Uint8Array): Container {
 
 	const dfdReader = new BufferReader(data, dfdByteOffset, dfdByteLength, true);
 
-	const sampleStart = 6;
-	const sampleWords = 4;
-
 	const dfd: KTX2DataFormatDescriptor = {
 		vendorId: dfdReader._skip(4 /* totalSize */)._nextUint16(),
-		versionNumber: dfdReader._skip(2 /* descriptorType */)._nextUint16(),
+		descriptorType: dfdReader._nextUint16(),
+		versionNumber: dfdReader._nextUint16(),
 		descriptorBlockSize: dfdReader._nextUint16(),
 		colorModel: dfdReader._nextUint8(),
 		colorPrimaries: dfdReader._nextUint8(),
@@ -90,29 +88,59 @@ export function read(data: Uint8Array): Container {
 			z: dfdReader._nextUint8() + 1,
 			w: dfdReader._nextUint8() + 1,
 		},
-		bytesPlane0: dfdReader._nextUint8(),
+		bytesPlane: [
+			dfdReader._nextUint8(),
+			dfdReader._nextUint8(),
+			dfdReader._nextUint8(),
+			dfdReader._nextUint8(),
+			dfdReader._nextUint8(),
+			dfdReader._nextUint8(),
+			dfdReader._nextUint8(),
+			dfdReader._nextUint8(),
+		],
 		numSamples: 0,
 		samples: [],
 	};
 
+	const sampleStart = 6;
+	const sampleWords = 4;
 	dfd.numSamples = (dfd.descriptorBlockSize / 4 - sampleStart) / sampleWords;
-
-	dfdReader._skip(7 /* bytesPlane[1-7] */);
 
 	for (let i = 0; i < dfd.numSamples; i ++) {
 		dfd.samples[ i ] = {
-			channelID: dfdReader._skip(3 /* bitOffset + bitLength */)._nextUint8(),
-			// ... remainder not implemented.
+			bitOffset: dfdReader._nextUint16(),
+			bitLength: dfdReader._nextUint8(),
+			channelID: dfdReader._nextUint8(),
+			samplePosition: [
+				dfdReader._nextUint8(),
+				dfdReader._nextUint8(),
+				dfdReader._nextUint8(),
+				dfdReader._nextUint8(),
+			],
+			sampleLower: dfdReader._nextUint32(),
+			sampleUpper: dfdReader._nextUint32(),
 		};
-		dfdReader._skip(12 /* samplePosition[0-3], lower, upper */);
 	}
 
 	///////////////////////////////////////////////////
 	// Key/Value Data (KVD).
 	///////////////////////////////////////////////////
 
-	// Not implemented.
-	const kvd = {};
+	const kvdReader = new BufferReader(data, kvdByteOffset, kvdByteLength, true);
+
+	while (kvdReader._offset < kvdByteLength) {
+		const keyValueByteLength = kvdReader._nextUint32();
+		const keyData = kvdReader._scan(keyValueByteLength);
+		const key = decodeText(keyData);
+		const valueData = kvdReader._scan(keyValueByteLength - keyData.byteLength);
+		container.keyValue.push({
+			key: key,
+			value: key.match(/^ktx/i) ? decodeText(valueData) : valueData,
+		});
+
+		// 4-byte alignment.
+		if (keyValueByteLength % 4) kvdReader._skip(4 - (keyValueByteLength % 4));
+	}
 
 
 	///////////////////////////////////////////////////
@@ -121,12 +149,7 @@ export function read(data: Uint8Array): Container {
 
 	if (sgdByteLength <= 0) return container;
 
-	const sgdReader = new BufferReader(
-		data,
-		sgdByteOffset,
-		sgdByteLength,
-		true
-	);
+	const sgdReader = new BufferReader(data, sgdByteOffset, sgdByteLength, true);
 
 	const endpointCount = sgdReader._nextUint16();
 	const selectorCount = sgdReader._nextUint16();

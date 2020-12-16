@@ -61,12 +61,17 @@ export interface KTX2DataFormatDescriptorTexelBlockDimensions {
 }
 
 export interface KTX2DataFormatDescriptorSample {
+	bitOffset: number;
+	bitLength: number;
 	channelID: number;
-	// ... remainder not implemented.
+	samplePosition: number[];
+	sampleLower: number;
+	sampleUpper: number;
 }
 
 export interface KTX2DataFormatDescriptor {
 	vendorId: number;
+	descriptorType: number;
 	versionNumber: number;
 	descriptorBlockSize: number;
 	colorModel: number;
@@ -74,7 +79,7 @@ export interface KTX2DataFormatDescriptor {
 	transferFunction: number;
 	flags: number;
 	texelBlockDimension: KTX2DataFormatDescriptorTexelBlockDimensions;
-	bytesPlane0: number;
+	bytesPlane: number[];
 	numSamples: number;
 	samples: KTX2DataFormatDescriptorSample[],
 }
@@ -84,7 +89,8 @@ export interface KTX2DataFormatDescriptor {
 ///////////////////////////////////////////////////
 
 export interface KTX2KeyValue {
-	// ... remainder not implemented.
+	key: string;
+	value: string | Uint8Array;
 }
 
 ///////////////////////////////////////////////////
