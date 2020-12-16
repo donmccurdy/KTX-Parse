@@ -1,24 +1,27 @@
 import { BufferReader } from './buffer-reader';
 import { Container } from './container';
-import { KTX2DataFormatDescriptor } from './ktx2-schema';
+import { KTX2DataFormatDescriptor, KTX2_ID } from './ktx2-schema';
 
 export function read(data: Uint8Array): Container {
 
-	// Confirm this is a KTX 2.0 file, based on the identifier in the first 12 bytes.
-	var idByteLength = 12;
-	var id = new Uint8Array(data, 0, idByteLength);
-	if (id[0] !== 0xAB || // '´'
-		id[ 1 ] !== 0x4B || // 'K'
-		id[ 2 ] !== 0x54 || // 'T'
-		id[ 3 ] !== 0x58 || // 'X'
-		id[ 4 ] !== 0x20 || // ' '
-		id[ 5 ] !== 0x32 || // '2'
-		id[ 6 ] !== 0x30 || // '0'
-		id[ 7 ] !== 0xBB || // 'ª'
-		id[ 8 ] !== 0x0D || // '\r'
-		id[ 9 ] !== 0x0A || // '\n'
-		id[ 10 ] !== 0x1A || // '\x1A'
-		id[ 11 ] !== 0x0A // '\n'
+	///////////////////////////////////////////////////
+	// KTX 2.0 Identifier.
+	///////////////////////////////////////////////////
+
+	const idByteLength = 12;
+	const id = new Uint8Array(data, 0, idByteLength);
+	if (id[0] !== KTX2_ID[0] || // '´'
+		id[1] !== KTX2_ID[1] || // 'K'
+		id[2] !== KTX2_ID[2] || // 'T'
+		id[3] !== KTX2_ID[3] || // 'X'
+		id[4] !== KTX2_ID[4] || // ' '
+		id[5] !== KTX2_ID[5] || // '2'
+		id[6] !== KTX2_ID[6] || // '0'
+		id[7] !== KTX2_ID[7] || // 'ª'
+		id[8] !== KTX2_ID[8] || // '\r'
+		id[9] !== KTX2_ID[9] || // '\n'
+		id[10] !== KTX2_ID[10] || // '\x1A'
+		id[11] !== KTX2_ID[11] // '\n'
 	) {
 		throw new Error( 'Missing KTX 2.0 identifier.' );
 	}
@@ -50,7 +53,7 @@ export function read(data: Uint8Array): Container {
 	const sgdByteLength = headerReader._nextUint64();
 
 	///////////////////////////////////////////////////
-	// Level index
+	// Level Index.
 	///////////////////////////////////////////////////
 
 	const levelByteLength = container.levelCount * 3 * 8;
@@ -65,7 +68,7 @@ export function read(data: Uint8Array): Container {
 
 
 	///////////////////////////////////////////////////
-	// Data Format Descriptor (DFD)
+	// Data Format Descriptor (DFD).
 	///////////////////////////////////////////////////
 
 	const dfdReader = new BufferReader(data, dfdByteOffset, dfdByteLength, true);
@@ -105,7 +108,7 @@ export function read(data: Uint8Array): Container {
 	}
 
 	///////////////////////////////////////////////////
-	// Key/Value Data (KVD)
+	// Key/Value Data (KVD).
 	///////////////////////////////////////////////////
 
 	// Not implemented.
@@ -113,7 +116,7 @@ export function read(data: Uint8Array): Container {
 
 
 	///////////////////////////////////////////////////
-	// Supercompression Global Data (SGD)
+	// Supercompression Global Data (SGD).
 	///////////////////////////////////////////////////
 
 	if (sgdByteLength <= 0) return container;

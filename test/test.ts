@@ -3,7 +3,7 @@ require('source-map-support').install();
 import * as fs from 'fs';
 import * as path from 'path';
 import * as test from 'tape';
-import { Container, read } from '../';
+import { Container, read, write } from '../';
 
 test('read::invalid', t => {
 	t.throws(() => read(new Uint8Array(10)), /Missing KTX 2\.0 identifier/, 'rejects invalid header');
@@ -39,5 +39,19 @@ test('read::uastc', t => {
 	t.equals(container.faceCount, 1, 'faceCount');
 	t.equals(container.levelCount, 9, 'levelCount');
 	t.equals(container.supercompressionScheme, 0, 'supercompressionScheme');
+	t.end();
+});
+
+test.skip('write::etc1s', t => {
+	const inContainer = read(fs.readFileSync(path.join(__dirname, 'data', '.skip_etc1s.ktx2')));
+	const outContainer = read(write(inContainer));
+	t.deepEquals(outContainer, inContainer, 'lossless i/o');
+	t.end();
+});
+
+test.skip('write::uastc', t => {
+	const inContainer = read(fs.readFileSync(path.join(__dirname, 'data', 'test_uastc.ktx2')));
+	const outContainer = read(write(inContainer));
+	t.deepEquals(outContainer, inContainer, 'lossless i/o');
 	t.end();
 });
