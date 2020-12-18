@@ -19,8 +19,34 @@ export function write(container: Container, options: WriteOptions = {}): Uint8Ar
 	// Supercompression Global Data (SGD).
 	///////////////////////////////////////////////////
 
-	const sgdBuffer = new ArrayBuffer(0);
-	// TODO(implement)
+	let sgdBuffer = new ArrayBuffer(0);
+	if (container.globalData) {
+		const sgdHeaderBuffer = new ArrayBuffer(20 + container.globalData.imageDescs.length * 5 * 4);
+		const sgdHeaderView = new DataView(sgdHeaderBuffer);
+		sgdHeaderView.setUint16(0, container.globalData.endpointCount, true);
+		sgdHeaderView.setUint16(2, container.globalData.selectorCount, true);
+		sgdHeaderView.setUint32(4, container.globalData.endpointsData.byteLength, true);
+		sgdHeaderView.setUint32(8, container.globalData.selectorsData.byteLength, true);
+		sgdHeaderView.setUint32(12, container.globalData.tablesData.byteLength, true);
+		sgdHeaderView.setUint32(16, container.globalData.extendedData.byteLength, true);
+
+		for (let i = 0; i < container.globalData.imageDescs.length; i++) {
+			const imageDesc = container.globalData.imageDescs[i];
+			sgdHeaderView.setUint32(20 + i * 5 * 4 + 0, imageDesc.imageFlags, true);
+			sgdHeaderView.setUint32(20 + i * 5 * 4 + 4, imageDesc.rgbSliceByteOffset, true);
+			sgdHeaderView.setUint32(20 + i * 5 * 4 + 8, imageDesc.rgbSliceByteLength, true);
+			sgdHeaderView.setUint32(20 + i * 5 * 4 + 12, imageDesc.alphaSliceByteOffset, true);
+			sgdHeaderView.setUint32(20 + i * 5 * 4 + 16, imageDesc.alphaSliceByteLength, true);
+		}
+
+		sgdBuffer = concat([
+			sgdHeaderBuffer,
+			container.globalData.endpointsData,
+			container.globalData.selectorsData,
+			container.globalData.tablesData,
+			container.globalData.extendedData,
+		]);
+	}
 
 
 	///////////////////////////////////////////////////

@@ -109,10 +109,6 @@ interface KTX2GlobalDataImageDescription {
 export interface KTX2GlobalData {
 	endpointCount: number;
 	selectorCount: number;
-	endpointsByteLength: number;
-	selectorsByteLength: number;
-	tablesByteLength: number;
-	extendedByteLength: number;
 	imageDescs: KTX2GlobalDataImageDescription[];
 	endpointsData: Uint8Array;
 	selectorsData: Uint8Array;

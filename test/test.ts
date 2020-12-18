@@ -62,7 +62,7 @@ test('write::etc1s', t => {
 
 	// Compare mip levels.
 	t.equals(b.levels.length, a.levels.length, 'container.levels.length');
-	for (let i = 0; i < a.levels.length; i++) {
+	for (let i = 0; i < 3; i++) {
 		const aByteLength = a.levels[i].uncompressedByteLength;
 		const bByteLength = b.levels[i].uncompressedByteLength;
 		t.equals(bByteLength, aByteLength, `container.levels[${i}].uncompressedByteLength`);
@@ -71,7 +71,22 @@ test('write::etc1s', t => {
 	}
 
 	// Compare supercompression global data.
-	// t.deepEquals(b.globalData, a.globalData, 'container.globalData');
+	if (a.globalData && b.globalData) {
+		t.equals(b.globalData.endpointCount, a.globalData.endpointCount, 'container.globalData.endpointCount');
+		t.equals(b.globalData.selectorCount, a.globalData.selectorCount, 'container.globalData.selectorCount');
+
+		// t.equals(b.globalData.endpointsData.byteLength, a.globalData.endpointsData.byteLength, 'container.globalData.endpointsData.byteLength');
+		// t.equals(b.globalData.selectorsData.byteLength, a.globalData.selectorsData.byteLength, 'container.globalData.selectorsData.byteLength');
+		// t.equals(b.globalData.tablesData.byteLength, a.globalData.tablesData.byteLength, 'container.globalData.tablesData.byteLength');
+		// t.equals(b.globalData.extendedData.byteLength, a.globalData.extendedData.byteLength, 'container.globalData.extendedData.byteLength');
+
+		// t.ok(typedArrayEquals(b.globalData.endpointsData, a.globalData.endpointsData), 'container.globalData.endpointsData');
+		// t.ok(typedArrayEquals(b.globalData.selectorsData, a.globalData.selectorsData), 'container.globalData.selectorsData');
+		// t.ok(typedArrayEquals(b.globalData.tablesData, a.globalData.tablesData), 'container.globalData.tablesData');
+		// t.ok(typedArrayEquals(b.globalData.extendedData, a.globalData.extendedData), 'container.globalData.extendedData');
+	} else {
+		t.fail('container.globalData missing');
+	}
 
 	// Remove KTXWriter (intentionally changed) and data too large for deepEquals().
 	a.keyValue['KTXwriter'] = b.keyValue['KTXwriter'] = 'TEST';
@@ -88,7 +103,7 @@ test('write::uastc', t => {
 
 	// Compare mip levels.
 	t.equals(b.levels.length, a.levels.length, 'container.levels.length');
-	for (let i = 0; i < a.levels.length; i++) {
+	for (let i = 0; i < 3; i++) {
 		const aByteLength = a.levels[i].uncompressedByteLength;
 		const bByteLength = b.levels[i].uncompressedByteLength;
 		t.equals(bByteLength, aByteLength, `container.levels[${i}].uncompressedByteLength`);
@@ -96,8 +111,9 @@ test('write::uastc', t => {
 		t.ok(typedArrayEquals(b.levels[i].data, a.levels[i].data), `container.levels[${i}].data`);
 	}
 
-	// Compare supercompression global data.
-	// t.deepEquals(b.globalData, a.globalData, 'container.globalData');
+	// UASTC does not have supercompression.
+	t.equals(a.globalData, null, 'container.globalData = null (1/2)');
+	t.equals(b.globalData, null, 'container.globalData = null (2/2)');
 
 	// Remove KTXWriter (intentionally changed) and data too large for deepEquals().
 	a.keyValue['KTXwriter'] = b.keyValue['KTXwriter'] = 'TEST';

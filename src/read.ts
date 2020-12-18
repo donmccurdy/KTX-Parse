@@ -183,10 +183,6 @@ export function read(data: Uint8Array): Container {
 	container.globalData = {
 		endpointCount,
 		selectorCount,
-		endpointsByteLength,
-		selectorsByteLength,
-		tablesByteLength,
-		extendedByteLength,
 		imageDescs,
 		endpointsData,
 		selectorsData,
