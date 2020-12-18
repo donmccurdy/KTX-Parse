@@ -57,8 +57,16 @@ test('write::etc1s', t => {
 	const b = read(write(a));
 
 	t.equals(b.levels.length, a.levels.length, 'container.levels.length');
+	for (let i = 0; i < a.levels.length; i++) {
+		const aByteLength = a.levels[i].uncompressedByteLength;
+		const bByteLength = b.levels[i].uncompressedByteLength;
+		t.equals(bByteLength, aByteLength, `container.levels[${i}].uncompressedByteLength`);
+		t.equals(bByteLength, aByteLength, `container.levels[${i}].data.byteLength`);
+		t.ok(typedArrayEquals(b.levels[i].data, a.levels[i].data), `container.levels[${i}].data`);
+	}
+	// t.ok(typedArrayEquals(b.globalData, a.globalData), 'container.globalData')
 
-	// TODO(cleanup): Remove stuff we can't compare.
+	// Remove KTXWriter (intentionally changed) and data too large for deepEquals().
 	a.keyValue['KTXwriter'] = b.keyValue['KTXwriter'] = 'TEST';
 	a.levels = b.levels = [];
 	a.globalData = b.globalData = null;
@@ -72,8 +80,16 @@ test('write::uastc', t => {
 	const b = read(write(a));
 
 	t.equals(b.levels.length, a.levels.length, 'container.levels.length');
+	for (let i = 0; i < a.levels.length; i++) {
+		const aByteLength = a.levels[i].uncompressedByteLength;
+		const bByteLength = b.levels[i].uncompressedByteLength;
+		t.equals(bByteLength, aByteLength, `container.levels[${i}].uncompressedByteLength`);
+		t.equals(bByteLength, aByteLength, `container.levels[${i}].data.byteLength`);
+		t.ok(typedArrayEquals(b.levels[i].data, a.levels[i].data), `container.levels[${i}].data`);
+	}
+	// t.ok(typedArrayEquals(b.globalData, a.globalData), 'container.globalData')
 
-	// TODO(cleanup): Remove stuff we can't compare.
+	// Remove KTXWriter (intentionally changed) and data too large for deepEquals().
 	a.keyValue['KTXwriter'] = b.keyValue['KTXwriter'] = 'TEST';
 	a.levels = b.levels = [];
 	a.globalData = b.globalData = null;

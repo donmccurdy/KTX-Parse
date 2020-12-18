@@ -124,9 +124,9 @@ export function write(container: Container, options: WriteOptions = {}): Uint8Ar
 	for (let i = 0; i < container.levels.length; i++) {
 		const level = container.levels[i];
 		levelData.push(level.data);
-		levelIndex.setBigUint64(i * 3 + 0, BigInt(levelDataByteOffset), true);
-		levelIndex.setBigUint64(i * 3 + 8, BigInt(level.data.byteLength), true);
-		levelIndex.setBigUint64(i * 3 + 16, BigInt(level.uncompressedByteLength), true);
+		levelIndex.setBigUint64(i * 24 + 0, BigInt(levelDataByteOffset), true);
+		levelIndex.setBigUint64(i * 24 + 8, BigInt(level.data.byteLength), true);
+		levelIndex.setBigUint64(i * 24 + 16, BigInt(level.uncompressedByteLength), true);
 		levelDataByteOffset += level.data.byteLength;
 	}
 
