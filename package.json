@@ -17,6 +17,7 @@
     "coverage": "nyc --reporter=lcov --reporter=text ts-node node_modules/tape/bin/tape test/test.ts",
     "coverage:report": "nyc report --reporter=text-lcov | coveralls",
     "preversion": "yarn dist && yarn test",
+    "version": "yarn dist",
     "postpublish": "git push && git push --tags && npm publish && yarn coverage:report"
   },
   "devDependencies": {
