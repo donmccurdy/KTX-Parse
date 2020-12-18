@@ -123,6 +123,7 @@ export function read(data: Uint8Array): KTX2Container {
 		};
 	}
 
+	container.dataFormatDescriptor.length = 0;
 	container.dataFormatDescriptor.push(dfd);
 
 
