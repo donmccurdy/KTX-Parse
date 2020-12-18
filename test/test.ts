@@ -2,8 +2,12 @@ require('source-map-support').install();
 
 import * as fs from 'fs';
 import * as path from 'path';
+import { TextDecoder, TextEncoder } from 'util';
 import * as test from 'tape';
 import { Container, read, write } from '../';
+
+const SAMPLE_ETC1S = fs.readFileSync(path.join(__dirname, 'data', 'test_etc1s.ktx2'));
+const SAMPLE_UASTC = fs.readFileSync(path.join(__dirname, 'data', 'test_uastc.ktx2'));
 
 test('read::invalid', t => {
 	t.throws(() => read(new Uint8Array(10)), /Missing KTX 2\.0 identifier/, 'rejects invalid header');
@@ -11,7 +15,7 @@ test('read::invalid', t => {
 });
 
 test('read::etc1s', t => {
-	const container = read(fs.readFileSync(path.join(__dirname, 'data', 'test_etc1s.ktx2')));
+	const container = read(SAMPLE_ETC1S);
 
 	t.ok(container instanceof Container, 'creates container');
 	t.equals(container.vkFormat, 0, 'vkFormat');
@@ -32,7 +36,7 @@ test('read::etc1s', t => {
 });
 
 test('read::uastc', t => {
-	const container = read(fs.readFileSync(path.join(__dirname, 'data', 'test_uastc.ktx2')));
+	const container = read(SAMPLE_UASTC);
 
 	t.ok(container instanceof Container, 'creates container');
 	t.equals(container.vkFormat, 0, 'vkFormat');
@@ -53,9 +57,10 @@ test('read::uastc', t => {
 });
 
 test('write::etc1s', t => {
-	const a = read(fs.readFileSync(path.join(__dirname, 'data', 'test_etc1s.ktx2')));
+	const a = read(SAMPLE_ETC1S);
 	const b = read(write(a));
 
+	// Compare mip levels.
 	t.equals(b.levels.length, a.levels.length, 'container.levels.length');
 	for (let i = 0; i < a.levels.length; i++) {
 		const aByteLength = a.levels[i].uncompressedByteLength;
@@ -64,7 +69,9 @@ test('write::etc1s', t => {
 		t.equals(bByteLength, aByteLength, `container.levels[${i}].data.byteLength`);
 		t.ok(typedArrayEquals(b.levels[i].data, a.levels[i].data), `container.levels[${i}].data`);
 	}
-	// t.ok(typedArrayEquals(b.globalData, a.globalData), 'container.globalData')
+
+	// Compare supercompression global data.
+	// t.deepEquals(b.globalData, a.globalData, 'container.globalData');
 
 	// Remove KTXWriter (intentionally changed) and data too large for deepEquals().
 	a.keyValue['KTXwriter'] = b.keyValue['KTXwriter'] = 'TEST';
@@ -76,9 +83,10 @@ test('write::etc1s', t => {
 });
 
 test('write::uastc', t => {
-	const a = read(fs.readFileSync(path.join(__dirname, 'data', 'test_uastc.ktx2')));
+	const a = read(SAMPLE_UASTC);
 	const b = read(write(a));
 
+	// Compare mip levels.
 	t.equals(b.levels.length, a.levels.length, 'container.levels.length');
 	for (let i = 0; i < a.levels.length; i++) {
 		const aByteLength = a.levels[i].uncompressedByteLength;
@@ -87,7 +95,9 @@ test('write::uastc', t => {
 		t.equals(bByteLength, aByteLength, `container.levels[${i}].data.byteLength`);
 		t.ok(typedArrayEquals(b.levels[i].data, a.levels[i].data), `container.levels[${i}].data`);
 	}
-	// t.ok(typedArrayEquals(b.globalData, a.globalData), 'container.globalData')
+
+	// Compare supercompression global data.
+	// t.deepEquals(b.globalData, a.globalData, 'container.globalData');
 
 	// Remove KTXWriter (intentionally changed) and data too large for deepEquals().
 	a.keyValue['KTXwriter'] = b.keyValue['KTXwriter'] = 'TEST';
@@ -96,6 +106,22 @@ test('write::uastc', t => {
 
 	t.deepEquals(b, a, 'container.*');
 	t.end();
+});
+
+test('web', t => {
+	// Emulate browser API.
+	global.TextEncoder = TextEncoder as any;
+	global.TextDecoder = TextDecoder as any;
+	const _from = Buffer.from;
+	Buffer.from = (() => { throw new Error('Should not be called.'); }) as any;
+
+	try {
+		const result = write(read(SAMPLE_UASTC));
+		t.ok(result instanceof Uint8Array, 'success');
+		t.end();
+	} finally {
+		Buffer.from = _from;
+	}
 });
 
 function typedArrayEquals (a: Uint8Array, b: Uint8Array): boolean {
