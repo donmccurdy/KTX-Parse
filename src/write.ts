@@ -1,71 +1,159 @@
 import { Container } from './container';
-import { KTX2_ID } from './ktx2-schema';
-import { concat } from './util';
+import { KHR_DF_KHR_DESCRIPTORTYPE_BASICFORMAT, KTX2_ID } from './ktx2-schema';
+import { concat, encodeText } from './util';
 
-export function write(container: Container): Uint8Array {
+// Injected at compile time, from $npm_package_version.
+declare const PACKAGE_VERSION: string;
+
+const KTX_WRITER = `KTX-Parse v${PACKAGE_VERSION}`;
+const HEADER_BYTE_LENGTH = 68; // 13 * 4 + 2 * 8
+const NUL = new Uint8Array([0x00]);
+
+interface WriteOptions {keepWriter?: boolean};
+const DEFAULT_OPTIONS: WriteOptions = {keepWriter: false};
+
+export function write(container: Container, options: WriteOptions = {}): Uint8Array {
+	options = {...DEFAULT_OPTIONS, ...options};
+
 	///////////////////////////////////////////////////
 	// Supercompression Global Data (SGD).
 	///////////////////////////////////////////////////
 
-	const sgdBuffer = new ArrayBuffer(64);
+	const sgdBuffer = new ArrayBuffer(0);
+	// TODO(implement)
 
 
 	///////////////////////////////////////////////////
 	// Key/Value Data (KVD).
 	///////////////////////////////////////////////////
 
-	const kvdBuffer = new ArrayBuffer(0);
-	if (container.keyValue.length) {
-		// TODO(bug): Implement.
-		console.warn('writing container.keyValue not implemented.');
+	const keyValueData: Uint8Array[] = [];
+	let keyValue = container.keyValue;
+
+	if (!options.keepWriter) {
+		keyValue = {...container.keyValue, 'KTXwriter': KTX_WRITER};
 	}
 
-	// TODO(bug): Need to reset KTXwriter and KTXwriterScParams.
+	for (const key in keyValue) {
+		const value = keyValue[key];
+		const keyData = encodeText(key);
+		const valueData = typeof value === 'string' ? encodeText(value) : value;
+		const kvByteLength = keyData.byteLength + 1 + valueData.byteLength + 1;
+		const kvPadding = kvByteLength % 4 ? (4 - (kvByteLength % 4)) : 0; // align(4)
+		keyValueData.push(concat([
+			new Uint32Array([kvByteLength]),
+			keyData,
+			NUL,
+			valueData,
+			NUL,
+			new Uint8Array(kvPadding).fill(0x00), // align(4)
+		]));
+	}
+
+	const kvdBuffer = concat(keyValueData);
 
 
 	///////////////////////////////////////////////////
 	// Data Format Descriptor (DFD).
 	///////////////////////////////////////////////////
 
-	const dfdBuffer = new ArrayBuffer(64);
+	const dfdBuffer = new ArrayBuffer(44);
+	const dfdView = new DataView(dfdBuffer);
+
+	if (container.dataFormatDescriptor.length !== 1
+			|| container.dataFormatDescriptor[0].descriptorType !== KHR_DF_KHR_DESCRIPTORTYPE_BASICFORMAT) {
+		throw new Error('Only KHR_DF_KHR_DESCRIPTORTYPE_BASICFORMAT DFD output supported.');
+	}
+
+	const dfd = container.dataFormatDescriptor[0];
+
+	dfdView.setUint32(0, 44, true);
+	dfdView.setUint16(4, dfd.vendorId, true);
+	dfdView.setUint16(6, dfd.descriptorType, true);
+	dfdView.setUint16(8, dfd.versionNumber, true);
+	dfdView.setUint16(10, dfd.descriptorBlockSize, true);
+
+	dfdView.setUint8(12, dfd.colorModel);
+	dfdView.setUint8(13, dfd.colorPrimaries);
+	dfdView.setUint8(14, dfd.transferFunction);
+	dfdView.setUint8(15, dfd.flags);
+
+	dfdView.setUint8(16, dfd.texelBlockDimension.x - 1);
+	dfdView.setUint8(17, dfd.texelBlockDimension.y - 1);
+	dfdView.setUint8(18, dfd.texelBlockDimension.z - 1);
+	dfdView.setUint8(19, dfd.texelBlockDimension.w - 1);
+
+	for (let i = 0; i < 8; i++) dfdView.setUint8(20 + i, dfd.bytesPlane[i]);
+
+	for (let i = 0; i < dfd.numSamples; i++) {
+		const sample = dfd.samples[i];
+		const sampleByteOffset = 28 + i * 16;
+
+		dfdView.setUint16(sampleByteOffset + 0, sample.bitOffset, true);
+		dfdView.setUint8(sampleByteOffset + 2, sample.bitLength);
+		dfdView.setUint8(sampleByteOffset + 3, sample.channelID);
+
+		dfdView.setUint8(sampleByteOffset + 4, sample.samplePosition[0]);
+		dfdView.setUint8(sampleByteOffset + 5, sample.samplePosition[1]);
+		dfdView.setUint8(sampleByteOffset + 6, sample.samplePosition[2]);
+		dfdView.setUint8(sampleByteOffset + 7, sample.samplePosition[3]);
+
+		dfdView.setUint32(sampleByteOffset + 8, sample.sampleLower, true);
+		dfdView.setUint32(sampleByteOffset + 12, sample.sampleUpper, true);
+	}
+
+
+	///////////////////////////////////////////////////
+	// Data alignment.
+	///////////////////////////////////////////////////
+
+	const dfdByteOffset = KTX2_ID.length + HEADER_BYTE_LENGTH + container.levelCount * 3 * 8;
+	const kvdByteOffset = dfdByteOffset + dfdBuffer.byteLength;
+	let sgdByteOffset = kvdByteOffset + kvdBuffer.byteLength;
+	if (sgdByteOffset % 8) sgdByteOffset += 8 - (sgdByteOffset % 8); // align(8)
 
 
 	///////////////////////////////////////////////////
 	// Level Index.
 	///////////////////////////////////////////////////
 
-	const levelData = new ArrayBuffer(1024);
-	const levelIndex = new ArrayBuffer(32);
+	const levelData: Uint8Array[] = [];
+	const levelIndex = new DataView(new ArrayBuffer(container.levelCount * 3 * 8));
+
+	let levelDataByteOffset = sgdByteOffset + sgdBuffer.byteLength;
+	for (let i = 0; i < container.levelCount; i++) {
+		const level = container.levelIndex[i];
+		levelData.push(level.data);
+		levelIndex.setBigUint64(i * 3 + 0, BigInt(levelDataByteOffset), true);
+		levelIndex.setBigUint64(i * 3 + 8, BigInt(level.data.byteLength), true);
+		levelIndex.setBigUint64(i * 3 + 16, BigInt(level.uncompressedByteLength), true);
+		levelDataByteOffset += level.data.byteLength;
+	}
 
 
 	///////////////////////////////////////////////////
 	// Header.
 	///////////////////////////////////////////////////
 
-	const headerByteLength = KTX2_ID.length + 17 * Uint32Array.BYTES_PER_ELEMENT;
-	const headerBuffer = new Uint32Array([
-		container.vkFormat,
-		container.typeSize,
-		container.pixelWidth,
-		container.pixelHeight,
-		container.pixelDepth,
-		container.layerCount,
-		container.faceCount,
-		container.levelCount,
-		container.supercompressionScheme,
+	const headerBuffer = new ArrayBuffer(HEADER_BYTE_LENGTH);
+	const headerView = new DataView(headerBuffer);
+	headerView.setUint32(0, container.vkFormat, true);
+	headerView.setUint32(4, container.typeSize, true);
+	headerView.setUint32(8, container.pixelWidth, true);
+	headerView.setUint32(12, container.pixelHeight, true);
+	headerView.setUint32(16, container.pixelDepth, true);
+	headerView.setUint32(20, container.layerCount, true);
+	headerView.setUint32(24, container.faceCount, true);
+	headerView.setUint32(28, container.levelCount, true);
+	headerView.setUint32(32, container.supercompressionScheme, true);
 
-		// DFD byteOffset and byteLength.
-		headerByteLength + levelIndex.byteLength,
-		dfdBuffer.byteLength,
+	headerView.setUint32(36, dfdByteOffset, true);
+	headerView.setUint32(40, dfdBuffer.byteLength, true);
+	headerView.setUint32(44, kvdByteOffset, true);
+	headerView.setUint32(48, kvdBuffer.byteLength, true);
+	headerView.setBigUint64(52, BigInt(sgdByteOffset), true);
+	headerView.setBigUint64(60, BigInt(sgdBuffer.byteLength), true);
 
-		// KVD byteOffset and byteLength.
-		headerByteLength + levelIndex.byteLength + dfdBuffer.byteLength,
-		kvdBuffer.byteLength,
-
-		// SGD byteOffset and byteLength.
-		0, headerByteLength + levelIndex.byteLength + dfdBuffer.byteLength + kvdBuffer.byteLength,
-		0, sgdBuffer.byteLength,
-	]);
 
 	///////////////////////////////////////////////////
 	// Compose.
@@ -74,12 +162,12 @@ export function write(container: Container): Uint8Array {
 	return new Uint8Array(concat([
 		new Uint8Array(KTX2_ID).buffer,
 		headerBuffer,
-		levelIndex,
+		levelIndex.buffer,
 		dfdBuffer,
 		kvdBuffer,
-		// TODO: align(8)
+		new ArrayBuffer(sgdByteOffset - (kvdByteOffset + kvdBuffer.byteLength)), // align(8)
 		sgdBuffer,
-		levelData,
+		...levelData,
 	]));
 }
 

@@ -13,6 +13,8 @@ export const KTX2_ID = [
 	0x0A // '\n'
 ];
 
+export const KHR_DF_KHR_DESCRIPTORTYPE_BASICFORMAT = 0x00;
+
 ///////////////////////////////////////////////////
 // Mip Levels.
 ///////////////////////////////////////////////////
@@ -80,7 +82,7 @@ export interface KTX2DataFormatDescriptor {
 	flags: number;
 	texelBlockDimension: KTX2DataFormatDescriptorTexelBlockDimensions;
 	bytesPlane: number[];
-	numSamples: number;
+	numSamples: number; // TODO(cleanup): Just use array.
 	samples: KTX2DataFormatDescriptorSample[],
 }
 

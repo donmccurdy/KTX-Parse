@@ -122,6 +122,9 @@ export function read(data: Uint8Array): Container {
 		};
 	}
 
+	container.dataFormatDescriptor.push(dfd);
+
+
 	///////////////////////////////////////////////////
 	// Key/Value Data (KVD).
 	///////////////////////////////////////////////////
@@ -133,10 +136,7 @@ export function read(data: Uint8Array): Container {
 		const keyData = kvdReader._scan(keyValueByteLength);
 		const key = decodeText(keyData);
 		const valueData = kvdReader._scan(keyValueByteLength - keyData.byteLength);
-		container.keyValue.push({
-			key: key,
-			value: key.match(/^ktx/i) ? decodeText(valueData) : valueData,
-		});
+		container.keyValue[key] = key.match(/^ktx/i) ? decodeText(valueData) : valueData;
 
 		// 4-byte alignment.
 		if (keyValueByteLength % 4) kvdReader._skip(4 - (keyValueByteLength % 4));

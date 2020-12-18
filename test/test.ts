@@ -23,11 +23,11 @@ test('read::etc1s', t => {
 	t.equals(container.faceCount, 1, 'faceCount');
 	t.equals(container.levelCount, 9, 'levelCount');
 	t.equals(container.supercompressionScheme, 1, 'supercompressionScheme');
-	t.deepEquals(container.keyValue, [
-		{key: 'KTXorientation', value: 'rd'},
-		{key: 'KTXwriter', value: 'toktx v4.0.0-beta4~2 / libktx v4.0.0-beta4~2'},
-		{key: 'KTXwriterScParams', value: '--bcmp'},
-	], 'keyValue');
+	t.deepEquals(container.keyValue, {
+		'KTXorientation': 'rd',
+		'KTXwriter': 'toktx v4.0.0-beta4~2 / libktx v4.0.0-beta4~2',
+		'KTXwriterScParams': '--bcmp'
+	}, 'keyValue');
 	t.end();
 });
 
@@ -44,24 +44,36 @@ test('read::uastc', t => {
 	t.equals(container.faceCount, 1, 'faceCount');
 	t.equals(container.levelCount, 9, 'levelCount');
 	t.equals(container.supercompressionScheme, 0, 'supercompressionScheme');
-	t.deepEquals(container.keyValue, [
-		{key: 'KTXorientation', value: 'rd'},
-		{key: 'KTXwriter', value: 'toktx v4.0.0-beta4~2 / libktx v4.0.0-beta4~2'},
-		{key: 'KTXwriterScParams', value: '--uastc 2'},
-	], 'keyValue');
+	t.deepEquals(container.keyValue, {
+		'KTXorientation': 'rd',
+		'KTXwriter': 'toktx v4.0.0-beta4~2 / libktx v4.0.0-beta4~2',
+		'KTXwriterScParams': '--uastc 2'
+	}, 'keyValue');
 	t.end();
 });
 
-test.skip('write::etc1s', t => {
+test('write::etc1s', t => {
 	const inContainer = read(fs.readFileSync(path.join(__dirname, 'data', 'test_etc1s.ktx2')));
 	const outContainer = read(write(inContainer));
+
+	// TODO(cleanup): Remove stuff we can't compare.
+	inContainer.keyValue['KTXwriter'] = outContainer.keyValue['KTXwriter'] = 'TEST';
+	inContainer.levelIndex = outContainer.levelIndex = [];
+	inContainer.globalData = outContainer.globalData = null;
+
 	t.deepEquals(outContainer, inContainer, 'lossless i/o');
 	t.end();
 });
 
-test.skip('write::uastc', t => {
+test('write::uastc', t => {
 	const inContainer = read(fs.readFileSync(path.join(__dirname, 'data', 'test_uastc.ktx2')));
 	const outContainer = read(write(inContainer));
+
+	// TODO(cleanup): Remove stuff we can't compare.
+	inContainer.keyValue['KTXwriter'] = outContainer.keyValue['KTXwriter'] = 'TEST';
+	inContainer.levelIndex = outContainer.levelIndex = [];
+	inContainer.globalData = outContainer.globalData = null;
+
 	t.deepEquals(outContainer, inContainer, 'lossless i/o');
 	t.end();
 });
