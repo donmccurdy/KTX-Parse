@@ -4,7 +4,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 import { TextDecoder, TextEncoder } from 'util';
 import * as test from 'tape';
-import { Container, read, write } from '../';
+import { KTX2Container, read, write } from '../';
 
 const SAMPLE_ETC1S = fs.readFileSync(path.join(__dirname, 'data', 'test_etc1s.ktx2'));
 const SAMPLE_UASTC = fs.readFileSync(path.join(__dirname, 'data', 'test_uastc.ktx2'));
@@ -17,7 +17,7 @@ test('read::invalid', t => {
 test('read::etc1s', t => {
 	const container = read(SAMPLE_ETC1S);
 
-	t.ok(container instanceof Container, 'creates container');
+	t.ok(container instanceof KTX2Container, 'creates container');
 	t.equals(container.vkFormat, 0, 'vkFormat');
 	t.equals(container.typeSize, 1, 'typeSize');
 	t.equals(container.pixelWidth, 256, 'pixelWidth');
@@ -38,7 +38,7 @@ test('read::etc1s', t => {
 test('read::uastc', t => {
 	const container = read(SAMPLE_UASTC);
 
-	t.ok(container instanceof Container, 'creates container');
+	t.ok(container instanceof KTX2Container, 'creates container');
 	t.equals(container.vkFormat, 0, 'vkFormat');
 	t.equals(container.typeSize, 1, 'typeSize');
 	t.equals(container.pixelWidth, 256, 'pixelWidth');

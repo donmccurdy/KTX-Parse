@@ -1,9 +1,9 @@
 import { BufferReader } from './buffer-reader';
-import { Container } from './container';
-import { KTX2DataFormatDescriptor, KTX2_ID } from './ktx2-schema';
+import { KTX2_ID } from './constants';
+import { KTX2Container, KTX2DataFormatDescriptorBasicFormat } from './container';
 import { decodeText } from './util';
 
-export function read(data: Uint8Array): Container {
+export function read(data: Uint8Array): KTX2Container {
 
 	///////////////////////////////////////////////////
 	// KTX 2.0 Identifier.
@@ -26,7 +26,7 @@ export function read(data: Uint8Array): Container {
 		throw new Error('Missing KTX 2.0 identifier.');
 	}
 
-	const container = new Container();
+	const container = new KTX2Container();
 
 	///////////////////////////////////////////////////
 	// Header.
@@ -75,7 +75,7 @@ export function read(data: Uint8Array): Container {
 
 	const dfdReader = new BufferReader(data, dfdByteOffset, dfdByteLength, true);
 
-	const dfd: KTX2DataFormatDescriptor = {
+	const dfd: KTX2DataFormatDescriptorBasicFormat = {
 		vendorId: dfdReader._skip(4 /* totalSize */)._nextUint16(),
 		descriptorType: dfdReader._nextUint16(),
 		versionNumber: dfdReader._nextUint16(),

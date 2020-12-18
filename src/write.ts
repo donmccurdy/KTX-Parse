@@ -1,18 +1,11 @@
-import { Container } from './container';
-import { KHR_DF_KHR_DESCRIPTORTYPE_BASICFORMAT, KTX2_ID } from './ktx2-schema';
+import { HEADER_BYTE_LENGTH, KTX2DataFormatDescriptorType, KTX2_ID, KTX_WRITER, NUL } from './constants';
+import { KTX2Container } from './container';
 import { concat, encodeText } from './util';
-
-// Injected at compile time, from $npm_package_version.
-declare const PACKAGE_VERSION: string;
-
-const KTX_WRITER = `KTX-Parse v${PACKAGE_VERSION}`;
-const HEADER_BYTE_LENGTH = 68; // 13 * 4 + 2 * 8
-const NUL = new Uint8Array([0x00]);
 
 interface WriteOptions {keepWriter?: boolean};
 const DEFAULT_OPTIONS: WriteOptions = {keepWriter: false};
 
-export function write(container: Container, options: WriteOptions = {}): Uint8Array {
+export function write(container: KTX2Container, options: WriteOptions = {}): Uint8Array {
 	options = {...DEFAULT_OPTIONS, ...options};
 
 	///////////////////////////////////////////////////
@@ -87,8 +80,8 @@ export function write(container: Container, options: WriteOptions = {}): Uint8Ar
 	const dfdView = new DataView(dfdBuffer);
 
 	if (container.dataFormatDescriptor.length !== 1
-			|| container.dataFormatDescriptor[0].descriptorType !== KHR_DF_KHR_DESCRIPTORTYPE_BASICFORMAT) {
-		throw new Error('Only KHR_DF_KHR_DESCRIPTORTYPE_BASICFORMAT DFD output supported.');
+			|| container.dataFormatDescriptor[0].descriptorType !== KTX2DataFormatDescriptorType.BASICFORMAT) {
+		throw new Error('Only BASICFORMAT Data Format Descriptor output supported.');
 	}
 
 	const dfd = container.dataFormatDescriptor[0];
