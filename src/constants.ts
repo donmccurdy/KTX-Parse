@@ -21,6 +21,13 @@ export const KTX2_ID = [
 
 export const HEADER_BYTE_LENGTH = 68; // 13 * 4 + 2 * 8
 
+export enum KTX2SupercompressionScheme {
+	NONE = 0,
+	BASISLZ = 1,
+	ZSTD = 2,
+	ZLIB = 3,
+};
+
 
 ///////////////////////////////////////////////////
 // Data Format Descriptor (DFD).

@@ -1,17 +1,46 @@
-import { KHR_DF_BLOCKSIZE, KHR_DF_VENDORID_KHRONOS, KHR_DF_VERSION, KTX2DataFormatFlags, KTX2DataFormatModel, KTX2DataFormatPrimaries, KTX2DataFormatType, VK_FORMAT_UNDEFINED } from './constants';
+import { KHR_DF_BLOCKSIZE, KHR_DF_VENDORID_KHRONOS, KHR_DF_VERSION, KTX2DataFormatFlags, KTX2DataFormatModel, KTX2DataFormatPrimaries, KTX2DataFormatType, KTX2SupercompressionScheme, VK_FORMAT_UNDEFINED } from './constants';
 
+/**
+ * Represents an unpacked KTX 2.0 texture container. Data for individual mip levels are stored in
+ * the `.levels` array, typically compressed in Basis Universal formats. Additional properties
+ * provide metadata required to process, transcode, and upload these textures.
+ */
 export class KTX2Container {
-	// Header.
+	/**
+	 * Specifies the image format using Vulkan VkFormat enum values. When using Basis Universal
+	 * texture formats, `vkFormat` must be VK_FORMAT_UNDEFINED.
+	 */
 	public vkFormat = VK_FORMAT_UNDEFINED;
+
+	/**
+	 * Size of the data type in bytes used to upload the data to a graphics API. When `vkFormat` is
+	 * VK_FORMAT_UNDEFINED, `typeSize` must be 1.
+	 */
 	public typeSize: number = 1;
+
+	/** Width of the texture image for level 0, in pixels. */
 	public pixelWidth: number = 0;
+
+	/** Height of the texture image for level 0, in pixels. */
 	public pixelHeight: number = 0;
+
+	/** Depth of the texture image for level 0, in pixels (3D textures only). */
 	public pixelDepth: number = 0;
+
+	/** Number of array elements (array textures only). */
 	public layerCount: number = 0;
+
+	/**
+	 * Number of cubemap faces. For cubemaps and cubemap arrays, `faceCount` must be 6. For all
+	 * other textures, `faceCount` must be 0. Cubemap faces are stored in +X, -X, +Y, -Y, +Z, -Z
+	 * order.
+	 */
 	public faceCount: number = 1;
+
+	/** Indicates which supercompression scheme has been applied to mip level images, if any. */
 	public supercompressionScheme = KTX2SupercompressionScheme.NONE;
 
-	/** Mip Levels. */
+	/** Mip levels. */
 	public levels: KTX2Level[] = [];
 
 	/** Data Format Descriptor. */
@@ -42,16 +71,12 @@ export class KTX2Container {
 ///////////////////////////////////////////////////
 
 export interface KTX2Level {
+	/** Compressed data of the mip level. */
 	levelData: Uint8Array;
-	uncompressedByteLength: number;
-}
 
-export enum KTX2SupercompressionScheme {
-	NONE = 0,
-	BASISLZ = 1,
-	ZSTD = 2,
-	ZLIB = 3,
-}
+	/** Uncompressed size of the mip level. */
+	uncompressedByteLength: number;
+};
 
 
 ///////////////////////////////////////////////////
@@ -70,14 +95,14 @@ export interface KTX2DataFormatDescriptorBasicFormat {
 	texelBlockDimension: KTX2BasicFormatTexelBlockDimensions;
 	bytesPlane: number[];
 	samples: KTX2BasicFormatSample[],
-}
+};
 
 export interface KTX2BasicFormatTexelBlockDimensions {
 	x: number;
 	y: number;
 	z: number;
 	w: number;
-}
+};
 
 export interface KTX2BasicFormatSample {
 	bitOffset: number;
@@ -86,7 +111,7 @@ export interface KTX2BasicFormatSample {
 	samplePosition: number[];
 	sampleLower: number;
 	sampleUpper: number;
-}
+};
 
 
 ///////////////////////////////////////////////////
@@ -101,7 +126,7 @@ export interface KTX2GlobalDataBasisLZ {
 	selectorsData: Uint8Array;
 	tablesData: Uint8Array;
 	extendedData: Uint8Array;
-}
+};
 
 interface KTX2GlobalDataBasisLZImageDesc {
 	imageFlags: number;
@@ -109,4 +134,4 @@ interface KTX2GlobalDataBasisLZImageDesc {
 	rgbSliceByteLength: number;
 	alphaSliceByteOffset: number;
 	alphaSliceByteLength: number;
-}
+};
