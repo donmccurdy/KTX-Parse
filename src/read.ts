@@ -63,7 +63,7 @@ export function read(data: Uint8Array): KTX2Container {
 
 	for (let i = 0; i < levelCount; i ++) {
 		container.levels.push({
-			data: new Uint8Array(data.buffer, data.byteOffset + levelReader._nextUint64(), levelReader._nextUint64()),
+			levelData: new Uint8Array(data.buffer, data.byteOffset + levelReader._nextUint64(), levelReader._nextUint64()),
 			uncompressedByteLength: levelReader._nextUint64(),
 		});
 	}

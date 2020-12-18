@@ -80,8 +80,8 @@ test('write::etc1s', t => {
 		const aByteLength = a.levels[i].uncompressedByteLength;
 		const bByteLength = b.levels[i].uncompressedByteLength;
 		t.equals(bByteLength, aByteLength, `container.levels[${i}].uncompressedByteLength`);
-		t.equals(bByteLength, aByteLength, `container.levels[${i}].data.byteLength`);
-		t.ok(typedArrayEquals(b.levels[i].data, a.levels[i].data), `container.levels[${i}].data`);
+		t.equals(bByteLength, aByteLength, `container.levels[${i}].levelData.byteLength`);
+		t.ok(typedArrayEquals(b.levels[i].levelData, a.levels[i].levelData), `container.levels[${i}].levelData`);
 	}
 
 	// Compare supercompression global data.
@@ -121,8 +121,8 @@ test('write::uastc', t => {
 		const aByteLength = a.levels[i].uncompressedByteLength;
 		const bByteLength = b.levels[i].uncompressedByteLength;
 		t.equals(bByteLength, aByteLength, `container.levels[${i}].uncompressedByteLength`);
-		t.equals(bByteLength, aByteLength, `container.levels[${i}].data.byteLength`);
-		t.ok(typedArrayEquals(b.levels[i].data, a.levels[i].data), `container.levels[${i}].data`);
+		t.equals(bByteLength, aByteLength, `container.levels[${i}].levelData.byteLength`);
+		t.ok(typedArrayEquals(b.levels[i].levelData, a.levels[i].levelData), `container.levels[${i}].levelData`);
 	}
 
 	// UASTC does not have supercompression.

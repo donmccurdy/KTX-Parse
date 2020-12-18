@@ -1,4 +1,4 @@
-import { HEADER_BYTE_LENGTH, KTX2DataFormatDescriptorType, KTX2_ID, KTX_WRITER, NUL } from './constants';
+import { HEADER_BYTE_LENGTH, KTX2DataFormatType, KTX2_ID, KTX_WRITER, NUL } from './constants';
 import { KTX2Container } from './container';
 import { concat, encodeText } from './util';
 
@@ -80,7 +80,7 @@ export function write(container: KTX2Container, options: WriteOptions = {}): Uin
 	const dfdView = new DataView(dfdBuffer);
 
 	if (container.dataFormatDescriptor.length !== 1
-			|| container.dataFormatDescriptor[0].descriptorType !== KTX2DataFormatDescriptorType.BASICFORMAT) {
+			|| container.dataFormatDescriptor[0].descriptorType !== KTX2DataFormatType.BASICFORMAT) {
 		throw new Error('Only BASICFORMAT Data Format Descriptor output supported.');
 	}
 
@@ -142,11 +142,11 @@ export function write(container: KTX2Container, options: WriteOptions = {}): Uin
 	let levelDataByteOffset = sgdByteOffset + sgdBuffer.byteLength;
 	for (let i = 0; i < container.levels.length; i++) {
 		const level = container.levels[i];
-		levelData.push(level.data);
+		levelData.push(level.levelData);
 		levelIndex.setBigUint64(i * 24 + 0, BigInt(levelDataByteOffset), true);
-		levelIndex.setBigUint64(i * 24 + 8, BigInt(level.data.byteLength), true);
+		levelIndex.setBigUint64(i * 24 + 8, BigInt(level.levelData.byteLength), true);
 		levelIndex.setBigUint64(i * 24 + 16, BigInt(level.uncompressedByteLength), true);
-		levelDataByteOffset += level.data.byteLength;
+		levelDataByteOffset += level.levelData.byteLength;
 	}
 
 

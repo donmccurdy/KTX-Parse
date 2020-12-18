@@ -1,8 +1,8 @@
-
+import { KHR_DF_BLOCKSIZE, KHR_DF_VENDORID_KHRONOS, KHR_DF_VERSION, KTX2DataFormatFlags, KTX2DataFormatModel, KTX2DataFormatPrimaries, KTX2DataFormatType, VK_FORMAT_UNDEFINED } from './constants';
 
 export class KTX2Container {
 	// Header.
-	public vkFormat: number = 0x00;
+	public vkFormat = VK_FORMAT_UNDEFINED;
 	public typeSize: number = 1;
 	public pixelWidth: number = 0;
 	public pixelHeight: number = 0;
@@ -16,20 +16,15 @@ export class KTX2Container {
 
 	/** Data Format Descriptor. */
 	public dataFormatDescriptor: KTX2DataFormatDescriptorBasicFormat[] = [{
-		vendorId: 0,
-		descriptorType: 0,
-		versionNumber: 2,
-		descriptorBlockSize: 40,
-		colorModel: -1,
-		colorPrimaries: 1,
-		transferFunction: 2,
-		flags: 0,
-		texelBlockDimension: {
-			x: 4,
-			y: 4,
-			z: 1,
-			w: 1,
-		},
+		vendorId: KHR_DF_VENDORID_KHRONOS,
+		descriptorType: KTX2DataFormatType.BASICFORMAT,
+		versionNumber: KHR_DF_VERSION,
+		descriptorBlockSize: KHR_DF_BLOCKSIZE,
+		colorModel: KTX2DataFormatModel.UNSPECIFIED,
+		colorPrimaries: KTX2DataFormatPrimaries.SRGB,
+		transferFunction: KTX2DataFormatPrimaries.SRGB,
+		flags: KTX2DataFormatFlags.ALPHA_STRAIGHT,
+		texelBlockDimension: {x: 4, y: 4, z: 1, w: 1},
 		bytesPlane: [],
 		samples: [],
 	}];
@@ -47,7 +42,7 @@ export class KTX2Container {
 ///////////////////////////////////////////////////
 
 export interface KTX2Level {
-	data: Uint8Array;
+	levelData: Uint8Array;
 	uncompressedByteLength: number;
 }
 
