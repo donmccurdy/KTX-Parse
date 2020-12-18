@@ -13,33 +13,52 @@
 
 ## Quickstart
 
+Install:
+
 ```
 npm install --save ktx-parse
 ```
 
+Import:
+
 ```js
-const fs = require('fs');
+// ES Modules:
+import { read, write } from 'ktx-parse';
+
+// CommonJS:
 const { read, write } = require('ktx-parse');
+```
 
-// Read data.
-const inData = fs.readFileSync('./input.ktx2'); // (a) Node.js
-const inData = await fetch('./input.ktx2') // (b) Web
-    .then((r) => r.arrayBuffer())
-    .then((buffer) => new Uint8Array(buffer));
+Usage:
 
-// Parse.
-const container = read(inData);
+```js
+// Parse texture container from file:
+const texture = read(data /* ← Uint8Array or Buffer */);
 
-// Serialize.
-const outData = write(container); // → Uint8Array
+// Write texture container to file:
+const data = write(texture); // → Uint8Array
 ```
 
 ## API
 
-TODO
+> **TODO:** Generate API documentation from TSDoc.
 
 ## Encoding / Decoding
 
-This library reads/writes KTX 2.0 containers, and provides access to the compressed texture data within the container. To decompress that data, or to compress existing texture data into GPU texture formats used by KTX 2.0, you'll need to use additional libraries, described below.
+KTX-Parse reads/writes KTX 2.0 containers, and provides access to the compressed texture data within the container. To decompress that texture data, or to compress existing texture data into GPU texture formats used by KTX 2.0, you'll need to use additional libraries such as encoders or transcoders.
 
-> **TODO:** Describe options for compressing, transcoding, and decompressing KTX 2.0 payloads using Basis Universal.
+**Encoding:**
+
+Encoding GPU textures is a slow process, and should be completed at development/authoring time so that the compressed texture can be transmitted to the viewing device. GPU textures require much less GPU memory than image formats like PNG or JPEG, and can be uploaded to the GPU quickly with less impact on framerate. GPU textures can also have smaller filesizes in many, but not all, cases. See the [Basis documentation](https://github.com/BinomialLLC/basis_universal/) for details on this process.
+
+- [BinomialLLC/basis_universal](https://github.com/BinomialLLC/basis_universal/) provides C++ and WebAssembly encoders, reading PNG files or raw pixel data, and outputing compressed texture data (and supercompression global data, if applicable). Use of these encoders is somewhat advanced, and the simpler `basisu` CLI tool does not provide the data necessary for writing a KTX 2.0 file.
+- [KhronosGroup/KTX-Software](https://github.com/KhronosGroup/KTX-Software) provides CLI, C++, and WebAssembly encoders for reading PNG or JPEG textures and outputing a complete KTX 2.0 file, which `ktx-parse` can then read or edit. While probably easier than using the basis_universal encoders directly, the KTX-Software library is somewhat larger and has more dependencies.
+
+**Transcoding / Decoding:**
+
+Basis Universal texture formats (ETC1S and UASTC) cannot be directly read by a GPU, but are designed to be very efficiently rewritten into many of the specific GPU texture formats that different GPUs require. This process is called _transcoding_, and typically happens on the viewing device after a target output format (e.g. ETC1, ASTC, BC1, ...) is chosen. On older devices that support no modern GPU texture formats at all, or if the original pixel data is required for other reasons, these transcoders can also fully _decode_ texture data to uncompressed RGBA formats.
+
+- [BinomialLLC/basis_universal](https://github.com/BinomialLLC/basis_universal/) provides official C++ and WebAssembly transcoders, which support all Basis Universal input formats and can transcode to any output format (with appropriate compilation flags). With common settings, a transcoder will likely be > 200kb on web.
+- [KhronosGroup/Universal-Texture-Transcoders](https://github.com/KhronosGroup/Universal-Texture-Transcoders) provides very small, fast WebAssembly transcoders each supporting only a single output texture format. Each transcoder is roughly 10-20kb, and the viewing device can choose which transcoder to download as appropriate. *Only UASTC texture formats currently supported.*
+
+The transcoders above cannot read KTX 2.0 files directly. Instead, unpack the KTX 2.0 files with `ktx-parse` first, then transcode the mip levels (one by one or in parallel) using the low-level transcoder.
