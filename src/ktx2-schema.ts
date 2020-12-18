@@ -82,7 +82,6 @@ export interface KTX2DataFormatDescriptor {
 	flags: number;
 	texelBlockDimension: KTX2DataFormatDescriptorTexelBlockDimensions;
 	bytesPlane: number[];
-	numSamples: number; // TODO(cleanup): Just use array.
 	samples: KTX2DataFormatDescriptorSample[],
 }
 

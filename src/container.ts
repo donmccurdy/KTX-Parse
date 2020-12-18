@@ -9,11 +9,10 @@ export class Container {
 	public pixelDepth: number = -1;
 	public layerCount: number = -1;
 	public faceCount: number = -1;
-	public levelCount: number = -1; // TODO(cleanup): Just use array?
 	public supercompressionScheme = KTX2SupercompressionScheme.NONE;
 
 	/** Mip Levels. */
-	public levelIndex: KTX2Level[] = []; // TODO(cleanup): Just .levels.
+	public levels: KTX2Level[] = [];
 
 	/** Data Format Descriptor. */
 	public dataFormatDescriptor: KTX2DataFormatDescriptor[] = [];

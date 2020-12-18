@@ -42,7 +42,9 @@ export function read(data: Uint8Array): Container {
 	container.pixelDepth = headerReader._nextUint32();
 	container.layerCount = headerReader._nextUint32();
 	container.faceCount = headerReader._nextUint32();
-	container.levelCount = headerReader._nextUint32();
+
+	const levelCount = headerReader._nextUint32();
+
 	container.supercompressionScheme = headerReader._nextUint32();
 
 	const dfdByteOffset = headerReader._nextUint32();
@@ -56,11 +58,11 @@ export function read(data: Uint8Array): Container {
 	// Level Index.
 	///////////////////////////////////////////////////
 
-	const levelByteLength = container.levelCount * 3 * 8;
+	const levelByteLength = levelCount * 3 * 8;
 	const levelReader = new BufferReader(data, KTX2_ID.length + headerByteLength, levelByteLength, true);
 
-	for (let i = 0; i < container.levelCount; i ++) {
-		container.levelIndex.push({
+	for (let i = 0; i < levelCount; i ++) {
+		container.levels.push({
 			data: new Uint8Array(data, levelReader._nextUint64(), levelReader._nextUint64()),
 			uncompressedByteLength: levelReader._nextUint64(),
 		});
@@ -98,15 +100,14 @@ export function read(data: Uint8Array): Container {
 			dfdReader._nextUint8(),
 			dfdReader._nextUint8(),
 		],
-		numSamples: 0,
 		samples: [],
 	};
 
 	const sampleStart = 6;
 	const sampleWords = 4;
-	dfd.numSamples = (dfd.descriptorBlockSize / 4 - sampleStart) / sampleWords;
+	const numSamples = (dfd.descriptorBlockSize / 4 - sampleStart) / sampleWords;
 
-	for (let i = 0; i < dfd.numSamples; i ++) {
+	for (let i = 0; i < numSamples; i ++) {
 		dfd.samples[ i ] = {
 			bitOffset: dfdReader._nextUint16(),
 			bitLength: dfdReader._nextUint8(),
@@ -159,7 +160,7 @@ export function read(data: Uint8Array): Container {
 	const extendedByteLength = sgdReader._nextUint32();
 
 	const imageDescs = [];
-	for (let i = 0; i < container.levelCount; i ++) {
+	for (let i = 0; i < levelCount; i ++) {
 		imageDescs.push({
 			imageFlags: sgdReader._nextUint32(),
 			rgbSliceByteOffset: sgdReader._nextUint32(),

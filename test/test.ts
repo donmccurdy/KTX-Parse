@@ -21,7 +21,7 @@ test('read::etc1s', t => {
 	t.equals(container.pixelDepth, 0, 'pixelDepth');
 	t.equals(container.layerCount, 0, 'layerCount');
 	t.equals(container.faceCount, 1, 'faceCount');
-	t.equals(container.levelCount, 9, 'levelCount');
+	t.equals(container.levels.length, 9, 'levels.length');
 	t.equals(container.supercompressionScheme, 1, 'supercompressionScheme');
 	t.deepEquals(container.keyValue, {
 		'KTXorientation': 'rd',
@@ -42,7 +42,7 @@ test('read::uastc', t => {
 	t.equals(container.pixelDepth, 0, 'pixelDepth');
 	t.equals(container.layerCount, 0, 'layerCount');
 	t.equals(container.faceCount, 1, 'faceCount');
-	t.equals(container.levelCount, 9, 'levelCount');
+	t.equals(container.levels.length, 9, 'levels.length');
 	t.equals(container.supercompressionScheme, 0, 'supercompressionScheme');
 	t.deepEquals(container.keyValue, {
 		'KTXorientation': 'rd',
@@ -53,27 +53,37 @@ test('read::uastc', t => {
 });
 
 test('write::etc1s', t => {
-	const inContainer = read(fs.readFileSync(path.join(__dirname, 'data', 'test_etc1s.ktx2')));
-	const outContainer = read(write(inContainer));
+	const a = read(fs.readFileSync(path.join(__dirname, 'data', 'test_etc1s.ktx2')));
+	const b = read(write(a));
+
+	t.equals(b.levels.length, a.levels.length, 'container.levels.length');
 
 	// TODO(cleanup): Remove stuff we can't compare.
-	inContainer.keyValue['KTXwriter'] = outContainer.keyValue['KTXwriter'] = 'TEST';
-	inContainer.levelIndex = outContainer.levelIndex = [];
-	inContainer.globalData = outContainer.globalData = null;
+	a.keyValue['KTXwriter'] = b.keyValue['KTXwriter'] = 'TEST';
+	a.levels = b.levels = [];
+	a.globalData = b.globalData = null;
 
-	t.deepEquals(outContainer, inContainer, 'lossless i/o');
+	t.deepEquals(b, a, 'container.*');
 	t.end();
 });
 
 test('write::uastc', t => {
-	const inContainer = read(fs.readFileSync(path.join(__dirname, 'data', 'test_uastc.ktx2')));
-	const outContainer = read(write(inContainer));
+	const a = read(fs.readFileSync(path.join(__dirname, 'data', 'test_uastc.ktx2')));
+	const b = read(write(a));
+
+	t.equals(b.levels.length, a.levels.length, 'container.levels.length');
 
 	// TODO(cleanup): Remove stuff we can't compare.
-	inContainer.keyValue['KTXwriter'] = outContainer.keyValue['KTXwriter'] = 'TEST';
-	inContainer.levelIndex = outContainer.levelIndex = [];
-	inContainer.globalData = outContainer.globalData = null;
+	a.keyValue['KTXwriter'] = b.keyValue['KTXwriter'] = 'TEST';
+	a.levels = b.levels = [];
+	a.globalData = b.globalData = null;
 
-	t.deepEquals(outContainer, inContainer, 'lossless i/o');
+	t.deepEquals(b, a, 'container.*');
 	t.end();
 });
+
+function typedArrayEquals (a: Uint8Array, b: Uint8Array): boolean {
+	if (a.byteLength !== b.byteLength) return false;
+	for (let i = 0; i < a.byteLength; i++) { if (a[i] !== b[i]) return false; }
+	return true;
+}

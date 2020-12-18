@@ -85,7 +85,7 @@ export function write(container: Container, options: WriteOptions = {}): Uint8Ar
 
 	for (let i = 0; i < 8; i++) dfdView.setUint8(20 + i, dfd.bytesPlane[i]);
 
-	for (let i = 0; i < dfd.numSamples; i++) {
+	for (let i = 0; i < dfd.samples.length; i++) {
 		const sample = dfd.samples[i];
 		const sampleByteOffset = 28 + i * 16;
 
@@ -107,7 +107,7 @@ export function write(container: Container, options: WriteOptions = {}): Uint8Ar
 	// Data alignment.
 	///////////////////////////////////////////////////
 
-	const dfdByteOffset = KTX2_ID.length + HEADER_BYTE_LENGTH + container.levelCount * 3 * 8;
+	const dfdByteOffset = KTX2_ID.length + HEADER_BYTE_LENGTH + container.levels.length * 3 * 8;
 	const kvdByteOffset = dfdByteOffset + dfdBuffer.byteLength;
 	let sgdByteOffset = kvdByteOffset + kvdBuffer.byteLength;
 	if (sgdByteOffset % 8) sgdByteOffset += 8 - (sgdByteOffset % 8); // align(8)
@@ -118,11 +118,11 @@ export function write(container: Container, options: WriteOptions = {}): Uint8Ar
 	///////////////////////////////////////////////////
 
 	const levelData: Uint8Array[] = [];
-	const levelIndex = new DataView(new ArrayBuffer(container.levelCount * 3 * 8));
+	const levelIndex = new DataView(new ArrayBuffer(container.levels.length * 3 * 8));
 
 	let levelDataByteOffset = sgdByteOffset + sgdBuffer.byteLength;
-	for (let i = 0; i < container.levelCount; i++) {
-		const level = container.levelIndex[i];
+	for (let i = 0; i < container.levels.length; i++) {
+		const level = container.levels[i];
 		levelData.push(level.data);
 		levelIndex.setBigUint64(i * 3 + 0, BigInt(levelDataByteOffset), true);
 		levelIndex.setBigUint64(i * 3 + 8, BigInt(level.data.byteLength), true);
@@ -144,7 +144,7 @@ export function write(container: Container, options: WriteOptions = {}): Uint8Ar
 	headerView.setUint32(16, container.pixelDepth, true);
 	headerView.setUint32(20, container.layerCount, true);
 	headerView.setUint32(24, container.faceCount, true);
-	headerView.setUint32(28, container.levelCount, true);
+	headerView.setUint32(28, container.levels.length, true);
 	headerView.setUint32(32, container.supercompressionScheme, true);
 
 	headerView.setUint32(36, dfdByteOffset, true);
