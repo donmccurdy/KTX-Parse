@@ -11,7 +11,7 @@ readme = inject(readme, read, 'read');
 readme = inject(readme, write, 'write');
 fs.writeFileSync(path.join(__dirname, 'README.md'), readme);
 
-function inject(body, text, id) {
+function inject(body: string, text: string, id: string): string {
     text = text.replace(/\[(\w+)]\(\.\.\/(?:interfaces|enums|classes)\/[^\)]+\)/g, '`$1`'); // no external links.
     text = text.replace(/# /g, '### '); // increase header levels
     text = removeLines(text, '#### Hierarchy', '#### Properties'); // remove cruft
@@ -30,7 +30,7 @@ ${ text }
     );
 }
 
-function removeLines(text, from, to, inclusive) {
+function removeLines(text: string, from: string, to: string, inclusive: boolean = false): string {
     const lines = [];
     let isSkipping = false;
     for (const line of text.split('\n')) {

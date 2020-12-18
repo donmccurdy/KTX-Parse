@@ -16,7 +16,7 @@
     "test": "ts-node node_modules/tape/bin/tape test/test.ts | tap-spec",
     "coverage": "nyc --reporter=lcov --reporter=text ts-node node_modules/tape/bin/tape test/test.ts",
     "coverage:report": "nyc report --reporter=text-lcov | coveralls",
-    "docs": "typedoc --plugin typedoc-plugin-markdown --out ./docs --hideProjectName --hideBreadcrumbs && node docs.js && rm -rf ./docs",
+    "docs": "typedoc --plugin typedoc-plugin-markdown --out ./docs --hideProjectName --hideBreadcrumbs && ts-node docs.ts && rm -rf ./docs",
     "preversion": "yarn dist && yarn test",
     "version": "yarn dist && yarn docs",
     "postpublish": "git push && git push --tags && npm publish && yarn coverage:report"
