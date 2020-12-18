@@ -9,7 +9,7 @@ export function read(data: Uint8Array): KTX2Container {
 	// KTX 2.0 Identifier.
 	///////////////////////////////////////////////////
 
-	const id = new Uint8Array(data, data.byteOffset, KTX2_ID.length);
+	const id = new Uint8Array(data.buffer, data.byteOffset, KTX2_ID.length);
 	if (id[0] !== KTX2_ID[0] || // '´'
 		id[1] !== KTX2_ID[1] || // 'K'
 		id[2] !== KTX2_ID[2] || // 'T'
@@ -176,10 +176,10 @@ export function read(data: Uint8Array): KTX2Container {
 	const tablesByteOffset = selectorsByteOffset + selectorsByteLength;
 	const extendedByteOffset = tablesByteOffset + tablesByteLength;
 
-	const endpointsData = new Uint8Array(data, data.byteOffset + endpointsByteOffset, endpointsByteLength);
-	const selectorsData = new Uint8Array(data, data.byteOffset + selectorsByteOffset, selectorsByteLength);
-	const tablesData = new Uint8Array(data, data.byteOffset + tablesByteOffset, tablesByteLength);
-	const extendedData = new Uint8Array(data, data.byteOffset + extendedByteOffset, extendedByteLength);
+	const endpointsData = new Uint8Array(data.buffer, data.byteOffset + endpointsByteOffset, endpointsByteLength);
+	const selectorsData = new Uint8Array(data.buffer, data.byteOffset + selectorsByteOffset, selectorsByteLength);
+	const tablesData = new Uint8Array(data.buffer, data.byteOffset + tablesByteOffset, tablesByteLength);
+	const extendedData = new Uint8Array(data.buffer, data.byteOffset + extendedByteOffset, extendedByteLength);
 
 	container.globalData = {
 		endpointCount,

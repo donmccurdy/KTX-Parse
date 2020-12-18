@@ -10,7 +10,7 @@ const SAMPLE_ETC1S = fs.readFileSync(path.join(__dirname, 'data', 'test_etc1s.kt
 const SAMPLE_UASTC = fs.readFileSync(path.join(__dirname, 'data', 'test_uastc.ktx2'));
 
 test('read::invalid', t => {
-	t.throws(() => read(new Uint8Array(10)), /Missing KTX 2\.0 identifier/, 'rejects invalid header');
+	t.throws(() => read(new Uint8Array(99)), /Missing KTX 2\.0 identifier/, 'rejects invalid header');
 	t.end();
 });
 
@@ -56,6 +56,20 @@ test('read::uastc', t => {
 	t.end();
 });
 
+test('read::view-offset', t => {
+	// Construct a sample such that underlying ArrayBuffer has additional data.
+	const sampleBuffer = new ArrayBuffer(123 + SAMPLE_ETC1S.byteLength);
+	const sampleOffset = new Uint8Array(sampleBuffer, 123);
+	sampleOffset.set(SAMPLE_ETC1S, 0);
+
+	// Roundtrip the original and the offset sample, checking that results match.
+	const a = write(read(SAMPLE_ETC1S));
+	const b = write(read(sampleOffset));
+
+	t.ok(typedArrayEquals(b, a), 'identical result');
+	t.end();
+});
+
 test('write::etc1s', t => {
 	const a = read(SAMPLE_ETC1S);
 	const b = read(write(a));
@@ -75,15 +89,15 @@ test('write::etc1s', t => {
 		t.equals(b.globalData.endpointCount, a.globalData.endpointCount, 'container.globalData.endpointCount');
 		t.equals(b.globalData.selectorCount, a.globalData.selectorCount, 'container.globalData.selectorCount');
 
-		// t.equals(b.globalData.endpointsData.byteLength, a.globalData.endpointsData.byteLength, 'container.globalData.endpointsData.byteLength');
-		// t.equals(b.globalData.selectorsData.byteLength, a.globalData.selectorsData.byteLength, 'container.globalData.selectorsData.byteLength');
-		// t.equals(b.globalData.tablesData.byteLength, a.globalData.tablesData.byteLength, 'container.globalData.tablesData.byteLength');
-		// t.equals(b.globalData.extendedData.byteLength, a.globalData.extendedData.byteLength, 'container.globalData.extendedData.byteLength');
+		t.equals(b.globalData.endpointsData.byteLength, a.globalData.endpointsData.byteLength, 'container.globalData.endpointsData.byteLength');
+		t.equals(b.globalData.selectorsData.byteLength, a.globalData.selectorsData.byteLength, 'container.globalData.selectorsData.byteLength');
+		t.equals(b.globalData.tablesData.byteLength, a.globalData.tablesData.byteLength, 'container.globalData.tablesData.byteLength');
+		t.equals(b.globalData.extendedData.byteLength, a.globalData.extendedData.byteLength, 'container.globalData.extendedData.byteLength');
 
-		// t.ok(typedArrayEquals(b.globalData.endpointsData, a.globalData.endpointsData), 'container.globalData.endpointsData');
-		// t.ok(typedArrayEquals(b.globalData.selectorsData, a.globalData.selectorsData), 'container.globalData.selectorsData');
-		// t.ok(typedArrayEquals(b.globalData.tablesData, a.globalData.tablesData), 'container.globalData.tablesData');
-		// t.ok(typedArrayEquals(b.globalData.extendedData, a.globalData.extendedData), 'container.globalData.extendedData');
+		t.ok(typedArrayEquals(b.globalData.endpointsData, a.globalData.endpointsData), 'container.globalData.endpointsData');
+		t.ok(typedArrayEquals(b.globalData.selectorsData, a.globalData.selectorsData), 'container.globalData.selectorsData');
+		t.ok(typedArrayEquals(b.globalData.tablesData, a.globalData.tablesData), 'container.globalData.tablesData');
+		t.ok(typedArrayEquals(b.globalData.extendedData, a.globalData.extendedData), 'container.globalData.extendedData');
 	} else {
 		t.fail('container.globalData missing');
 	}
@@ -124,7 +138,7 @@ test('write::uastc', t => {
 	t.end();
 });
 
-test('web', t => {
+test('platform::web', t => {
 	// Emulate browser API.
 	global.TextEncoder = TextEncoder as any;
 	global.TextDecoder = TextDecoder as any;
