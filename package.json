@@ -18,8 +18,8 @@
     "coverage:report": "nyc report --reporter=text-lcov | coveralls",
     "docs": "typedoc --plugin typedoc-plugin-markdown --out ./docs --hideProjectName --hideBreadcrumbs && ts-node docs.ts && rm -rf ./docs",
     "preversion": "yarn dist && yarn test",
-    "version": "yarn dist && yarn docs",
-    "postpublish": "git push && git push --tags && npm publish && yarn coverage:report"
+    "version": "yarn dist && yarn docs && git add -u",
+    "postversion": "git push && git push --tags && npm publish && yarn coverage:report"
   },
   "devDependencies": {
     "@types/tape": "^4.13.0",
