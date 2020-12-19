@@ -32,7 +32,7 @@ export class KTX2Container {
 
 	/**
 	 * Number of cubemap faces. For cubemaps and cubemap arrays, `faceCount` must be 6. For all
-	 * other textures, `faceCount` must be 0. Cubemap faces are stored in +X, -X, +Y, -Y, +Z, -Z
+	 * other textures, `faceCount` must be 1. Cubemap faces are stored in +X, -X, +Y, -Y, +Z, -Z
 	 * order.
 	 */
 	public faceCount: number = 1;
@@ -40,7 +40,7 @@ export class KTX2Container {
 	/** Indicates which supercompression scheme has been applied to mip level images, if any. */
 	public supercompressionScheme = KTX2SupercompressionScheme.NONE;
 
-	/** Mip levels. */
+	/** Mip levels, ordered largest (original) to smallest (~1px). */
 	public levels: KTX2Level[] = [];
 
 	/** Data Format Descriptor. */
