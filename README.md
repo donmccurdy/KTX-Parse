@@ -1,6 +1,5 @@
 # ktx-parse
 
-![Status](https://img.shields.io/badge/status-incomplete-orange.svg)
 [![Latest NPM release](https://img.shields.io/npm/v/ktx-parse.svg)](https://www.npmjs.com/package/ktx-parse)
 [![Minzipped size](https://badgen.net/bundlephobia/minzip/ktx-parse)](https://bundlephobia.com/result?p=ktx-parse)
 [![License](https://img.shields.io/badge/license-MIT-007ec6.svg)](https://github.com/donmccurdy/KTX-Parse/blob/main/LICENSE)
@@ -8,8 +7,6 @@
 [![Coverage Status](https://coveralls.io/repos/github/donmccurdy/KTX-Parse/badge.svg?branch=main)](https://coveralls.io/github/donmccurdy/KTX-Parse?branch=main)
 
 *KTX 2.0 (.ktx2) parser and serializer.*
-
-> _**NOTICE**: Work in progress._
 
 ## Quickstart
 
