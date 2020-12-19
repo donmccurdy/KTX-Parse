@@ -74,7 +74,16 @@ export interface KTX2Level {
 	/** Compressed data of the mip level. */
 	levelData: Uint8Array;
 
-	/** Uncompressed size of the mip level. */
+	/**
+	 * Size of the mip level after reflation from supercompression, if applicable. When
+	 * `supercompressionType` is BASISLZ, `uncompressedByteLength` must be 0. When
+	 * `supercompressionType` is `NONE`, `uncompressedByteLength` must match the `levelData` byte
+	 * length.
+	 *
+	 * _**NOTICE:** this implies that for formats such as UASTC, `uncompressedByteLength` may
+	 * indicate size after ZSTD reflation (and of transcoded ASTC data), but does _not_ indicate
+	 * size of decoded RGBA32 pixels._
+	 */
 	uncompressedByteLength: number;
 };
 
