@@ -70,6 +70,23 @@ test('read::view-offset', t => {
 	t.end();
 });
 
+test('read::padding', t => {
+	// This example has a few extra cases to handle in the kvd padding, including
+	// a NUL terminator on a value followed by 3 bytes of padding, for a total of
+	// 4 contiguous NUL bytes.
+	const sample = fs.readFileSync(path.join(__dirname, 'data', 'test_padding.ktx2'));
+	const container = read(sample);
+	t.equals(container.keyValue['KTXorientation'], 'rd', 'KTXorientation');
+	t.equals(container.keyValue['KTXwriter'], 'toktx v4.0.beta1.380.g0d851050 / libktx v4.0.beta1.350.g2c40ba4d.dirty', 'KTXwriter');
+	t.deepEquals(container.keyValue['KHRtoktxScParams'], new Uint8Array([
+		45, 45, 98, 99, 109, 112, 32, 45,
+		45, 99, 108, 101, 118, 101, 108, 32,
+		49, 32, 45, 45, 113, 108, 101, 118,
+		101, 108, 32, 49, 57, 50
+	]), 'KHRtoktxScParams');
+	t.end();
+});
+
 test('write::etc1s', t => {
 	const a = read(SAMPLE_ETC1S);
 	const b = read(write(a));

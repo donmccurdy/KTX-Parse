@@ -144,11 +144,12 @@ export function read(data: Uint8Array): KTX2Container {
 		const keyValueByteLength = kvdReader._nextUint32();
 		const keyData = kvdReader._scan(keyValueByteLength);
 		const key = decodeText(keyData);
+
 		const valueData = kvdReader._scan(keyValueByteLength - keyData.byteLength);
 		container.keyValue[key] = key.match(/^ktx/i) ? decodeText(valueData) : valueData;
 
 		// 4-byte alignment.
-		if (keyValueByteLength % 4) kvdReader._skip(4 - (keyValueByteLength % 4));
+		if (kvdReader._offset % 4) kvdReader._skip(4 - (kvdReader._offset % 4));
 	}
 
 
