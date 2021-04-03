@@ -18,22 +18,22 @@ export enum KTX2SupercompressionScheme {
 // Data Format Descriptor (DFD).
 ///////////////////////////////////////////////////
 
-export enum KTX2DataFormatDescriptorType {
+export enum KTX2DescriptorType {
 	BASICFORMAT = 0x00,
 };
 
-export enum KTX2DataFormatModel {
+export enum KTX2Model {
 	UNSPECIFIED = 0,
 	ETC1S = 163,
 	UASTC = 166,
 };
 
-export enum KTX2DataFormatPrimaries {
+export enum KTX2Primaries {
 	UNSPECIFIED = 0,
 	SRGB = 1,
 };
 
-export enum KTX2DataFormatTransfer {
+export enum KTX2Transfer {
 	UNSPECIFIED = 0,
 	LINEAR = 1,
 	SRGB = 2,
@@ -43,19 +43,19 @@ export enum KTX2DataFormatTransfer {
 	SLOG2 = 6,
 };
 
-export enum KTX2DataFormatFlags {
+export enum KTX2Flags {
 	ALPHA_STRAIGHT = 0,
 	ALPHA_PREMULTIPLIED = 1,
 };
 
-export enum KTX2DataFormatChannelETC1S {
+export enum KTX2ChannelETC1S {
 	RGB = 0,
 	RRR = 3,
 	GGG = 4,
 	AAA = 15,
 };
 
-export enum KTX2DataFormatChannelUASTC {
+export enum KTX2ChannelUASTC {
 	RGB = 0,
 	RGBA = 3,
 	RRR = 4,

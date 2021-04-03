@@ -1,6 +1,6 @@
 import { HEADER_BYTE_LENGTH, KTX2_ID, KTX_WRITER, NUL } from './constants';
 import { KTX2Container } from './container';
-import { KTX2DataFormatDescriptorType } from './enums';
+import { KTX2DescriptorType } from './enums';
 import { concat, encodeText } from './util';
 
 interface WriteOptions {keepWriter?: boolean};
@@ -93,7 +93,7 @@ export function write(container: KTX2Container, options: WriteOptions = {}): Uin
 	const dfdView = new DataView(dfdBuffer);
 
 	if (container.dataFormatDescriptor.length !== 1
-			|| container.dataFormatDescriptor[0].descriptorType !== KTX2DataFormatDescriptorType.BASICFORMAT) {
+			|| container.dataFormatDescriptor[0].descriptorType !== KTX2DescriptorType.BASICFORMAT) {
 		throw new Error('Only BASICFORMAT Data Format Descriptor output supported.');
 	}
 
