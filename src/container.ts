@@ -1,4 +1,5 @@
-import { KHR_DF_BLOCKSIZE, KHR_DF_VENDORID_KHRONOS, KHR_DF_VERSION, KTX2DataFormatFlags, KTX2DataFormatModel, KTX2DataFormatPrimaries, KTX2DataFormatType, KTX2SupercompressionScheme, VK_FORMAT_UNDEFINED } from './constants';
+import { KHR_DF_BLOCKSIZE, KHR_DF_VENDORID_KHRONOS, KHR_DF_VERSION, VK_FORMAT_UNDEFINED } from './constants';
+import { KTX2DataFormatDescriptorType, KTX2DataFormatFlags, KTX2DataFormatModel, KTX2DataFormatPrimaries, KTX2SupercompressionScheme } from './enums';
 
 /**
  * Represents an unpacked KTX 2.0 texture container. Data for individual mip levels are stored in
@@ -46,7 +47,7 @@ export class KTX2Container {
 	/** Data Format Descriptor. */
 	public dataFormatDescriptor: KTX2DataFormatDescriptorBasicFormat[] = [{
 		vendorId: KHR_DF_VENDORID_KHRONOS,
-		descriptorType: KTX2DataFormatType.BASICFORMAT,
+		descriptorType: KTX2DataFormatDescriptorType.BASICFORMAT,
 		versionNumber: KHR_DF_VERSION,
 		descriptorBlockSize: KHR_DF_BLOCKSIZE,
 		colorModel: KTX2DataFormatModel.UNSPECIFIED,
