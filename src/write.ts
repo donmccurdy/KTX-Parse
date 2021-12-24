@@ -89,9 +89,6 @@ export function write(container: KTX2Container, options: WriteOptions = {}): Uin
 	// Data Format Descriptor (DFD).
 	///////////////////////////////////////////////////
 
-	const dfdBuffer = new ArrayBuffer(44);
-	const dfdView = new DataView(dfdBuffer);
-
 	if (container.dataFormatDescriptor.length !== 1
 			|| container.dataFormatDescriptor[0].descriptorType !== KTX2DescriptorType.BASICFORMAT) {
 		throw new Error('Only BASICFORMAT Data Format Descriptor output supported.');
@@ -99,7 +96,10 @@ export function write(container: KTX2Container, options: WriteOptions = {}): Uin
 
 	const dfd = container.dataFormatDescriptor[0];
 
-	dfdView.setUint32(0, 44, true);
+	const dfdBuffer = new ArrayBuffer(28 + dfd.samples.length * 16);
+	const dfdView = new DataView(dfdBuffer);
+
+	dfdView.setUint32(0, dfdBuffer.byteLength, true);
 	dfdView.setUint16(4, dfd.vendorId, true);
 	dfdView.setUint16(6, dfd.descriptorType, true);
 	dfdView.setUint16(8, dfd.versionNumber, true);
