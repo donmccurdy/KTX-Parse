@@ -1,6 +1,6 @@
 {
   "name": "ktx-parse",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "KTX 2.0 (.ktx2) parser and serializer.",
   "source": "src/index.ts",
   "main": "dist/ktx-parse.js",
