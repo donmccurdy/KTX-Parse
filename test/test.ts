@@ -171,6 +171,32 @@ test('platform::web', t => {
 	}
 });
 
+test('data format descriptors', t => {
+	const sample1 = {
+		bitOffset: 0,
+		bitLength: 10,
+		channelID: 0,
+		samplePosition: [1, 2, 3, 4],
+		sampleLower: 0,
+		sampleUpper: 1,
+	};
+	const sample2 = {...sample1, bitLength: 15};
+
+	const a = read(SAMPLE_UASTC);
+	a.dataFormatDescriptor[0].descriptorBlockSize += 16;
+	a.dataFormatDescriptor[0].samples = [sample1, sample2];
+	const b = read(write(a));
+
+	const dfdA = a.dataFormatDescriptor[0];
+	const dfdB = b.dataFormatDescriptor[0];
+
+	t.equals(dfdA.samples.length, 2, 'a.dfd.samples.length === 2');
+	t.equals(dfdB.samples.length, 2, 'b.dfd.samples.length === 2');
+	t.deepEquals(dfdA.samples[0], dfdB.samples[0], 'a.dfd.samples[0] === b.dfd.samples[0]');
+	t.deepEquals(dfdA.samples[0], dfdB.samples[0], 'a.dfd.samples[0] === b.dfd.samples[0]');
+	t.end();
+});
+
 function typedArrayEquals (a: Uint8Array, b: Uint8Array): boolean {
 	if (a.byteLength !== b.byteLength) return false;
 	for (let i = 0; i < a.byteLength; i++) { if (a[i] !== b[i]) return false; }
