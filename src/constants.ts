@@ -28,5 +28,4 @@ export const HEADER_BYTE_LENGTH = 68; // 13 * 4 + 2 * 8
 
 export const KHR_DF_VENDORID_KHRONOS = 0;
 export const KHR_DF_VERSION = 2;
-export const KHR_DF_BLOCKSIZE = 40;
 export const VK_FORMAT_UNDEFINED = 0;

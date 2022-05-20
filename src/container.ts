@@ -1,4 +1,4 @@
-import { KHR_DF_BLOCKSIZE, KHR_DF_VENDORID_KHRONOS, KHR_DF_VERSION, VK_FORMAT_UNDEFINED } from './constants';
+import { KHR_DF_VENDORID_KHRONOS, KHR_DF_VERSION, VK_FORMAT_UNDEFINED } from './constants';
 import { KTX2DescriptorType, KTX2Flags, KTX2Model, KTX2Primaries, KTX2SupercompressionScheme } from './enums';
 
 /**
@@ -48,8 +48,8 @@ export class KTX2Container {
 	public dataFormatDescriptor: KTX2DataFormatDescriptorBasicFormat[] = [{
 		vendorId: KHR_DF_VENDORID_KHRONOS,
 		descriptorType: KTX2DescriptorType.BASICFORMAT,
+		descriptorBlockSize: 0,
 		versionNumber: KHR_DF_VERSION,
-		descriptorBlockSize: KHR_DF_BLOCKSIZE,
 		colorModel: KTX2Model.UNSPECIFIED,
 		colorPrimaries: KTX2Primaries.SRGB,
 		transferFunction: KTX2Primaries.SRGB,
@@ -97,6 +97,7 @@ export interface KTX2DataFormatDescriptorBasicFormat {
 	vendorId: number;
 	descriptorType: number;
 	versionNumber: number;
+	/** @deprecated Inferred. */
 	descriptorBlockSize: number;
 	colorModel: number;
 	colorPrimaries: number;

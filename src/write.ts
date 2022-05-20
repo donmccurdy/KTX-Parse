@@ -98,12 +98,13 @@ export function write(container: KTX2Container, options: WriteOptions = {}): Uin
 
 	const dfdBuffer = new ArrayBuffer(28 + dfd.samples.length * 16);
 	const dfdView = new DataView(dfdBuffer);
+	const descriptorBlockSize = 24 + dfd.samples.length * 16;
 
 	dfdView.setUint32(0, dfdBuffer.byteLength, true);
 	dfdView.setUint16(4, dfd.vendorId, true);
 	dfdView.setUint16(6, dfd.descriptorType, true);
 	dfdView.setUint16(8, dfd.versionNumber, true);
-	dfdView.setUint16(10, dfd.descriptorBlockSize, true);
+	dfdView.setUint16(10, descriptorBlockSize, true);
 
 	dfdView.setUint8(12, dfd.colorModel);
 	dfdView.setUint8(13, dfd.colorPrimaries);
