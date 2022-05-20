@@ -54,8 +54,8 @@ export class KTX2Container {
 		colorPrimaries: KTX2Primaries.SRGB,
 		transferFunction: KTX2Primaries.SRGB,
 		flags: KTX2Flags.ALPHA_STRAIGHT,
-		texelBlockDimension: {x: 4, y: 4, z: 1, w: 1},
-		bytesPlane: [],
+		texelBlockDimension: [0, 0, 0, 0],
+		bytesPlane: [0, 0, 0, 0, 0, 0, 0, 0],
 		samples: [],
 	}];
 
@@ -102,22 +102,17 @@ export interface KTX2DataFormatDescriptorBasicFormat {
 	colorPrimaries: number;
 	transferFunction: number;
 	flags: number;
-	texelBlockDimension: KTX2BasicFormatTexelBlockDimensions;
-	bytesPlane: number[];
+	texelBlockDimension: [number, number, number, number];
+	bytesPlane: [number, number, number, number, number, number, number, number];
 	samples: KTX2BasicFormatSample[],
-};
-
-export interface KTX2BasicFormatTexelBlockDimensions {
-	x: number;
-	y: number;
-	z: number;
-	w: number;
 };
 
 export interface KTX2BasicFormatSample {
 	bitOffset: number;
 	bitLength: number;
-	channelID: number;
+	/** @deprecated Renamed to 'channelType'. */
+	channelID?: number;
+	channelType: number;
 	samplePosition: number[];
 	sampleLower: number;
 	sampleUpper: number;

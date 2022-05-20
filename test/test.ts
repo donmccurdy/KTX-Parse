@@ -175,7 +175,7 @@ test('data format descriptors', t => {
 	const sample1 = {
 		bitOffset: 0,
 		bitLength: 10,
-		channelID: 0,
+		channelType: 0,
 		samplePosition: [1, 2, 3, 4],
 		sampleLower: 0,
 		sampleUpper: 1,
