@@ -137,6 +137,7 @@ export function write(container: KTX2Container, options: WriteOptions = {}): Uin
 		dfdView.setUint8(sampleByteOffset + 6, sample.samplePosition[2]);
 		dfdView.setUint8(sampleByteOffset + 7, sample.samplePosition[3]);
 
+		// TODO(bug): Determine signed/unsigned from channelType.
 		if ( sample.sampleLower < 1 ) {
 
 			dfdView.setInt32(sampleByteOffset + 8, sample.sampleLower, true);

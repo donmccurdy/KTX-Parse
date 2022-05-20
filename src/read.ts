@@ -125,6 +125,7 @@ export function read(data: Uint8Array): KTX2Container {
 				dfdReader._nextUint8(),
 				dfdReader._nextUint8(),
 			],
+			// TODO(bug): Determine signed/unsigned from channelType.
 			sampleLower: dfdReader._nextUint32(),
 			sampleUpper: dfdReader._nextUint32(),
 		};
