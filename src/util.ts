@@ -1,4 +1,3 @@
-
 /** Encodes text to an ArrayBuffer. */
 export function encodeText(text: string): Uint8Array {
 	if (typeof TextEncoder !== 'undefined') {
@@ -16,7 +15,7 @@ export function decodeText(buffer: Uint8Array): string {
 }
 
 /** Concatenates N ArrayBuffers. */
-export function concat (buffers: (ArrayBuffer | Uint8Array)[]): Uint8Array {
+export function concat(buffers: (ArrayBuffer | Uint8Array)[]): Uint8Array {
 	let totalByteLength = 0;
 	for (const buffer of buffers) {
 		totalByteLength += buffer.byteLength;

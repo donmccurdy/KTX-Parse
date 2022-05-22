@@ -3,8 +3,10 @@ import { KHR_DF_KHR_DESCRIPTORTYPE_BASICFORMAT, KHR_DF_SAMPLE_DATATYPE_SIGNED } 
 import { KTX2Container } from './container';
 import { concat, encodeText } from './util';
 
-interface WriteOptions {keepWriter?: boolean};
-const DEFAULT_OPTIONS: WriteOptions = {keepWriter: false};
+interface WriteOptions {
+	keepWriter?: boolean;
+}
+const DEFAULT_OPTIONS: WriteOptions = { keepWriter: false };
 
 /**
  * Serializes a {@link KTX2Container} instance to a KTX 2.0 file. Mip levels and other binary data
@@ -19,7 +21,7 @@ const DEFAULT_OPTIONS: WriteOptions = {keepWriter: false};
  * @param options
  */
 export function write(container: KTX2Container, options: WriteOptions = {}): Uint8Array {
-	options = {...DEFAULT_OPTIONS, ...options};
+	options = { ...DEFAULT_OPTIONS, ...options };
 
 	///////////////////////////////////////////////////
 	// Supercompression Global Data (SGD).
@@ -54,7 +56,6 @@ export function write(container: KTX2Container, options: WriteOptions = {}): Uin
 		]);
 	}
 
-
 	///////////////////////////////////////////////////
 	// Key/Value Data (KVD).
 	///////////////////////////////////////////////////
@@ -63,7 +64,7 @@ export function write(container: KTX2Container, options: WriteOptions = {}): Uin
 	let keyValue = container.keyValue;
 
 	if (!options.keepWriter) {
-		keyValue = {...container.keyValue, 'KTXwriter': KTX_WRITER};
+		keyValue = { ...container.keyValue, KTXwriter: KTX_WRITER };
 	}
 
 	for (const key in keyValue) {
@@ -71,26 +72,29 @@ export function write(container: KTX2Container, options: WriteOptions = {}): Uin
 		const keyData = encodeText(key);
 		const valueData = typeof value === 'string' ? encodeText(value) : value;
 		const kvByteLength = keyData.byteLength + 1 + valueData.byteLength + 1;
-		const kvPadding = kvByteLength % 4 ? (4 - (kvByteLength % 4)) : 0; // align(4)
-		keyValueData.push(concat([
-			new Uint32Array([kvByteLength]),
-			keyData,
-			NUL,
-			valueData,
-			NUL,
-			new Uint8Array(kvPadding).fill(0x00), // align(4)
-		]));
+		const kvPadding = kvByteLength % 4 ? 4 - (kvByteLength % 4) : 0; // align(4)
+		keyValueData.push(
+			concat([
+				new Uint32Array([kvByteLength]),
+				keyData,
+				NUL,
+				valueData,
+				NUL,
+				new Uint8Array(kvPadding).fill(0x00), // align(4)
+			])
+		);
 	}
 
 	const kvdBuffer = concat(keyValueData);
-
 
 	///////////////////////////////////////////////////
 	// Data Format Descriptor (DFD).
 	///////////////////////////////////////////////////
 
-	if (container.dataFormatDescriptor.length !== 1
-			|| container.dataFormatDescriptor[0].descriptorType !== KHR_DF_KHR_DESCRIPTORTYPE_BASICFORMAT) {
+	if (
+		container.dataFormatDescriptor.length !== 1 ||
+		container.dataFormatDescriptor[0].descriptorType !== KHR_DF_KHR_DESCRIPTORTYPE_BASICFORMAT
+	) {
 		throw new Error('Only BASICFORMAT Data Format Descriptor output supported.');
 	}
 
@@ -148,16 +152,14 @@ export function write(container: KTX2Container, options: WriteOptions = {}): Uin
 		}
 	}
 
-
 	///////////////////////////////////////////////////
 	// Data alignment.
 	///////////////////////////////////////////////////
 
 	const dfdByteOffset = KTX2_ID.length + HEADER_BYTE_LENGTH + container.levels.length * 3 * 8;
 	const kvdByteOffset = dfdByteOffset + dfdBuffer.byteLength;
-	let sgdByteOffset =  sgdBuffer.byteLength > 0 ? kvdByteOffset + kvdBuffer.byteLength : 0;
+	let sgdByteOffset = sgdBuffer.byteLength > 0 ? kvdByteOffset + kvdBuffer.byteLength : 0;
 	if (sgdByteOffset % 8) sgdByteOffset += 8 - (sgdByteOffset % 8); // align(8)
-
 
 	///////////////////////////////////////////////////
 	// Level Index.
@@ -166,7 +168,7 @@ export function write(container: KTX2Container, options: WriteOptions = {}): Uin
 	const levelData: Uint8Array[] = [];
 	const levelIndex = new DataView(new ArrayBuffer(container.levels.length * 3 * 8));
 
-	let levelDataByteOffset = (sgdByteOffset || (kvdByteOffset + kvdBuffer.byteLength)) + sgdBuffer.byteLength;
+	let levelDataByteOffset = (sgdByteOffset || kvdByteOffset + kvdBuffer.byteLength) + sgdBuffer.byteLength;
 	for (let i = 0; i < container.levels.length; i++) {
 		const level = container.levels[i];
 		levelData.push(level.levelData);
@@ -175,7 +177,6 @@ export function write(container: KTX2Container, options: WriteOptions = {}): Uin
 		levelIndex.setBigUint64(i * 24 + 16, BigInt(level.uncompressedByteLength), true);
 		levelDataByteOffset += level.levelData.byteLength;
 	}
-
 
 	///////////////////////////////////////////////////
 	// Header.
@@ -200,22 +201,22 @@ export function write(container: KTX2Container, options: WriteOptions = {}): Uin
 	headerView.setBigUint64(52, BigInt(sgdBuffer.byteLength > 0 ? sgdByteOffset : 0), true);
 	headerView.setBigUint64(60, BigInt(sgdBuffer.byteLength), true);
 
-
 	///////////////////////////////////////////////////
 	// Compose.
 	///////////////////////////////////////////////////
 
-	return new Uint8Array(concat([
-		new Uint8Array(KTX2_ID).buffer,
-		headerBuffer,
-		levelIndex.buffer,
-		dfdBuffer,
-		kvdBuffer,
-		sgdByteOffset > 0
-			? new ArrayBuffer(sgdByteOffset - (kvdByteOffset + kvdBuffer.byteLength)) // align(8)
-			: new ArrayBuffer(0),
-		sgdBuffer,
-		...levelData,
-	]));
+	return new Uint8Array(
+		concat([
+			new Uint8Array(KTX2_ID).buffer,
+			headerBuffer,
+			levelIndex.buffer,
+			dfdBuffer,
+			kvdBuffer,
+			sgdByteOffset > 0
+				? new ArrayBuffer(sgdByteOffset - (kvdByteOffset + kvdBuffer.byteLength)) // align(8)
+				: new ArrayBuffer(0),
+			sgdBuffer,
+			...levelData,
+		])
+	);
 }
-

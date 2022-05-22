@@ -11,12 +11,12 @@ import { KTX2Container, read, write } from '../';
 const SAMPLE_ETC1S = readFileSync(join(__dirname, 'data', 'test_etc1s.ktx2'));
 const SAMPLE_UASTC = readFileSync(join(__dirname, 'data', 'test_uastc.ktx2'));
 
-test('read::invalid', t => {
+test('read::invalid', (t) => {
 	t.throws(() => read(new Uint8Array(99)), /Missing KTX 2\.0 identifier/, 'rejects invalid header');
 	t.end();
 });
 
-test('read::etc1s', t => {
+test('read::etc1s', (t) => {
 	const container = read(SAMPLE_ETC1S);
 
 	t.ok(container instanceof KTX2Container, 'creates container');
@@ -29,15 +29,19 @@ test('read::etc1s', t => {
 	t.equals(container.faceCount, 1, 'faceCount');
 	t.equals(container.levels.length, 9, 'levels.length');
 	t.equals(container.supercompressionScheme, 1, 'supercompressionScheme');
-	t.deepEquals(container.keyValue, {
-		'KTXorientation': 'rd',
-		'KTXwriter': 'toktx v4.0.0-beta4~2 / libktx v4.0.0-beta4~2',
-		'KTXwriterScParams': '--bcmp'
-	}, 'keyValue');
+	t.deepEquals(
+		container.keyValue,
+		{
+			KTXorientation: 'rd',
+			KTXwriter: 'toktx v4.0.0-beta4~2 / libktx v4.0.0-beta4~2',
+			KTXwriterScParams: '--bcmp',
+		},
+		'keyValue'
+	);
 	t.end();
 });
 
-test('read::uastc', t => {
+test('read::uastc', (t) => {
 	const container = read(SAMPLE_UASTC);
 
 	t.ok(container instanceof KTX2Container, 'creates container');
@@ -50,15 +54,19 @@ test('read::uastc', t => {
 	t.equals(container.faceCount, 1, 'faceCount');
 	t.equals(container.levels.length, 9, 'levels.length');
 	t.equals(container.supercompressionScheme, 0, 'supercompressionScheme');
-	t.deepEquals(container.keyValue, {
-		'KTXorientation': 'rd',
-		'KTXwriter': 'toktx v4.0.0-beta4~2 / libktx v4.0.0-beta4~2',
-		'KTXwriterScParams': '--uastc 2'
-	}, 'keyValue');
+	t.deepEquals(
+		container.keyValue,
+		{
+			KTXorientation: 'rd',
+			KTXwriter: 'toktx v4.0.0-beta4~2 / libktx v4.0.0-beta4~2',
+			KTXwriterScParams: '--uastc 2',
+		},
+		'keyValue'
+	);
 	t.end();
 });
 
-test('read::view-offset', t => {
+test('read::view-offset', (t) => {
 	// Construct a sample such that underlying ArrayBuffer has additional data.
 	const sampleBuffer = new ArrayBuffer(123 + SAMPLE_ETC1S.byteLength);
 	const sampleOffset = new Uint8Array(sampleBuffer, 123);
@@ -72,24 +80,30 @@ test('read::view-offset', t => {
 	t.end();
 });
 
-test('read::padding', async t => {
+test('read::padding', async (t) => {
 	// This example has a few extra cases to handle in the kvd padding, including
 	// a NUL terminator on a value followed by 3 bytes of padding, for a total of
 	// 4 contiguous NUL bytes.
 	const sample = await readFile(join(__dirname, 'data', 'test_padding.ktx2'));
 	const container = read(sample);
 	t.equals(container.keyValue['KTXorientation'], 'rd', 'KTXorientation');
-	t.equals(container.keyValue['KTXwriter'], 'toktx v4.0.beta1.380.g0d851050 / libktx v4.0.beta1.350.g2c40ba4d.dirty', 'KTXwriter');
-	t.deepEquals(container.keyValue['KHRtoktxScParams'], new Uint8Array([
-		45, 45, 98, 99, 109, 112, 32, 45,
-		45, 99, 108, 101, 118, 101, 108, 32,
-		49, 32, 45, 45, 113, 108, 101, 118,
-		101, 108, 32, 49, 57, 50
-	]), 'KHRtoktxScParams');
+	t.equals(
+		container.keyValue['KTXwriter'],
+		'toktx v4.0.beta1.380.g0d851050 / libktx v4.0.beta1.350.g2c40ba4d.dirty',
+		'KTXwriter'
+	);
+	t.deepEquals(
+		container.keyValue['KHRtoktxScParams'],
+		new Uint8Array([
+			45, 45, 98, 99, 109, 112, 32, 45, 45, 99, 108, 101, 118, 101, 108, 32, 49, 32, 45, 45, 113, 108, 101, 118,
+			101, 108, 32, 49, 57, 50,
+		]),
+		'KHRtoktxScParams'
+	);
 	t.end();
 });
 
-test('write::etc1s', t => {
+test('write::etc1s', (t) => {
 	const a = read(SAMPLE_ETC1S);
 	const b = read(write(a));
 
@@ -108,15 +122,40 @@ test('write::etc1s', t => {
 		t.equals(b.globalData.endpointCount, a.globalData.endpointCount, 'container.globalData.endpointCount');
 		t.equals(b.globalData.selectorCount, a.globalData.selectorCount, 'container.globalData.selectorCount');
 
-		t.equals(b.globalData.endpointsData.byteLength, a.globalData.endpointsData.byteLength, 'container.globalData.endpointsData.byteLength');
-		t.equals(b.globalData.selectorsData.byteLength, a.globalData.selectorsData.byteLength, 'container.globalData.selectorsData.byteLength');
-		t.equals(b.globalData.tablesData.byteLength, a.globalData.tablesData.byteLength, 'container.globalData.tablesData.byteLength');
-		t.equals(b.globalData.extendedData.byteLength, a.globalData.extendedData.byteLength, 'container.globalData.extendedData.byteLength');
+		t.equals(
+			b.globalData.endpointsData.byteLength,
+			a.globalData.endpointsData.byteLength,
+			'container.globalData.endpointsData.byteLength'
+		);
+		t.equals(
+			b.globalData.selectorsData.byteLength,
+			a.globalData.selectorsData.byteLength,
+			'container.globalData.selectorsData.byteLength'
+		);
+		t.equals(
+			b.globalData.tablesData.byteLength,
+			a.globalData.tablesData.byteLength,
+			'container.globalData.tablesData.byteLength'
+		);
+		t.equals(
+			b.globalData.extendedData.byteLength,
+			a.globalData.extendedData.byteLength,
+			'container.globalData.extendedData.byteLength'
+		);
 
-		t.ok(typedArrayEquals(b.globalData.endpointsData, a.globalData.endpointsData), 'container.globalData.endpointsData');
-		t.ok(typedArrayEquals(b.globalData.selectorsData, a.globalData.selectorsData), 'container.globalData.selectorsData');
+		t.ok(
+			typedArrayEquals(b.globalData.endpointsData, a.globalData.endpointsData),
+			'container.globalData.endpointsData'
+		);
+		t.ok(
+			typedArrayEquals(b.globalData.selectorsData, a.globalData.selectorsData),
+			'container.globalData.selectorsData'
+		);
 		t.ok(typedArrayEquals(b.globalData.tablesData, a.globalData.tablesData), 'container.globalData.tablesData');
-		t.ok(typedArrayEquals(b.globalData.extendedData, a.globalData.extendedData), 'container.globalData.extendedData');
+		t.ok(
+			typedArrayEquals(b.globalData.extendedData, a.globalData.extendedData),
+			'container.globalData.extendedData'
+		);
 	} else {
 		t.fail('container.globalData missing');
 	}
@@ -130,7 +169,7 @@ test('write::etc1s', t => {
 	t.end();
 });
 
-test('write::uastc', t => {
+test('write::uastc', (t) => {
 	const a = read(SAMPLE_UASTC);
 	const b = read(write(a));
 
@@ -157,12 +196,14 @@ test('write::uastc', t => {
 	t.end();
 });
 
-test('platform::web', t => {
+test('platform::web', (t) => {
 	// Emulate browser API.
 	global.TextEncoder = TextEncoder as any;
 	global.TextDecoder = TextDecoder as any;
 	const _from = Buffer.from;
-	Buffer.from = (() => { throw new Error('Should not be called.'); }) as any;
+	Buffer.from = (() => {
+		throw new Error('Should not be called.');
+	}) as any;
 
 	try {
 		const result = write(read(SAMPLE_UASTC));
@@ -173,7 +214,7 @@ test('platform::web', t => {
 	}
 });
 
-test('data format descriptors', t => {
+test('data format descriptors', (t) => {
 	const sample1 = {
 		bitOffset: 0,
 		bitLength: 10,
@@ -182,7 +223,7 @@ test('data format descriptors', t => {
 		sampleLower: 0,
 		sampleUpper: 1,
 	};
-	const sample2 = {...sample1, bitLength: 15};
+	const sample2 = { ...sample1, bitLength: 15 };
 
 	const a = read(SAMPLE_UASTC);
 	a.dataFormatDescriptor[0].descriptorBlockSize += 16;
@@ -199,24 +240,28 @@ test('data format descriptors', t => {
 	t.end();
 });
 
-test('lossless round trip', async t => {
+test('lossless round trip', async (t) => {
 	const paths = await glob(join(__dirname, 'data', 'reference', '*.ktx2'));
 
-	await Promise.all(paths.map(async (path) => {
-		const srcView = await readFile(path);
-		const srcContainer = read(srcView);
-		const dstView = write(srcContainer, {keepWriter: true});
-		const dstContainer = read(dstView);
-		// TODO(feat): Try to replicate KTX-Software output byte for byte.
-		// t.ok(typedArrayEquals(srcView, dstView), basename(path));
-		t.deepEquals(srcContainer, dstContainer, basename(path));
-	}));
+	await Promise.all(
+		paths.map(async (path) => {
+			const srcView = await readFile(path);
+			const srcContainer = read(srcView);
+			const dstView = write(srcContainer, { keepWriter: true });
+			const dstContainer = read(dstView);
+			// TODO(feat): Try to replicate KTX-Software output byte for byte.
+			// t.ok(typedArrayEquals(srcView, dstView), basename(path));
+			t.deepEquals(srcContainer, dstContainer, basename(path));
+		})
+	);
 
 	t.end();
 });
 
-function typedArrayEquals (a: Uint8Array, b: Uint8Array): boolean {
+function typedArrayEquals(a: Uint8Array, b: Uint8Array): boolean {
 	if (a.byteLength !== b.byteLength) return false;
-	for (let i = 0; i < a.byteLength; i++) { if (a[i] !== b[i]) return false; }
+	for (let i = 0; i < a.byteLength; i++) {
+		if (a[i] !== b[i]) return false;
+	}
 	return true;
 }

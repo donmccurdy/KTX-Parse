@@ -1,4 +1,14 @@
-import { KHR_DF_FLAG_ALPHA_STRAIGHT, KHR_DF_KHR_DESCRIPTORTYPE_BASICFORMAT, KHR_DF_MODEL_UNSPECIFIED, KHR_DF_PRIMARIES_BT709, KHR_DF_TRANSFER_SRGB, KHR_DF_VENDORID_KHRONOS, KHR_DF_VERSION, KHR_SUPERCOMPRESSION_NONE, VK_FORMAT_UNDEFINED } from './constants';
+import {
+	KHR_DF_FLAG_ALPHA_STRAIGHT,
+	KHR_DF_KHR_DESCRIPTORTYPE_BASICFORMAT,
+	KHR_DF_MODEL_UNSPECIFIED,
+	KHR_DF_PRIMARIES_BT709,
+	KHR_DF_TRANSFER_SRGB,
+	KHR_DF_VENDORID_KHRONOS,
+	KHR_DF_VERSION,
+	KHR_SUPERCOMPRESSION_NONE,
+	VK_FORMAT_UNDEFINED,
+} from './constants';
 
 /**
  * Represents an unpacked KTX 2.0 texture container. Data for individual mip levels are stored in
@@ -44,27 +54,28 @@ export class KTX2Container {
 	public levels: KTX2Level[] = [];
 
 	/** Data Format Descriptor. */
-	public dataFormatDescriptor: KTX2DataFormatDescriptorBasicFormat[] = [{
-		vendorId: KHR_DF_VENDORID_KHRONOS,
-		descriptorType: KHR_DF_KHR_DESCRIPTORTYPE_BASICFORMAT,
-		descriptorBlockSize: 0,
-		versionNumber: KHR_DF_VERSION,
-		colorModel: KHR_DF_MODEL_UNSPECIFIED,
-		colorPrimaries: KHR_DF_PRIMARIES_BT709,
-		transferFunction: KHR_DF_TRANSFER_SRGB,
-		flags: KHR_DF_FLAG_ALPHA_STRAIGHT,
-		texelBlockDimension: [0, 0, 0, 0],
-		bytesPlane: [0, 0, 0, 0, 0, 0, 0, 0],
-		samples: [],
-	}];
+	public dataFormatDescriptor: KTX2DataFormatDescriptorBasicFormat[] = [
+		{
+			vendorId: KHR_DF_VENDORID_KHRONOS,
+			descriptorType: KHR_DF_KHR_DESCRIPTORTYPE_BASICFORMAT,
+			descriptorBlockSize: 0,
+			versionNumber: KHR_DF_VERSION,
+			colorModel: KHR_DF_MODEL_UNSPECIFIED,
+			colorPrimaries: KHR_DF_PRIMARIES_BT709,
+			transferFunction: KHR_DF_TRANSFER_SRGB,
+			flags: KHR_DF_FLAG_ALPHA_STRAIGHT,
+			texelBlockDimension: [0, 0, 0, 0],
+			bytesPlane: [0, 0, 0, 0, 0, 0, 0, 0],
+			samples: [],
+		},
+	];
 
 	/** Key/Value Data. */
-	public keyValue: {[key: string]: string | Uint8Array} = {};
+	public keyValue: { [key: string]: string | Uint8Array } = {};
 
 	/** Supercompression Global Data. */
 	public globalData: KTX2GlobalDataBasisLZ | null = null;
 }
-
 
 ///////////////////////////////////////////////////
 // Mip Levels.
@@ -85,8 +96,7 @@ export interface KTX2Level {
 	 * size of decoded RGBA32 pixels._
 	 */
 	uncompressedByteLength: number;
-};
-
+}
 
 ///////////////////////////////////////////////////
 // Data Format Descriptor (DFD).
@@ -104,8 +114,8 @@ export interface KTX2DataFormatDescriptorBasicFormat {
 	flags: number;
 	texelBlockDimension: [number, number, number, number];
 	bytesPlane: [number, number, number, number, number, number, number, number];
-	samples: KTX2BasicFormatSample[],
-};
+	samples: KTX2BasicFormatSample[];
+}
 
 export interface KTX2BasicFormatSample {
 	bitOffset: number;
@@ -116,8 +126,7 @@ export interface KTX2BasicFormatSample {
 	samplePosition: number[];
 	sampleLower: number;
 	sampleUpper: number;
-};
-
+}
 
 ///////////////////////////////////////////////////
 // Supercompression Global Data.
@@ -131,7 +140,7 @@ export interface KTX2GlobalDataBasisLZ {
 	selectorsData: Uint8Array;
 	tablesData: Uint8Array;
 	extendedData: Uint8Array;
-};
+}
 
 interface KTX2GlobalDataBasisLZImageDesc {
 	imageFlags: number;
@@ -139,4 +148,4 @@ interface KTX2GlobalDataBasisLZImageDesc {
 	rgbSliceByteLength: number;
 	alphaSliceByteOffset: number;
 	alphaSliceByteLength: number;
-};
+}

@@ -12,13 +12,13 @@ import { decodeText } from './util';
  * @param data Bytes of KTX 2.0 file, as Uint8Array or Buffer.
  */
 export function read(data: Uint8Array): KTX2Container {
-
 	///////////////////////////////////////////////////
 	// KTX 2.0 Identifier.
 	///////////////////////////////////////////////////
 
 	const id = new Uint8Array(data.buffer, data.byteOffset, KTX2_ID.length);
-	if (id[0] !== KTX2_ID[0] || // '´'
+	if (
+		id[0] !== KTX2_ID[0] || // '´'
 		id[1] !== KTX2_ID[1] || // 'K'
 		id[2] !== KTX2_ID[2] || // 'T'
 		id[3] !== KTX2_ID[3] || // 'X'
@@ -69,13 +69,16 @@ export function read(data: Uint8Array): KTX2Container {
 	const levelByteLength = levelCount * 3 * 8;
 	const levelReader = new BufferReader(data, KTX2_ID.length + headerByteLength, levelByteLength, true);
 
-	for (let i = 0; i < levelCount; i ++) {
+	for (let i = 0; i < levelCount; i++) {
 		container.levels.push({
-			levelData: new Uint8Array(data.buffer, data.byteOffset + levelReader._nextUint64(), levelReader._nextUint64()),
+			levelData: new Uint8Array(
+				data.buffer,
+				data.byteOffset + levelReader._nextUint64(),
+				levelReader._nextUint64()
+			),
 			uncompressedByteLength: levelReader._nextUint64(),
 		});
 	}
-
 
 	///////////////////////////////////////////////////
 	// Data Format Descriptor (DFD).
@@ -115,7 +118,7 @@ export function read(data: Uint8Array): KTX2Container {
 	const sampleWords = 4;
 	const numSamples = (dfd.descriptorBlockSize / 4 - sampleStart) / sampleWords;
 
-	for (let i = 0; i < numSamples; i ++) {
+	for (let i = 0; i < numSamples; i++) {
 		const sample = {
 			bitOffset: dfdReader._nextUint16(),
 			bitLength: dfdReader._nextUint8(),
@@ -138,12 +141,11 @@ export function read(data: Uint8Array): KTX2Container {
 			sample.sampleUpper = dfdReader._nextUint32();
 		}
 
-		dfd.samples[ i ] = sample;
+		dfd.samples[i] = sample;
 	}
 
 	container.dataFormatDescriptor.length = 0;
 	container.dataFormatDescriptor.push(dfd);
-
 
 	///////////////////////////////////////////////////
 	// Key/Value Data (KVD).
@@ -163,7 +165,6 @@ export function read(data: Uint8Array): KTX2Container {
 		if (kvdReader._offset % 4) kvdReader._skip(4 - (kvdReader._offset % 4));
 	}
 
-
 	///////////////////////////////////////////////////
 	// Supercompression Global Data (SGD).
 	///////////////////////////////////////////////////
@@ -180,7 +181,7 @@ export function read(data: Uint8Array): KTX2Container {
 	const extendedByteLength = sgdReader._nextUint32();
 
 	const imageDescs = [];
-	for (let i = 0; i < levelCount; i ++) {
+	for (let i = 0; i < levelCount; i++) {
 		imageDescs.push({
 			imageFlags: sgdReader._nextUint32(),
 			rgbSliceByteOffset: sgdReader._nextUint32(),
