@@ -111,16 +111,14 @@ export function write(container: KTX2Container, options: WriteOptions = {}): Uin
 	dfdView.setUint8(14, dfd.transferFunction);
 	dfdView.setUint8(15, dfd.flags);
 
-	if ( ! Array.isArray(dfd.texelBlockDimension) ) {
-
-		throw new Error( 'texelBlockDimension is now an array. For dimensionality `d`, set `d - 1`.' );
-
+	if (!Array.isArray(dfd.texelBlockDimension)) {
+		throw new Error('texelBlockDimension is now an array. For dimensionality `d`, set `d - 1`.');
 	}
 
-	dfdView.setUint8(16, dfd.texelBlockDimension[ 0 ] );
-	dfdView.setUint8(17, dfd.texelBlockDimension[ 1 ] );
-	dfdView.setUint8(18, dfd.texelBlockDimension[ 2 ] );
-	dfdView.setUint8(19, dfd.texelBlockDimension[ 3 ] );
+	dfdView.setUint8(16, dfd.texelBlockDimension[0]);
+	dfdView.setUint8(17, dfd.texelBlockDimension[1]);
+	dfdView.setUint8(18, dfd.texelBlockDimension[2]);
+	dfdView.setUint8(19, dfd.texelBlockDimension[3]);
 
 	for (let i = 0; i < 8; i++) dfdView.setUint8(20 + i, dfd.bytesPlane[i]);
 
