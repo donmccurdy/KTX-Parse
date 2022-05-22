@@ -1,5 +1,4 @@
-import { KHR_DF_VENDORID_KHRONOS, KHR_DF_VERSION, VK_FORMAT_UNDEFINED } from './constants';
-import { KTX2DescriptorType, KTX2Flags, KTX2Model, KTX2Primaries, KTX2SupercompressionScheme } from './enums';
+import { KHR_DF_FLAG_ALPHA_STRAIGHT, KHR_DF_KHR_DESCRIPTORTYPE_BASICFORMAT, KHR_DF_MODEL_UNSPECIFIED, KHR_DF_PRIMARIES_BT709, KHR_DF_TRANSFER_SRGB, KHR_DF_VENDORID_KHRONOS, KHR_DF_VERSION, KHR_SUPERCOMPRESSION_NONE, VK_FORMAT_UNDEFINED } from './constants';
 
 /**
  * Represents an unpacked KTX 2.0 texture container. Data for individual mip levels are stored in
@@ -39,7 +38,7 @@ export class KTX2Container {
 	public faceCount: number = 1;
 
 	/** Indicates which supercompression scheme has been applied to mip level images, if any. */
-	public supercompressionScheme = KTX2SupercompressionScheme.NONE;
+	public supercompressionScheme = KHR_SUPERCOMPRESSION_NONE;
 
 	/** Mip levels, ordered largest (original) to smallest (~1px). */
 	public levels: KTX2Level[] = [];
@@ -47,13 +46,13 @@ export class KTX2Container {
 	/** Data Format Descriptor. */
 	public dataFormatDescriptor: KTX2DataFormatDescriptorBasicFormat[] = [{
 		vendorId: KHR_DF_VENDORID_KHRONOS,
-		descriptorType: KTX2DescriptorType.BASICFORMAT,
+		descriptorType: KHR_DF_KHR_DESCRIPTORTYPE_BASICFORMAT,
 		descriptorBlockSize: 0,
 		versionNumber: KHR_DF_VERSION,
-		colorModel: KTX2Model.UNSPECIFIED,
-		colorPrimaries: KTX2Primaries.SRGB,
-		transferFunction: KTX2Primaries.SRGB,
-		flags: KTX2Flags.ALPHA_STRAIGHT,
+		colorModel: KHR_DF_MODEL_UNSPECIFIED,
+		colorPrimaries: KHR_DF_PRIMARIES_BT709,
+		transferFunction: KHR_DF_TRANSFER_SRGB,
+		flags: KHR_DF_FLAG_ALPHA_STRAIGHT,
 		texelBlockDimension: [0, 0, 0, 0],
 		bytesPlane: [0, 0, 0, 0, 0, 0, 0, 0],
 		samples: [],

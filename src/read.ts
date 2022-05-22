@@ -1,5 +1,6 @@
 import { BufferReader } from './buffer-reader';
-import { KTX2_ID } from './constants';
+import { KHR_DF_SAMPLE_DATATYPE_SIGNED } from './constants';
+import { KTX2_ID } from './constants-internal';
 import { KTX2Container, KTX2DataFormatDescriptorBasicFormat } from './container';
 import { decodeText } from './util';
 
@@ -115,7 +116,7 @@ export function read(data: Uint8Array): KTX2Container {
 	const numSamples = (dfd.descriptorBlockSize / 4 - sampleStart) / sampleWords;
 
 	for (let i = 0; i < numSamples; i ++) {
-		dfd.samples[ i ] = {
+		const sample = {
 			bitOffset: dfdReader._nextUint16(),
 			bitLength: dfdReader._nextUint8(),
 			channelType: dfdReader._nextUint8(),
@@ -125,10 +126,19 @@ export function read(data: Uint8Array): KTX2Container {
 				dfdReader._nextUint8(),
 				dfdReader._nextUint8(),
 			],
-			// TODO(bug): Determine signed/unsigned from channelType.
-			sampleLower: dfdReader._nextUint32(),
-			sampleUpper: dfdReader._nextUint32(),
+			sampleLower: -Infinity,
+			sampleUpper: Infinity,
 		};
+
+		if (sample.channelType & KHR_DF_SAMPLE_DATATYPE_SIGNED) {
+			sample.sampleLower = dfdReader._nextInt32();
+			sample.sampleUpper = dfdReader._nextInt32();
+		} else {
+			sample.sampleLower = dfdReader._nextUint32();
+			sample.sampleUpper = dfdReader._nextUint32();
+		}
+
+		dfd.samples[ i ] = sample;
 	}
 
 	container.dataFormatDescriptor.length = 0;

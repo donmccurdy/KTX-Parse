@@ -1,6 +1,6 @@
-import { HEADER_BYTE_LENGTH, KTX2_ID, KTX_WRITER, NUL } from './constants';
+import { HEADER_BYTE_LENGTH, KTX2_ID, KTX_WRITER, NUL } from './constants-internal';
+import { KHR_DF_KHR_DESCRIPTORTYPE_BASICFORMAT, KHR_DF_SAMPLE_DATATYPE_SIGNED } from './constants';
 import { KTX2Container } from './container';
-import { KTX2DescriptorType } from './enums';
 import { concat, encodeText } from './util';
 
 interface WriteOptions {keepWriter?: boolean};
@@ -90,7 +90,7 @@ export function write(container: KTX2Container, options: WriteOptions = {}): Uin
 	///////////////////////////////////////////////////
 
 	if (container.dataFormatDescriptor.length !== 1
-			|| container.dataFormatDescriptor[0].descriptorType !== KTX2DescriptorType.BASICFORMAT) {
+			|| container.dataFormatDescriptor[0].descriptorType !== KHR_DF_KHR_DESCRIPTORTYPE_BASICFORMAT) {
 		throw new Error('Only BASICFORMAT Data Format Descriptor output supported.');
 	}
 
@@ -128,28 +128,26 @@ export function write(container: KTX2Container, options: WriteOptions = {}): Uin
 		const sample = dfd.samples[i];
 		const sampleByteOffset = 28 + i * 16;
 
+		if (sample.channelID) {
+			throw new Error('channelID has been renamed to channelType.');
+		}
+
 		dfdView.setUint16(sampleByteOffset + 0, sample.bitOffset, true);
 		dfdView.setUint8(sampleByteOffset + 2, sample.bitLength);
-		dfdView.setUint8(sampleByteOffset + 3, sample.channelType || sample.channelID as number);
+		dfdView.setUint8(sampleByteOffset + 3, sample.channelType);
 
 		dfdView.setUint8(sampleByteOffset + 4, sample.samplePosition[0]);
 		dfdView.setUint8(sampleByteOffset + 5, sample.samplePosition[1]);
 		dfdView.setUint8(sampleByteOffset + 6, sample.samplePosition[2]);
 		dfdView.setUint8(sampleByteOffset + 7, sample.samplePosition[3]);
 
-		// TODO(bug): Determine signed/unsigned from channelType.
-		if ( sample.sampleLower < 1 ) {
-
+		if (sample.channelType & KHR_DF_SAMPLE_DATATYPE_SIGNED) {
 			dfdView.setInt32(sampleByteOffset + 8, sample.sampleLower, true);
 			dfdView.setInt32(sampleByteOffset + 12, sample.sampleUpper, true);
-
 		} else {
-
 			dfdView.setUint32(sampleByteOffset + 8, sample.sampleLower, true);
 			dfdView.setUint32(sampleByteOffset + 12, sample.sampleUpper, true);
-
 		}
-
 	}
 
 

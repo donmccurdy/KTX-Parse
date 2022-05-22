@@ -1,36 +1,27 @@
 ///////////////////////////////////////////////////
-// Common.
-///////////////////////////////////////////////////
-
-// Injected at compile time, from $npm_package_version.
-declare const PACKAGE_VERSION: string;
-
-export const KTX_WRITER = `KTX-Parse v${PACKAGE_VERSION}`;
-
-export const NUL = new Uint8Array([0x00]);
-
-
-///////////////////////////////////////////////////
 // KTX2 Header.
 ///////////////////////////////////////////////////
 
-export const KTX2_ID = [
-	// '´', 'K', 'T', 'X', '2', '0', 'ª', '\r', '\n', '\x1A', '\n'
-	0xAB, 0x4B, 0x54, 0x58, 0x20, 0x32, 0x30, 0xBB, 0x0D, 0x0A, 0x1A, 0x0A
-];
-
-export const HEADER_BYTE_LENGTH = 68; // 13 * 4 + 2 * 8
-
+export const KHR_SUPERCOMPRESSION_NONE = 0;
+export const KHR_SUPERCOMPRESSION_BASISLZ = 1;
+export const KHR_SUPERCOMPRESSION_ZSTD = 2;
+export const KHR_SUPERCOMPRESSION_ZLIB = 3;
 
 ///////////////////////////////////////////////////
 // Data Format Descriptor (DFD).
 ///////////////////////////////////////////////////
 
+export const KHR_DF_KHR_DESCRIPTORTYPE_BASICFORMAT = 0;
 export const KHR_DF_VENDORID_KHRONOS = 0;
 export const KHR_DF_VERSION = 2;
 
 export const KHR_DF_MODEL_UNSPECIFIED = 0;
 export const KHR_DF_MODEL_RGBSDA = 1;
+// ...
+export const KHR_DF_MODEL_ETC1 = 160;
+export const KHR_DF_MODEL_ETC2 = 161;
+export const KHR_DF_MODEL_ASTC = 162;
+export const KHR_DF_MODEL_ETC1S = 163;
 
 export const KHR_DF_FLAG_ALPHA_STRAIGHT = 0;
 export const KHR_DF_FLAG_ALPHA_PREMULTIPLIED = 1;
