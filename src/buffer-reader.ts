@@ -37,6 +37,12 @@ export class BufferReader {
 		return value;
 	}
 
+	_nextInt32() {
+		const value = this._dataView.getInt32(this._offset, this._littleEndian);
+		this._offset += 4;
+		return value;
+	}
+
 	_skip(bytes: number) {
 		this._offset += bytes;
 		return this;

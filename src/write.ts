@@ -1,6 +1,6 @@
-import { HEADER_BYTE_LENGTH, KTX2_ID, KTX_WRITER, NUL } from './constants';
+import { HEADER_BYTE_LENGTH, KTX2_ID, KTX_WRITER, NUL } from './constants-internal';
+import { KHR_DF_KHR_DESCRIPTORTYPE_BASICFORMAT, KHR_DF_SAMPLE_DATATYPE_SIGNED } from './constants';
 import { KTX2Container } from './container';
-import { KTX2DescriptorType } from './enums';
 import { concat, encodeText } from './util';
 
 interface WriteOptions {keepWriter?: boolean};
@@ -90,7 +90,7 @@ export function write(container: KTX2Container, options: WriteOptions = {}): Uin
 	///////////////////////////////////////////////////
 
 	if (container.dataFormatDescriptor.length !== 1
-			|| container.dataFormatDescriptor[0].descriptorType !== KTX2DescriptorType.BASICFORMAT) {
+			|| container.dataFormatDescriptor[0].descriptorType !== KHR_DF_KHR_DESCRIPTORTYPE_BASICFORMAT) {
 		throw new Error('Only BASICFORMAT Data Format Descriptor output supported.');
 	}
 
@@ -98,22 +98,27 @@ export function write(container: KTX2Container, options: WriteOptions = {}): Uin
 
 	const dfdBuffer = new ArrayBuffer(28 + dfd.samples.length * 16);
 	const dfdView = new DataView(dfdBuffer);
+	const descriptorBlockSize = 24 + dfd.samples.length * 16;
 
 	dfdView.setUint32(0, dfdBuffer.byteLength, true);
 	dfdView.setUint16(4, dfd.vendorId, true);
 	dfdView.setUint16(6, dfd.descriptorType, true);
 	dfdView.setUint16(8, dfd.versionNumber, true);
-	dfdView.setUint16(10, dfd.descriptorBlockSize, true);
+	dfdView.setUint16(10, descriptorBlockSize, true);
 
 	dfdView.setUint8(12, dfd.colorModel);
 	dfdView.setUint8(13, dfd.colorPrimaries);
 	dfdView.setUint8(14, dfd.transferFunction);
 	dfdView.setUint8(15, dfd.flags);
 
-	dfdView.setUint8(16, dfd.texelBlockDimension.x - 1);
-	dfdView.setUint8(17, dfd.texelBlockDimension.y - 1);
-	dfdView.setUint8(18, dfd.texelBlockDimension.z - 1);
-	dfdView.setUint8(19, dfd.texelBlockDimension.w - 1);
+	if (!Array.isArray(dfd.texelBlockDimension)) {
+		throw new Error('texelBlockDimension is now an array. For dimensionality `d`, set `d - 1`.');
+	}
+
+	dfdView.setUint8(16, dfd.texelBlockDimension[0]);
+	dfdView.setUint8(17, dfd.texelBlockDimension[1]);
+	dfdView.setUint8(18, dfd.texelBlockDimension[2]);
+	dfdView.setUint8(19, dfd.texelBlockDimension[3]);
 
 	for (let i = 0; i < 8; i++) dfdView.setUint8(20 + i, dfd.bytesPlane[i]);
 
@@ -121,17 +126,26 @@ export function write(container: KTX2Container, options: WriteOptions = {}): Uin
 		const sample = dfd.samples[i];
 		const sampleByteOffset = 28 + i * 16;
 
+		if (sample.channelID) {
+			throw new Error('channelID has been renamed to channelType.');
+		}
+
 		dfdView.setUint16(sampleByteOffset + 0, sample.bitOffset, true);
 		dfdView.setUint8(sampleByteOffset + 2, sample.bitLength);
-		dfdView.setUint8(sampleByteOffset + 3, sample.channelID);
+		dfdView.setUint8(sampleByteOffset + 3, sample.channelType);
 
 		dfdView.setUint8(sampleByteOffset + 4, sample.samplePosition[0]);
 		dfdView.setUint8(sampleByteOffset + 5, sample.samplePosition[1]);
 		dfdView.setUint8(sampleByteOffset + 6, sample.samplePosition[2]);
 		dfdView.setUint8(sampleByteOffset + 7, sample.samplePosition[3]);
 
-		dfdView.setUint32(sampleByteOffset + 8, sample.sampleLower, true);
-		dfdView.setUint32(sampleByteOffset + 12, sample.sampleUpper, true);
+		if (sample.channelType & KHR_DF_SAMPLE_DATATYPE_SIGNED) {
+			dfdView.setInt32(sampleByteOffset + 8, sample.sampleLower, true);
+			dfdView.setInt32(sampleByteOffset + 12, sample.sampleUpper, true);
+		} else {
+			dfdView.setUint32(sampleByteOffset + 8, sample.sampleLower, true);
+			dfdView.setUint32(sampleByteOffset + 12, sample.sampleUpper, true);
+		}
 	}
 
 
@@ -141,7 +155,7 @@ export function write(container: KTX2Container, options: WriteOptions = {}): Uin
 
 	const dfdByteOffset = KTX2_ID.length + HEADER_BYTE_LENGTH + container.levels.length * 3 * 8;
 	const kvdByteOffset = dfdByteOffset + dfdBuffer.byteLength;
-	let sgdByteOffset = kvdByteOffset + kvdBuffer.byteLength;
+	let sgdByteOffset =  sgdBuffer.byteLength > 0 ? kvdByteOffset + kvdBuffer.byteLength : 0;
 	if (sgdByteOffset % 8) sgdByteOffset += 8 - (sgdByteOffset % 8); // align(8)
 
 
@@ -152,7 +166,7 @@ export function write(container: KTX2Container, options: WriteOptions = {}): Uin
 	const levelData: Uint8Array[] = [];
 	const levelIndex = new DataView(new ArrayBuffer(container.levels.length * 3 * 8));
 
-	let levelDataByteOffset = sgdByteOffset + sgdBuffer.byteLength;
+	let levelDataByteOffset = (sgdByteOffset || (kvdByteOffset + kvdBuffer.byteLength)) + sgdBuffer.byteLength;
 	for (let i = 0; i < container.levels.length; i++) {
 		const level = container.levels[i];
 		levelData.push(level.levelData);
@@ -183,7 +197,7 @@ export function write(container: KTX2Container, options: WriteOptions = {}): Uin
 	headerView.setUint32(40, dfdBuffer.byteLength, true);
 	headerView.setUint32(44, kvdByteOffset, true);
 	headerView.setUint32(48, kvdBuffer.byteLength, true);
-	headerView.setBigUint64(52, BigInt(sgdByteOffset), true);
+	headerView.setBigUint64(52, BigInt(sgdBuffer.byteLength > 0 ? sgdByteOffset : 0), true);
 	headerView.setBigUint64(60, BigInt(sgdBuffer.byteLength), true);
 
 
@@ -197,7 +211,9 @@ export function write(container: KTX2Container, options: WriteOptions = {}): Uin
 		levelIndex.buffer,
 		dfdBuffer,
 		kvdBuffer,
-		new ArrayBuffer(sgdByteOffset - (kvdByteOffset + kvdBuffer.byteLength)), // align(8)
+		sgdByteOffset > 0
+			? new ArrayBuffer(sgdByteOffset - (kvdByteOffset + kvdBuffer.byteLength)) // align(8)
+			: new ArrayBuffer(0),
 		sgdBuffer,
 		...levelData,
 	]));
