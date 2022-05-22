@@ -1,8 +1,8 @@
 {
     "compilerOptions": {
       "moduleResolution": "node",
-      "lib": ["es6", "dom"],
-      "target": "es6",
+      "lib": ["es2018", "dom"],
+      "target": "es2018",
       "declaration": true,
       "typeRoots": ["node_modules/@types"],
       "strict": true,

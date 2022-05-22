@@ -1,13 +1,15 @@
 require('source-map-support').install();
 
-import * as fs from 'fs';
-import * as path from 'path';
+import { readFileSync } from 'fs';
+import { readFile } from 'fs/promises';
+import { basename, join } from 'path';
 import { TextDecoder, TextEncoder } from 'util';
 import * as test from 'tape';
+import * as glob from 'glob-promise';
 import { KTX2Container, read, write } from '../';
 
-const SAMPLE_ETC1S = fs.readFileSync(path.join(__dirname, 'data', 'test_etc1s.ktx2'));
-const SAMPLE_UASTC = fs.readFileSync(path.join(__dirname, 'data', 'test_uastc.ktx2'));
+const SAMPLE_ETC1S = readFileSync(join(__dirname, 'data', 'test_etc1s.ktx2'));
+const SAMPLE_UASTC = readFileSync(join(__dirname, 'data', 'test_uastc.ktx2'));
 
 test('read::invalid', t => {
 	t.throws(() => read(new Uint8Array(99)), /Missing KTX 2\.0 identifier/, 'rejects invalid header');
@@ -70,11 +72,11 @@ test('read::view-offset', t => {
 	t.end();
 });
 
-test('read::padding', t => {
+test('read::padding', async t => {
 	// This example has a few extra cases to handle in the kvd padding, including
 	// a NUL terminator on a value followed by 3 bytes of padding, for a total of
 	// 4 contiguous NUL bytes.
-	const sample = fs.readFileSync(path.join(__dirname, 'data', 'test_padding.ktx2'));
+	const sample = await readFile(join(__dirname, 'data', 'test_padding.ktx2'));
 	const container = read(sample);
 	t.equals(container.keyValue['KTXorientation'], 'rd', 'KTXorientation');
 	t.equals(container.keyValue['KTXwriter'], 'toktx v4.0.beta1.380.g0d851050 / libktx v4.0.beta1.350.g2c40ba4d.dirty', 'KTXwriter');
@@ -194,6 +196,22 @@ test('data format descriptors', t => {
 	t.equals(dfdB.samples.length, 2, 'b.dfd.samples.length === 2');
 	t.deepEquals(dfdA.samples[0], dfdB.samples[0], 'a.dfd.samples[0] === b.dfd.samples[0]');
 	t.deepEquals(dfdA.samples[0], dfdB.samples[0], 'a.dfd.samples[0] === b.dfd.samples[0]');
+	t.end();
+});
+
+test('lossless round trip', async t => {
+	const paths = await glob(join(__dirname, 'data', 'reference', '*.ktx2'));
+
+	await Promise.all(paths.map(async (path) => {
+		const srcView = await readFile(path);
+		const srcContainer = read(srcView);
+		const dstView = write(srcContainer, {keepWriter: true});
+		const dstContainer = read(dstView);
+		// TODO(feat): Try to replicate KTX-Software output byte for byte.
+		// t.ok(typedArrayEquals(srcView, dstView), basename(path));
+		t.deepEquals(srcContainer, dstContainer, basename(path));
+	}));
+
 	t.end();
 });
 
