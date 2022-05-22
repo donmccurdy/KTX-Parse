@@ -6,6 +6,7 @@
   "main": "dist/ktx-parse.js",
   "module": "dist/ktx-parse.modern.js",
   "types": "dist/index.d.ts",
+  "sideEffects": false,
   "repository": "github:donmccurdy/ktx-parse",
   "author": "Don McCurdy <dm@donmccurdy.com>",
   "license": "MIT",
