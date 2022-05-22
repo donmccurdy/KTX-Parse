@@ -15,7 +15,7 @@
     "watch:debug": "microbundle watch --no-compress --format modern,cjs --define PACKAGE_VERSION=$npm_package_version",
     "test": "ts-node node_modules/tape/bin/tape test/test.ts | tap-spec",
     "coverage": "nyc --reporter=lcov --reporter=text ts-node node_modules/tape/bin/tape test/test.ts",
-    "coverage:report": "nyc report --reporter=text-lcov | coveralls",
+    "coverage:report": "nyc report --reporter=text-lcov > .nyc_output/coverage.lcov",
     "docs": "typedoc --plugin typedoc-plugin-markdown --out ./docs --hideProjectName --hideBreadcrumbs && ts-node docs.ts && rm -rf ./docs",
     "preversion": "yarn dist && yarn test",
     "version": "yarn dist && yarn docs && git add -u",
@@ -24,7 +24,6 @@
   "devDependencies": {
     "@types/tape": "^4.13.0",
     "@typescript-eslint/eslint-plugin": "^4.10.0",
-    "coveralls": "^3.1.0",
     "eslint": "^7.15.0",
     "glob": "^8.0.3",
     "glob-promise": "^4.2.2",

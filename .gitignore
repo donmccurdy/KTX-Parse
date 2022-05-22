@@ -1,5 +1,9 @@
+# dependencies
 node_modules
+
+# builds
 dist
-coverage
+
+# coverage
 .nyc_output
-.coveralls.yml
+coverage
