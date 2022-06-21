@@ -1,3 +1,5 @@
+[ktx-parse](../README.md) / [Exports](../modules.md) / KTX2DataFormatDescriptorBasicFormat
+
 # Interface: KTX2DataFormatDescriptorBasicFormat
 
 ## Table of contents
@@ -24,7 +26,7 @@
 
 #### Defined in
 
-[container.ts:116](https://github.com/donmccurdy/KTX-Parse/blob/a31e2c2/src/container.ts#L116)
+[container.ts:116](https://github.com/donmccurdy/KTX-Parse/blob/6c789af/src/container.ts#L116)
 
 ___
 
@@ -34,7 +36,7 @@ ___
 
 #### Defined in
 
-[container.ts:111](https://github.com/donmccurdy/KTX-Parse/blob/a31e2c2/src/container.ts#L111)
+[container.ts:111](https://github.com/donmccurdy/KTX-Parse/blob/6c789af/src/container.ts#L111)
 
 ___
 
@@ -44,7 +46,7 @@ ___
 
 #### Defined in
 
-[container.ts:112](https://github.com/donmccurdy/KTX-Parse/blob/a31e2c2/src/container.ts#L112)
+[container.ts:112](https://github.com/donmccurdy/KTX-Parse/blob/6c789af/src/container.ts#L112)
 
 ___
 
@@ -56,7 +58,7 @@ ___
 
 #### Defined in
 
-[container.ts:110](https://github.com/donmccurdy/KTX-Parse/blob/a31e2c2/src/container.ts#L110)
+[container.ts:110](https://github.com/donmccurdy/KTX-Parse/blob/6c789af/src/container.ts#L110)
 
 ___
 
@@ -66,7 +68,7 @@ ___
 
 #### Defined in
 
-[container.ts:107](https://github.com/donmccurdy/KTX-Parse/blob/a31e2c2/src/container.ts#L107)
+[container.ts:107](https://github.com/donmccurdy/KTX-Parse/blob/6c789af/src/container.ts#L107)
 
 ___
 
@@ -76,7 +78,7 @@ ___
 
 #### Defined in
 
-[container.ts:114](https://github.com/donmccurdy/KTX-Parse/blob/a31e2c2/src/container.ts#L114)
+[container.ts:114](https://github.com/donmccurdy/KTX-Parse/blob/6c789af/src/container.ts#L114)
 
 ___
 
@@ -86,7 +88,7 @@ ___
 
 #### Defined in
 
-[container.ts:117](https://github.com/donmccurdy/KTX-Parse/blob/a31e2c2/src/container.ts#L117)
+[container.ts:117](https://github.com/donmccurdy/KTX-Parse/blob/6c789af/src/container.ts#L117)
 
 ___
 
@@ -96,7 +98,7 @@ ___
 
 #### Defined in
 
-[container.ts:115](https://github.com/donmccurdy/KTX-Parse/blob/a31e2c2/src/container.ts#L115)
+[container.ts:115](https://github.com/donmccurdy/KTX-Parse/blob/6c789af/src/container.ts#L115)
 
 ___
 
@@ -106,7 +108,7 @@ ___
 
 #### Defined in
 
-[container.ts:113](https://github.com/donmccurdy/KTX-Parse/blob/a31e2c2/src/container.ts#L113)
+[container.ts:113](https://github.com/donmccurdy/KTX-Parse/blob/6c789af/src/container.ts#L113)
 
 ___
 
@@ -116,7 +118,7 @@ ___
 
 #### Defined in
 
-[container.ts:106](https://github.com/donmccurdy/KTX-Parse/blob/a31e2c2/src/container.ts#L106)
+[container.ts:106](https://github.com/donmccurdy/KTX-Parse/blob/6c789af/src/container.ts#L106)
 
 ___
 
@@ -126,4 +128,4 @@ ___
 
 #### Defined in
 
-[container.ts:108](https://github.com/donmccurdy/KTX-Parse/blob/a31e2c2/src/container.ts#L108)
+[container.ts:108](https://github.com/donmccurdy/KTX-Parse/blob/6c789af/src/container.ts#L108)

@@ -1,3 +1,5 @@
+[ktx-parse](../README.md) / [Exports](../modules.md) / KTX2Container
+
 # Class: KTX2Container
 
 Represents an unpacked KTX 2.0 texture container. Data for individual mip levels are stored in
@@ -41,7 +43,7 @@ Data Format Descriptor.
 
 #### Defined in
 
-[container.ts:57](https://github.com/donmccurdy/KTX-Parse/blob/a31e2c2/src/container.ts#L57)
+[container.ts:57](https://github.com/donmccurdy/KTX-Parse/blob/6c789af/src/container.ts#L57)
 
 ___
 
@@ -55,7 +57,7 @@ order.
 
 #### Defined in
 
-[container.ts:48](https://github.com/donmccurdy/KTX-Parse/blob/a31e2c2/src/container.ts#L48)
+[container.ts:48](https://github.com/donmccurdy/KTX-Parse/blob/6c789af/src/container.ts#L48)
 
 ___
 
@@ -67,7 +69,7 @@ Supercompression Global Data.
 
 #### Defined in
 
-[container.ts:77](https://github.com/donmccurdy/KTX-Parse/blob/a31e2c2/src/container.ts#L77)
+[container.ts:77](https://github.com/donmccurdy/KTX-Parse/blob/6c789af/src/container.ts#L77)
 
 ___
 
@@ -83,7 +85,7 @@ Key/Value Data.
 
 #### Defined in
 
-[container.ts:74](https://github.com/donmccurdy/KTX-Parse/blob/a31e2c2/src/container.ts#L74)
+[container.ts:74](https://github.com/donmccurdy/KTX-Parse/blob/6c789af/src/container.ts#L74)
 
 ___
 
@@ -95,7 +97,7 @@ Number of array elements (array textures only).
 
 #### Defined in
 
-[container.ts:41](https://github.com/donmccurdy/KTX-Parse/blob/a31e2c2/src/container.ts#L41)
+[container.ts:41](https://github.com/donmccurdy/KTX-Parse/blob/6c789af/src/container.ts#L41)
 
 ___
 
@@ -107,7 +109,7 @@ Mip levels, ordered largest (original) to smallest (~1px).
 
 #### Defined in
 
-[container.ts:54](https://github.com/donmccurdy/KTX-Parse/blob/a31e2c2/src/container.ts#L54)
+[container.ts:54](https://github.com/donmccurdy/KTX-Parse/blob/6c789af/src/container.ts#L54)
 
 ___
 
@@ -119,7 +121,7 @@ Depth of the texture image for level 0, in pixels (3D textures only).
 
 #### Defined in
 
-[container.ts:38](https://github.com/donmccurdy/KTX-Parse/blob/a31e2c2/src/container.ts#L38)
+[container.ts:38](https://github.com/donmccurdy/KTX-Parse/blob/6c789af/src/container.ts#L38)
 
 ___
 
@@ -131,7 +133,7 @@ Height of the texture image for level 0, in pixels.
 
 #### Defined in
 
-[container.ts:35](https://github.com/donmccurdy/KTX-Parse/blob/a31e2c2/src/container.ts#L35)
+[container.ts:35](https://github.com/donmccurdy/KTX-Parse/blob/6c789af/src/container.ts#L35)
 
 ___
 
@@ -143,7 +145,7 @@ Width of the texture image for level 0, in pixels.
 
 #### Defined in
 
-[container.ts:32](https://github.com/donmccurdy/KTX-Parse/blob/a31e2c2/src/container.ts#L32)
+[container.ts:32](https://github.com/donmccurdy/KTX-Parse/blob/6c789af/src/container.ts#L32)
 
 ___
 
@@ -155,7 +157,7 @@ Indicates which supercompression scheme has been applied to mip level images, if
 
 #### Defined in
 
-[container.ts:51](https://github.com/donmccurdy/KTX-Parse/blob/a31e2c2/src/container.ts#L51)
+[container.ts:51](https://github.com/donmccurdy/KTX-Parse/blob/6c789af/src/container.ts#L51)
 
 ___
 
@@ -168,7 +170,7 @@ VK_FORMAT_UNDEFINED, `typeSize` must be 1.
 
 #### Defined in
 
-[container.ts:29](https://github.com/donmccurdy/KTX-Parse/blob/a31e2c2/src/container.ts#L29)
+[container.ts:29](https://github.com/donmccurdy/KTX-Parse/blob/6c789af/src/container.ts#L29)
 
 ___
 
@@ -181,4 +183,4 @@ texture formats, `vkFormat` must be VK_FORMAT_UNDEFINED.
 
 #### Defined in
 
-[container.ts:23](https://github.com/donmccurdy/KTX-Parse/blob/a31e2c2/src/container.ts#L23)
+[container.ts:23](https://github.com/donmccurdy/KTX-Parse/blob/6c789af/src/container.ts#L23)
