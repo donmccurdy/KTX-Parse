@@ -22,6 +22,7 @@ export const KHR_DF_MODEL_ETC1 = 160;
 export const KHR_DF_MODEL_ETC2 = 161;
 export const KHR_DF_MODEL_ASTC = 162;
 export const KHR_DF_MODEL_ETC1S = 163;
+export const KDF_DF_MODEL_UASTC = 166;
 
 export const KHR_DF_FLAG_ALPHA_STRAIGHT = 0;
 export const KHR_DF_FLAG_ALPHA_PREMULTIPLIED = 1;
