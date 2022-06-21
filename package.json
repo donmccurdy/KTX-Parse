@@ -1,6 +1,6 @@
 {
   "name": "ktx-parse",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "KTX 2.0 (.ktx2) parser and serializer.",
   "source": "src/index.ts",
   "main": "dist/ktx-parse.js",
@@ -17,7 +17,7 @@
     "test": "ts-node node_modules/tape/bin/tape test/test.ts | tap-spec",
     "coverage": "nyc --reporter=lcov --reporter=text ts-node node_modules/tape/bin/tape test/test.ts",
     "coverage:report": "nyc report --reporter=text-lcov > .nyc_output/coverage.lcov",
-    "docs": "typedoc --plugin typedoc-plugin-markdown --out ./docs --hideProjectName --hideBreadcrumbs && ts-node docs.ts && rm -rf ./docs",
+    "docs": "typedoc src/index.ts --plugin typedoc-plugin-markdown --out ./docs",
     "preversion": "yarn dist && yarn test",
     "version": "yarn dist && yarn docs && git add -u",
     "postversion": "git push && git push --tags && npm publish && yarn coverage:report"
