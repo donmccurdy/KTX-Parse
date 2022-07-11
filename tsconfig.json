@@ -1,8 +1,9 @@
 {
     "compilerOptions": {
       "moduleResolution": "node",
-      "lib": ["es2018", "dom"],
-      "target": "es2018",
+      "lib": ["es2020", "dom"],
+      "target": "es2020",
+      "module": "es2020",
       "declaration": true,
       "typeRoots": ["node_modules/@types"],
       "strict": true,
