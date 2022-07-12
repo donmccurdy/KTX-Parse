@@ -1,6 +1,6 @@
 {
   "name": "ktx-parse",
-  "version": "0.3.3",
+  "version": "0.4.0",
   "description": "KTX 2.0 (.ktx2) parser and serializer.",
   "type": "module",
   "sideEffects": false,
