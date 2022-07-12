@@ -26,26 +26,26 @@ export class KTX2Container {
 	 * Size of the data type in bytes used to upload the data to a graphics API. When `vkFormat` is
 	 * VK_FORMAT_UNDEFINED, `typeSize` must be 1.
 	 */
-	public typeSize: number = 1;
+	public typeSize = 1;
 
 	/** Width of the texture image for level 0, in pixels. */
-	public pixelWidth: number = 0;
+	public pixelWidth = 0;
 
 	/** Height of the texture image for level 0, in pixels. */
-	public pixelHeight: number = 0;
+	public pixelHeight = 0;
 
 	/** Depth of the texture image for level 0, in pixels (3D textures only). */
-	public pixelDepth: number = 0;
+	public pixelDepth = 0;
 
 	/** Number of array elements (array textures only). */
-	public layerCount: number = 0;
+	public layerCount = 0;
 
 	/**
 	 * Number of cubemap faces. For cubemaps and cubemap arrays, `faceCount` must be 6. For all
 	 * other textures, `faceCount` must be 1. Cubemap faces are stored in +X, -X, +Y, -Y, +Z, -Z
 	 * order.
 	 */
-	public faceCount: number = 1;
+	public faceCount = 1;
 
 	/** Indicates which supercompression scheme has been applied to mip level images, if any. */
 	public supercompressionScheme = KHR_SUPERCOMPRESSION_NONE;

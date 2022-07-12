@@ -48,7 +48,7 @@ export class BufferReader {
 		return this;
 	}
 
-	_scan(maxByteLength: number, term: number = 0x00): Uint8Array {
+	_scan(maxByteLength: number, term = 0x00): Uint8Array {
 		const byteOffset = this._offset;
 		let byteLength = 0;
 		while (this._dataView.getUint8(this._offset) !== term && byteLength < maxByteLength) {
