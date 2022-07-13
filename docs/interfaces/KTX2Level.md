@@ -17,7 +17,7 @@
 
 #### Defined in
 
-[container.ts:86](https://github.com/donmccurdy/KTX-Parse/blob/13479f8/src/container.ts#L86)
+[container.ts:86](https://github.com/donmccurdy/KTX-Parse/blob/d8b081e/src/container.ts#L86)
 
 ___
 
@@ -27,4 +27,4 @@ ___
 
 #### Defined in
 
-[container.ts:98](https://github.com/donmccurdy/KTX-Parse/blob/13479f8/src/container.ts#L98)
+[container.ts:98](https://github.com/donmccurdy/KTX-Parse/blob/d8b081e/src/container.ts#L98)
