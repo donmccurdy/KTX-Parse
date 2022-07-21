@@ -22,7 +22,7 @@
 
 #### Defined in
 
-[container.ts:122](https://github.com/donmccurdy/KTX-Parse/blob/dd84931/src/container.ts#L122)
+[container.ts:122](https://github.com/donmccurdy/KTX-Parse/blob/a7c8d6f/src/container.ts#L122)
 
 ___
 
@@ -32,7 +32,7 @@ ___
 
 #### Defined in
 
-[container.ts:121](https://github.com/donmccurdy/KTX-Parse/blob/dd84931/src/container.ts#L121)
+[container.ts:121](https://github.com/donmccurdy/KTX-Parse/blob/a7c8d6f/src/container.ts#L121)
 
 ___
 
@@ -40,9 +40,13 @@ ___
 
 • `Optional` **channelID**: `number`
 
+**`Deprecated`**
+
+Renamed to 'channelType'.
+
 #### Defined in
 
-[container.ts:124](https://github.com/donmccurdy/KTX-Parse/blob/dd84931/src/container.ts#L124)
+[container.ts:124](https://github.com/donmccurdy/KTX-Parse/blob/a7c8d6f/src/container.ts#L124)
 
 ___
 
@@ -52,7 +56,7 @@ ___
 
 #### Defined in
 
-[container.ts:125](https://github.com/donmccurdy/KTX-Parse/blob/dd84931/src/container.ts#L125)
+[container.ts:125](https://github.com/donmccurdy/KTX-Parse/blob/a7c8d6f/src/container.ts#L125)
 
 ___
 
@@ -62,7 +66,7 @@ ___
 
 #### Defined in
 
-[container.ts:127](https://github.com/donmccurdy/KTX-Parse/blob/dd84931/src/container.ts#L127)
+[container.ts:127](https://github.com/donmccurdy/KTX-Parse/blob/a7c8d6f/src/container.ts#L127)
 
 ___
 
@@ -72,7 +76,7 @@ ___
 
 #### Defined in
 
-[container.ts:126](https://github.com/donmccurdy/KTX-Parse/blob/dd84931/src/container.ts#L126)
+[container.ts:126](https://github.com/donmccurdy/KTX-Parse/blob/a7c8d6f/src/container.ts#L126)
 
 ___
 
@@ -82,4 +86,4 @@ ___
 
 #### Defined in
 
-[container.ts:128](https://github.com/donmccurdy/KTX-Parse/blob/dd84931/src/container.ts#L128)
+[container.ts:128](https://github.com/donmccurdy/KTX-Parse/blob/a7c8d6f/src/container.ts#L128)
