@@ -1,5 +1,9 @@
 # Changelog
 
+## v0.4
+
+- Removed UMD builds
+
 ## v0.3
 
 - Improved support for uncompressed formats and fixed various bugs
