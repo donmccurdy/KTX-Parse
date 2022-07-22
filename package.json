@@ -5,16 +5,19 @@
   "type": "module",
   "sideEffects": false,
   "source": "./src/index.ts",
-  "main": "./dist/ktx-parse.cjs",
-  "exports": "./dist/ktx-parse.modern.js",
   "types": "./dist/index.d.ts",
+  "main": "./dist/ktx-parse.cjs",
+  "module": "./dist/ktx-parse.esm.js",
+  "exports": {
+    "require": "./dist/ktx-parse.cjs",
+    "default": "./dist/ktx-parse.modern.js"
+  },
   "repository": "github:donmccurdy/ktx-parse",
   "author": "Don McCurdy <dm@donmccurdy.com>",
   "license": "MIT",
   "scripts": {
-    "dist": "microbundle --format modern,cjs --define PACKAGE_VERSION=$npm_package_version",
-    "watch": "microbundle watch --format modern,cjs --define PACKAGE_VERSION=$npm_package_version",
-    "watch:debug": "microbundle watch --no-compress --format modern,cjs --define PACKAGE_VERSION=$npm_package_version",
+    "dist": "microbundle --format cjs,esm,modern --no-compress --define PACKAGE_VERSION=$npm_package_version",
+    "watch": "microbundle watch --format cjs,esm,modern --no-compress --define PACKAGE_VERSION=$npm_package_version",
     "test": "ava test/test.ts",
     "coverage": "c8 --reporter=lcov --reporter=text ava test/test.ts --tap",
     "coverage:report": "c8 report --reporter=text-lcov > coverage/coverage.lcov",
@@ -46,6 +49,11 @@
     "README.md",
     "LICENSE",
     "package.json"
+  ],
+  "browserslist": [
+    "defaults",
+    "not IE 11",
+    "node >= 14"
   ],
   "ava": {
     "extensions": {
