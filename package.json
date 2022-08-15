@@ -27,14 +27,14 @@
     "postversion": "git push && git push --tags && npm publish && yarn coverage:report"
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "5.32.0",
+    "@typescript-eslint/eslint-plugin": "5.33.0",
     "ava": "4.3.1",
     "c8": "7.12.0",
-    "eslint": "8.21.0",
+    "eslint": "8.22.0",
     "eslint-config-prettier": "8.5.0",
     "glob": "8.0.3",
     "glob-promise": "4.2.2",
-    "microbundle": "0.15.0",
+    "microbundle": "0.15.1",
     "prettier": "2.7.1",
     "rimraf": "3.0.2",
     "source-map-support": "0.5.21",
