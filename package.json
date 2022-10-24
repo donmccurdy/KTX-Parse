@@ -28,7 +28,7 @@
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "5.40.1",
-    "ava": "4.3.3",
+    "ava": "5.0.1",
     "c8": "7.12.0",
     "eslint": "8.26.0",
     "eslint-config-prettier": "8.5.0",
