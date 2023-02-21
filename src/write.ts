@@ -1,7 +1,7 @@
-import { HEADER_BYTE_LENGTH, KTX2_ID, KTX_WRITER, NUL } from './constants-internal';
-import { KHR_DF_KHR_DESCRIPTORTYPE_BASICFORMAT, KHR_DF_SAMPLE_DATATYPE_SIGNED } from './constants';
-import { KTX2Container } from './container';
-import { concat, encodeText } from './util';
+import { HEADER_BYTE_LENGTH, KTX2_ID, KTX_WRITER, NUL } from './constants-internal.js';
+import { KHR_DF_KHR_DESCRIPTORTYPE_BASICFORMAT, KHR_DF_SAMPLE_DATATYPE_SIGNED } from './constants.js';
+import { KTX2Container } from './container.js';
+import { concat, encodeText } from './util.js';
 
 interface WriteOptions {
 	keepWriter?: boolean;

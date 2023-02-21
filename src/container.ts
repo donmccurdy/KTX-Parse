@@ -8,7 +8,7 @@ import {
 	KHR_DF_VERSION,
 	KHR_SUPERCOMPRESSION_NONE,
 	VK_FORMAT_UNDEFINED,
-} from './constants';
+} from './constants.js';
 
 /**
  * Represents an unpacked KTX 2.0 texture container. Data for individual mip levels are stored in

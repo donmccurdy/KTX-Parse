@@ -1,8 +1,8 @@
-import { BufferReader } from './buffer-reader';
-import { KHR_DF_SAMPLE_DATATYPE_SIGNED } from './constants';
-import { KTX2_ID } from './constants-internal';
-import { KTX2Container, KTX2DataFormatDescriptorBasicFormat } from './container';
-import { decodeText } from './util';
+import { BufferReader } from './buffer-reader.js';
+import { KHR_DF_SAMPLE_DATATYPE_SIGNED } from './constants.js';
+import { KTX2_ID } from './constants-internal.js';
+import { KTX2Container, KTX2DataFormatDescriptorBasicFormat } from './container.js';
+import { decodeText } from './util.js';
 
 /**
  * Parses a KTX 2.0 file, returning an unpacked {@link KTX2Container} instance with all associated

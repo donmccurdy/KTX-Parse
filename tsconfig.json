@@ -3,7 +3,7 @@
     "paths": {
       "ktx-parse": ["./"]
     },
-    "moduleResolution": "node",
+    "moduleResolution": "nodenext",
     "lib": ["es2020", "dom"],
     "target": "es2020",
     "module": "es2020",
