@@ -9,6 +9,7 @@
   "main": "./dist/ktx-parse.cjs",
   "module": "./dist/ktx-parse.esm.js",
   "exports": {
+    "types": "./dist/index.d.ts",
     "require": "./dist/ktx-parse.cjs",
     "default": "./dist/ktx-parse.modern.js"
   },
