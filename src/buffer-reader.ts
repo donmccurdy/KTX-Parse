@@ -43,6 +43,12 @@ export class BufferReader {
 		return value;
 	}
 
+	_nextUint8Array(len: number) {
+		const value = new Uint8Array(this._dataView.buffer, this._dataView.byteOffset + this._offset, len);
+		this._offset += len;
+		return value;
+	}
+
 	_skip(bytes: number) {
 		this._offset += bytes;
 		return this;

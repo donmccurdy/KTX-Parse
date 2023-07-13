@@ -246,6 +246,17 @@ test('lossless round trip', async (t) => {
 	);
 });
 
+test('read kv', (t) => {
+	const a = read(SAMPLE_ETC1S);
+	a.keyValue['TestUint8Array'] = new Uint8Array([0, 0, 0, 16]);
+	const b = write(a);
+	const c = read(b);
+	t.true(
+		typedArrayEquals(c.keyValue['TestUint8Array'] as Uint8Array, new Uint8Array([0, 0, 0, 16])),
+		'container.keyValue[TestUint8Array]'
+	);
+});
+
 function typedArrayEquals(a: Uint8Array, b: Uint8Array): boolean {
 	if (a.byteLength !== b.byteLength) return false;
 	for (let i = 0; i < a.byteLength; i++) {

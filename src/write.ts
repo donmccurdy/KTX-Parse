@@ -70,8 +70,8 @@ export function write(container: KTX2Container, options: WriteOptions = {}): Uin
 	for (const key in keyValue) {
 		const value = keyValue[key];
 		const keyData = encodeText(key);
-		const valueData = typeof value === 'string' ? encodeText(value) : value;
-		const kvByteLength = keyData.byteLength + 1 + valueData.byteLength + 1;
+		const valueData = typeof value === 'string' ? concat([encodeText(value), NUL]) : value;
+		const kvByteLength = keyData.byteLength + 1 + valueData.byteLength;
 		const kvPadding = kvByteLength % 4 ? 4 - (kvByteLength % 4) : 0; // align(4)
 		keyValueData.push(
 			concat([
@@ -79,7 +79,6 @@ export function write(container: KTX2Container, options: WriteOptions = {}): Uin
 				keyData,
 				NUL,
 				valueData,
-				NUL,
 				new Uint8Array(kvPadding).fill(0x00), // align(4)
 			])
 		);
