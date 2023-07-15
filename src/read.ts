@@ -158,8 +158,12 @@ export function read(data: Uint8Array): KTX2Container {
 		const keyData = kvdReader._scan(keyValueByteLength);
 		const key = decodeText(keyData);
 
-		const valueData = kvdReader._nextUint8Array(keyValueByteLength - keyData.byteLength - 1);
-		container.keyValue[key] = key.match(/^ktx/i) ? decodeText(valueData).replace(/^(.*)\x00$/, '$1') : valueData;
+		container.keyValue[key] = kvdReader._nextUint8Array(keyValueByteLength - keyData.byteLength - 1);
+
+		if (key.match(/^ktx/i)) {
+			const text = decodeText(container.keyValue[key] as Uint8Array);
+			container.keyValue[key] = text.substring(0, text.lastIndexOf('\x00'));
+		}
 
 		const kvPadding = keyValueByteLength % 4 ? 4 - (keyValueByteLength % 4) : 0; // align(4)
 		// 4-byte alignment.
