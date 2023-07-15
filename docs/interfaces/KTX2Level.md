@@ -19,7 +19,7 @@ Compressed data of the mip level.
 
 #### Defined in
 
-[container.ts:86](https://github.com/donmccurdy/KTX-Parse/blob/810e214/src/container.ts#L86)
+[container.ts:86](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/container.ts#L86)
 
 ___
 
@@ -38,4 +38,4 @@ size of decoded RGBA32 pixels._
 
 #### Defined in
 
-[container.ts:98](https://github.com/donmccurdy/KTX-Parse/blob/810e214/src/container.ts#L98)
+[container.ts:98](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/container.ts#L98)

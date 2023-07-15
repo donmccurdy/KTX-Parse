@@ -3,7 +3,7 @@ ktx-parse / [Exports](modules.md)
 # ktx-parse
 
 [![Latest NPM release](https://img.shields.io/npm/v/ktx-parse.svg)](https://www.npmjs.com/package/ktx-parse)
-[![Minzipped size](https://badgen.net/bundlephobia/minzip/ktx-parse)](https://bundlephobia.com/result?p=ktx-parse)
+[![npm bundle size](https://img.shields.io/bundlephobia/minzip/ktx-parse)](https://bundlephobia.com/package/ktx-parse)
 [![License](https://img.shields.io/badge/license-MIT-007ec6.svg)](https://github.com/donmccurdy/KTX-Parse/blob/main/LICENSE)
 [![CI](https://github.com/donmccurdy/KTX-parse/workflows/CI/badge.svg?branch=main&event=push)](https://github.com/donmccurdy/KTX-parse/actions?query=workflow%3ACI)
 [![Coverage](https://codecov.io/gh/donmccurdy/KTX-Parse/branch/main/graph/badge.svg?token=S30LCC3L04)](https://codecov.io/gh/donmccurdy/KTX-Parse)
