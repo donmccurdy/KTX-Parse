@@ -32,7 +32,7 @@
     "ava": "5.3.1",
     "c8": "8.0.1",
     "eslint": "8.48.0",
-    "eslint-config-prettier": "8.10.0",
+    "eslint-config-prettier": "9.0.0",
     "glob": "8.1.0",
     "glob-promise": "6.0.3",
     "microbundle": "0.15.1",
