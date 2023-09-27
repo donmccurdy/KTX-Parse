@@ -33,7 +33,7 @@
     "c8": "8.0.1",
     "eslint": "8.50.0",
     "eslint-config-prettier": "9.0.0",
-    "glob": "8.1.0",
+    "glob": "10.3.10",
     "glob-promise": "6.0.5",
     "microbundle": "0.15.1",
     "prettier": "3.0.3",
