@@ -4,7 +4,7 @@ import { readFile } from 'fs/promises';
 import { basename, join } from 'path';
 import { TextDecoder, TextEncoder } from 'util';
 import test from 'ava';
-import { promise as glob } from 'glob-promise';
+import { glob } from 'glob';
 import { KTX2Container, read, write } from 'ktx-parse';
 
 const SAMPLE_ETC1S = readFileSync(new URL('./data/test_etc1s.ktx2', import.meta.url));
@@ -34,7 +34,7 @@ test('read::etc1s', (t) => {
 			KTXwriter: 'toktx v4.0.0-beta4~2 / libktx v4.0.0-beta4~2',
 			KTXwriterScParams: '--bcmp',
 		},
-		'keyValue'
+		'keyValue',
 	);
 });
 
@@ -58,7 +58,7 @@ test('read::uastc', (t) => {
 			KTXwriter: 'toktx v4.0.0-beta4~2 / libktx v4.0.0-beta4~2',
 			KTXwriterScParams: '--uastc 2',
 		},
-		'keyValue'
+		'keyValue',
 	);
 });
 
@@ -85,7 +85,7 @@ test('read::padding', async (t) => {
 	t.is(
 		container.keyValue['KTXwriter'],
 		'toktx v4.0.beta1.380.g0d851050 / libktx v4.0.beta1.350.g2c40ba4d.dirty',
-		'KTXwriter'
+		'KTXwriter',
 	);
 	t.deepEqual(
 		container.keyValue['KHRtoktxScParams'],
@@ -93,7 +93,7 @@ test('read::padding', async (t) => {
 			45, 45, 98, 99, 109, 112, 32, 45, 45, 99, 108, 101, 118, 101, 108, 32, 49, 32, 45, 45, 113, 108, 101, 118,
 			101, 108, 32, 49, 57, 50,
 		]),
-		'KHRtoktxScParams'
+		'KHRtoktxScParams',
 	);
 });
 
@@ -119,36 +119,36 @@ test('write::etc1s', (t) => {
 		t.is(
 			b.globalData.endpointsData.byteLength,
 			a.globalData.endpointsData.byteLength,
-			'container.globalData.endpointsData.byteLength'
+			'container.globalData.endpointsData.byteLength',
 		);
 		t.is(
 			b.globalData.selectorsData.byteLength,
 			a.globalData.selectorsData.byteLength,
-			'container.globalData.selectorsData.byteLength'
+			'container.globalData.selectorsData.byteLength',
 		);
 		t.is(
 			b.globalData.tablesData.byteLength,
 			a.globalData.tablesData.byteLength,
-			'container.globalData.tablesData.byteLength'
+			'container.globalData.tablesData.byteLength',
 		);
 		t.is(
 			b.globalData.extendedData.byteLength,
 			a.globalData.extendedData.byteLength,
-			'container.globalData.extendedData.byteLength'
+			'container.globalData.extendedData.byteLength',
 		);
 
 		t.true(
 			typedArrayEquals(b.globalData.endpointsData, a.globalData.endpointsData),
-			'container.globalData.endpointsData'
+			'container.globalData.endpointsData',
 		);
 		t.true(
 			typedArrayEquals(b.globalData.selectorsData, a.globalData.selectorsData),
-			'container.globalData.selectorsData'
+			'container.globalData.selectorsData',
 		);
 		t.true(typedArrayEquals(b.globalData.tablesData, a.globalData.tablesData), 'container.globalData.tablesData');
 		t.true(
 			typedArrayEquals(b.globalData.extendedData, a.globalData.extendedData),
-			'container.globalData.extendedData'
+			'container.globalData.extendedData',
 		);
 	} else {
 		t.fail('container.globalData missing');
@@ -242,7 +242,7 @@ test('lossless round trip', async (t) => {
 			// TODO(feat): Try to replicate KTX-Software output byte for byte.
 			// t.ok(typedArrayEquals(srcView, dstView), basename(path));
 			t.deepEqual(srcContainer, dstContainer, basename(path));
-		})
+		}),
 	);
 });
 
@@ -253,7 +253,7 @@ test('read kv', (t) => {
 	const c = read(b);
 	t.true(
 		typedArrayEquals(c.keyValue['TestUint8Array'] as Uint8Array, new Uint8Array([0, 0, 0, 16])),
-		'container.keyValue[TestUint8Array]'
+		'container.keyValue[TestUint8Array]',
 	);
 });
 
