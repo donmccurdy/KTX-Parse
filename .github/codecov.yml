@@ -1,6 +1,5 @@
 # Based on https://docs.codecov.com/docs/codecov-yaml#default-yaml
 codecov:
-    token: 42cb2bb9-a106-4197-8c3e-7c9b475c2c9e
     require_ci_to_pass: yes
 
 coverage:
