@@ -28,7 +28,7 @@
     "postversion": "git push && git push --tags && npm publish && yarn coverage:report"
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "7.1.0",
+    "@typescript-eslint/eslint-plugin": "7.1.1",
     "ava": "6.1.2",
     "c8": "9.1.0",
     "eslint": "8.57.0",
@@ -39,9 +39,9 @@
     "rimraf": "5.0.5",
     "source-map-support": "0.5.21",
     "tsx": "^4.7.0",
-    "typedoc": "0.25.10",
+    "typedoc": "0.25.12",
     "typedoc-plugin-markdown": "3.17.1",
-    "typescript": "5.3.3"
+    "typescript": "5.4.2"
   },
   "files": [
     "dist/",
