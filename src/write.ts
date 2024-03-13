@@ -80,7 +80,7 @@ export function write(container: KTX2Container, options: WriteOptions = {}): Uin
 				NUL,
 				valueData,
 				new Uint8Array(kvPadding).fill(0x00), // align(4)
-			])
+			]),
 		);
 	}
 
@@ -166,15 +166,23 @@ export function write(container: KTX2Container, options: WriteOptions = {}): Uin
 
 	const levelData: Uint8Array[] = [];
 	const levelIndex = new DataView(new ArrayBuffer(container.levels.length * 3 * 8));
+	const levelDataByteOffsets = new Uint32Array(container.levels.length);
 
+	// Level data is ordered small → large.
 	let levelDataByteOffset = (sgdByteOffset || kvdByteOffset + kvdBuffer.byteLength) + sgdBuffer.byteLength;
-	for (let i = 0; i < container.levels.length; i++) {
+	for (let i = container.levels.length - 1; i >= 0; i--) {
 		const level = container.levels[i];
 		levelData.push(level.levelData);
-		levelIndex.setBigUint64(i * 24 + 0, BigInt(levelDataByteOffset), true);
+		levelDataByteOffsets[i] = levelDataByteOffset;
+		levelDataByteOffset += level.levelData.byteLength;
+	}
+
+	// Level index is ordered large → small.
+	for (let i = 0; i < container.levels.length; i++) {
+		const level = container.levels[i];
+		levelIndex.setBigUint64(i * 24 + 0, BigInt(levelDataByteOffsets[i]), true);
 		levelIndex.setBigUint64(i * 24 + 8, BigInt(level.levelData.byteLength), true);
 		levelIndex.setBigUint64(i * 24 + 16, BigInt(level.uncompressedByteLength), true);
-		levelDataByteOffset += level.levelData.byteLength;
 	}
 
 	///////////////////////////////////////////////////
@@ -216,6 +224,6 @@ export function write(container: KTX2Container, options: WriteOptions = {}): Uin
 				: new ArrayBuffer(0),
 			sgdBuffer,
 			...levelData,
-		])
+		]),
 	);
 }

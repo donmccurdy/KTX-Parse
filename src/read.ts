@@ -74,7 +74,7 @@ export function read(data: Uint8Array): KTX2Container {
 			levelData: new Uint8Array(
 				data.buffer,
 				data.byteOffset + levelReader._nextUint64(),
-				levelReader._nextUint64()
+				levelReader._nextUint64(),
 			),
 			uncompressedByteLength: levelReader._nextUint64(),
 		});
