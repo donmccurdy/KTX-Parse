@@ -6,7 +6,7 @@
     "moduleResolution": "nodenext",
     "lib": ["es2020", "dom"],
     "target": "es2020",
-    "module": "es2020",
+    "module": "nodenext",
     "declaration": true,
     "typeRoots": ["node_modules/@types"],
     "strict": true
