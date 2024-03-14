@@ -15,6 +15,15 @@
 - [KTX2GlobalDataBasisLZ](interfaces/KTX2GlobalDataBasisLZ.md)
 - [KTX2Level](interfaces/KTX2Level.md)
 
+### Type Aliases
+
+- [Channel](modules.md#channel)
+- [Primaries](modules.md#primaries)
+- [SampleDatatype](modules.md#sampledatatype)
+- [Supercompression](modules.md#supercompression)
+- [Transfer](modules.md#transfer)
+- [VKFormat](modules.md#vkformat)
+
 ### Variables
 
 - [KHR\_DF\_CHANNEL\_RGBSDA\_ALPHA](modules.md#khr_df_channel_rgbsda_alpha)
@@ -268,6 +277,66 @@
 - [read](modules.md#read)
 - [write](modules.md#write)
 
+## Type Aliases
+
+### Channel
+
+Ƭ **Channel**: typeof [`KHR_DF_CHANNEL_RGBSDA_RED`](modules.md#khr_df_channel_rgbsda_red) \| typeof [`KHR_DF_CHANNEL_RGBSDA_GREEN`](modules.md#khr_df_channel_rgbsda_green) \| typeof [`KHR_DF_CHANNEL_RGBSDA_BLUE`](modules.md#khr_df_channel_rgbsda_blue) \| typeof [`KHR_DF_CHANNEL_RGBSDA_STENCIL`](modules.md#khr_df_channel_rgbsda_stencil) \| typeof [`KHR_DF_CHANNEL_RGBSDA_DEPTH`](modules.md#khr_df_channel_rgbsda_depth) \| typeof [`KHR_DF_CHANNEL_RGBSDA_ALPHA`](modules.md#khr_df_channel_rgbsda_alpha)
+
+#### Defined in
+
+[constants.ts:111](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L111)
+
+___
+
+### Primaries
+
+Ƭ **Primaries**: typeof [`KHR_DF_PRIMARIES_UNSPECIFIED`](modules.md#khr_df_primaries_unspecified) \| typeof [`KHR_DF_PRIMARIES_BT709`](modules.md#khr_df_primaries_bt709) \| typeof [`KHR_DF_PRIMARIES_BT601_EBU`](modules.md#khr_df_primaries_bt601_ebu) \| typeof [`KHR_DF_PRIMARIES_BT601_SMPTE`](modules.md#khr_df_primaries_bt601_smpte) \| typeof [`KHR_DF_PRIMARIES_BT2020`](modules.md#khr_df_primaries_bt2020) \| typeof [`KHR_DF_PRIMARIES_CIEXYZ`](modules.md#khr_df_primaries_ciexyz) \| typeof [`KHR_DF_PRIMARIES_ACES`](modules.md#khr_df_primaries_aces) \| typeof [`KHR_DF_PRIMARIES_ACESCC`](modules.md#khr_df_primaries_acescc) \| typeof [`KHR_DF_PRIMARIES_NTSC1953`](modules.md#khr_df_primaries_ntsc1953) \| typeof [`KHR_DF_PRIMARIES_PAL525`](modules.md#khr_df_primaries_pal525) \| typeof [`KHR_DF_PRIMARIES_DISPLAYP3`](modules.md#khr_df_primaries_displayp3) \| typeof [`KHR_DF_PRIMARIES_ADOBERGB`](modules.md#khr_df_primaries_adobergb)
+
+#### Defined in
+
+[constants.ts:90](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L90)
+
+___
+
+### SampleDatatype
+
+Ƭ **SampleDatatype**: typeof [`KHR_DF_SAMPLE_DATATYPE_FLOAT`](modules.md#khr_df_sample_datatype_float) \| typeof [`KHR_DF_SAMPLE_DATATYPE_SIGNED`](modules.md#khr_df_sample_datatype_signed) \| typeof [`KHR_DF_SAMPLE_DATATYPE_EXPONENT`](modules.md#khr_df_sample_datatype_exponent) \| typeof [`KHR_DF_SAMPLE_DATATYPE_LINEAR`](modules.md#khr_df_sample_datatype_linear)
+
+#### Defined in
+
+[constants.ts:124](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L124)
+
+___
+
+### Supercompression
+
+Ƭ **Supercompression**: typeof [`KHR_SUPERCOMPRESSION_NONE`](modules.md#khr_supercompression_none) \| typeof [`KHR_SUPERCOMPRESSION_BASISLZ`](modules.md#khr_supercompression_basislz) \| typeof [`KHR_SUPERCOMPRESSION_ZSTD`](modules.md#khr_supercompression_zstd) \| typeof [`KHR_SUPERCOMPRESSION_ZLIB`](modules.md#khr_supercompression_zlib)
+
+#### Defined in
+
+[constants.ts:10](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L10)
+
+___
+
+### Transfer
+
+Ƭ **Transfer**: typeof [`KHR_DF_TRANSFER_UNSPECIFIED`](modules.md#khr_df_transfer_unspecified) \| typeof [`KHR_DF_TRANSFER_LINEAR`](modules.md#khr_df_transfer_linear) \| typeof [`KHR_DF_TRANSFER_SRGB`](modules.md#khr_df_transfer_srgb) \| typeof [`KHR_DF_TRANSFER_ITU`](modules.md#khr_df_transfer_itu) \| typeof [`KHR_DF_TRANSFER_NTSC`](modules.md#khr_df_transfer_ntsc) \| typeof [`KHR_DF_TRANSFER_SLOG`](modules.md#khr_df_transfer_slog) \| typeof [`KHR_DF_TRANSFER_SLOG2`](modules.md#khr_df_transfer_slog2) \| typeof [`KHR_DF_TRANSFER_BT1886`](modules.md#khr_df_transfer_bt1886) \| typeof [`KHR_DF_TRANSFER_HLG_OETF`](modules.md#khr_df_transfer_hlg_oetf) \| typeof [`KHR_DF_TRANSFER_HLG_EOTF`](modules.md#khr_df_transfer_hlg_eotf) \| typeof [`KHR_DF_TRANSFER_PQ_EOTF`](modules.md#khr_df_transfer_pq_eotf) \| typeof [`KHR_DF_TRANSFER_PQ_OETF`](modules.md#khr_df_transfer_pq_oetf) \| typeof [`KHR_DF_TRANSFER_DCIP3`](modules.md#khr_df_transfer_dcip3) \| typeof [`KHR_DF_TRANSFER_PAL_OETF`](modules.md#khr_df_transfer_pal_oetf) \| typeof [`KHR_DF_TRANSFER_PAL625_EOTF`](modules.md#khr_df_transfer_pal625_eotf) \| typeof [`KHR_DF_TRANSFER_ST240`](modules.md#khr_df_transfer_st240) \| typeof [`KHR_DF_TRANSFER_ACESCC`](modules.md#khr_df_transfer_acescc) \| typeof [`KHR_DF_TRANSFER_ACESCCT`](modules.md#khr_df_transfer_acescct) \| typeof [`KHR_DF_TRANSFER_ADOBERGB`](modules.md#khr_df_transfer_adobergb)
+
+#### Defined in
+
+[constants.ts:56](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L56)
+
+___
+
+### VKFormat
+
+Ƭ **VKFormat**: typeof [`VK_FORMAT_UNDEFINED`](modules.md#vk_format_undefined) \| typeof [`VK_FORMAT_R4G4_UNORM_PACK8`](modules.md#vk_format_r4g4_unorm_pack8) \| typeof [`VK_FORMAT_R4G4B4A4_UNORM_PACK16`](modules.md#vk_format_r4g4b4a4_unorm_pack16) \| typeof [`VK_FORMAT_B4G4R4A4_UNORM_PACK16`](modules.md#vk_format_b4g4r4a4_unorm_pack16) \| typeof [`VK_FORMAT_R5G6B5_UNORM_PACK16`](modules.md#vk_format_r5g6b5_unorm_pack16) \| typeof [`VK_FORMAT_B5G6R5_UNORM_PACK16`](modules.md#vk_format_b5g6r5_unorm_pack16) \| typeof [`VK_FORMAT_R5G5B5A1_UNORM_PACK16`](modules.md#vk_format_r5g5b5a1_unorm_pack16) \| typeof [`VK_FORMAT_B5G5R5A1_UNORM_PACK16`](modules.md#vk_format_b5g5r5a1_unorm_pack16) \| typeof [`VK_FORMAT_A1R5G5B5_UNORM_PACK16`](modules.md#vk_format_a1r5g5b5_unorm_pack16) \| typeof [`VK_FORMAT_R8_UNORM`](modules.md#vk_format_r8_unorm) \| typeof [`VK_FORMAT_R8_SNORM`](modules.md#vk_format_r8_snorm) \| typeof [`VK_FORMAT_R8_UINT`](modules.md#vk_format_r8_uint) \| typeof [`VK_FORMAT_R8_SINT`](modules.md#vk_format_r8_sint) \| typeof [`VK_FORMAT_R8_SRGB`](modules.md#vk_format_r8_srgb) \| typeof [`VK_FORMAT_R8G8_UNORM`](modules.md#vk_format_r8g8_unorm) \| typeof [`VK_FORMAT_R8G8_SNORM`](modules.md#vk_format_r8g8_snorm) \| typeof [`VK_FORMAT_R8G8_UINT`](modules.md#vk_format_r8g8_uint) \| typeof [`VK_FORMAT_R8G8_SINT`](modules.md#vk_format_r8g8_sint) \| typeof [`VK_FORMAT_R8G8_SRGB`](modules.md#vk_format_r8g8_srgb) \| typeof [`VK_FORMAT_R8G8B8_UNORM`](modules.md#vk_format_r8g8b8_unorm) \| typeof [`VK_FORMAT_R8G8B8_SNORM`](modules.md#vk_format_r8g8b8_snorm) \| typeof [`VK_FORMAT_R8G8B8_UINT`](modules.md#vk_format_r8g8b8_uint) \| typeof [`VK_FORMAT_R8G8B8_SINT`](modules.md#vk_format_r8g8b8_sint) \| typeof [`VK_FORMAT_R8G8B8_SRGB`](modules.md#vk_format_r8g8b8_srgb) \| typeof [`VK_FORMAT_B8G8R8_UNORM`](modules.md#vk_format_b8g8r8_unorm) \| typeof [`VK_FORMAT_B8G8R8_SNORM`](modules.md#vk_format_b8g8r8_snorm) \| typeof [`VK_FORMAT_B8G8R8_UINT`](modules.md#vk_format_b8g8r8_uint) \| typeof [`VK_FORMAT_B8G8R8_SINT`](modules.md#vk_format_b8g8r8_sint) \| typeof [`VK_FORMAT_B8G8R8_SRGB`](modules.md#vk_format_b8g8r8_srgb) \| typeof [`VK_FORMAT_R8G8B8A8_UNORM`](modules.md#vk_format_r8g8b8a8_unorm) \| typeof [`VK_FORMAT_R8G8B8A8_SNORM`](modules.md#vk_format_r8g8b8a8_snorm) \| typeof [`VK_FORMAT_R8G8B8A8_UINT`](modules.md#vk_format_r8g8b8a8_uint) \| typeof [`VK_FORMAT_R8G8B8A8_SINT`](modules.md#vk_format_r8g8b8a8_sint) \| typeof [`VK_FORMAT_R8G8B8A8_SRGB`](modules.md#vk_format_r8g8b8a8_srgb) \| typeof [`VK_FORMAT_B8G8R8A8_UNORM`](modules.md#vk_format_b8g8r8a8_unorm) \| typeof [`VK_FORMAT_B8G8R8A8_SNORM`](modules.md#vk_format_b8g8r8a8_snorm) \| typeof [`VK_FORMAT_B8G8R8A8_UINT`](modules.md#vk_format_b8g8r8a8_uint) \| typeof [`VK_FORMAT_B8G8R8A8_SINT`](modules.md#vk_format_b8g8r8a8_sint) \| typeof [`VK_FORMAT_B8G8R8A8_SRGB`](modules.md#vk_format_b8g8r8a8_srgb) \| typeof [`VK_FORMAT_A2R10G10B10_UNORM_PACK32`](modules.md#vk_format_a2r10g10b10_unorm_pack32) \| typeof [`VK_FORMAT_A2R10G10B10_SNORM_PACK32`](modules.md#vk_format_a2r10g10b10_snorm_pack32) \| typeof [`VK_FORMAT_A2R10G10B10_UINT_PACK32`](modules.md#vk_format_a2r10g10b10_uint_pack32) \| typeof [`VK_FORMAT_A2R10G10B10_SINT_PACK32`](modules.md#vk_format_a2r10g10b10_sint_pack32) \| typeof [`VK_FORMAT_A2B10G10R10_UNORM_PACK32`](modules.md#vk_format_a2b10g10r10_unorm_pack32) \| typeof [`VK_FORMAT_A2B10G10R10_SNORM_PACK32`](modules.md#vk_format_a2b10g10r10_snorm_pack32) \| typeof [`VK_FORMAT_A2B10G10R10_UINT_PACK32`](modules.md#vk_format_a2b10g10r10_uint_pack32) \| typeof [`VK_FORMAT_A2B10G10R10_SINT_PACK32`](modules.md#vk_format_a2b10g10r10_sint_pack32) \| typeof [`VK_FORMAT_R16_UNORM`](modules.md#vk_format_r16_unorm) \| typeof [`VK_FORMAT_R16_SNORM`](modules.md#vk_format_r16_snorm) \| typeof [`VK_FORMAT_R16_UINT`](modules.md#vk_format_r16_uint) \| typeof [`VK_FORMAT_R16_SINT`](modules.md#vk_format_r16_sint) \| typeof [`VK_FORMAT_R16_SFLOAT`](modules.md#vk_format_r16_sfloat) \| typeof [`VK_FORMAT_R16G16_UNORM`](modules.md#vk_format_r16g16_unorm) \| typeof [`VK_FORMAT_R16G16_SNORM`](modules.md#vk_format_r16g16_snorm) \| typeof [`VK_FORMAT_R16G16_UINT`](modules.md#vk_format_r16g16_uint) \| typeof [`VK_FORMAT_R16G16_SINT`](modules.md#vk_format_r16g16_sint) \| typeof [`VK_FORMAT_R16G16_SFLOAT`](modules.md#vk_format_r16g16_sfloat) \| typeof [`VK_FORMAT_R16G16B16_UNORM`](modules.md#vk_format_r16g16b16_unorm) \| typeof [`VK_FORMAT_R16G16B16_SNORM`](modules.md#vk_format_r16g16b16_snorm) \| typeof [`VK_FORMAT_R16G16B16_UINT`](modules.md#vk_format_r16g16b16_uint) \| typeof [`VK_FORMAT_R16G16B16_SINT`](modules.md#vk_format_r16g16b16_sint) \| typeof [`VK_FORMAT_R16G16B16_SFLOAT`](modules.md#vk_format_r16g16b16_sfloat) \| typeof [`VK_FORMAT_R16G16B16A16_UNORM`](modules.md#vk_format_r16g16b16a16_unorm) \| typeof [`VK_FORMAT_R16G16B16A16_SNORM`](modules.md#vk_format_r16g16b16a16_snorm) \| typeof [`VK_FORMAT_R16G16B16A16_UINT`](modules.md#vk_format_r16g16b16a16_uint) \| typeof [`VK_FORMAT_R16G16B16A16_SINT`](modules.md#vk_format_r16g16b16a16_sint) \| typeof [`VK_FORMAT_R16G16B16A16_SFLOAT`](modules.md#vk_format_r16g16b16a16_sfloat) \| typeof [`VK_FORMAT_R32_UINT`](modules.md#vk_format_r32_uint) \| typeof [`VK_FORMAT_R32_SINT`](modules.md#vk_format_r32_sint) \| typeof [`VK_FORMAT_R32_SFLOAT`](modules.md#vk_format_r32_sfloat) \| typeof [`VK_FORMAT_R32G32_UINT`](modules.md#vk_format_r32g32_uint) \| typeof [`VK_FORMAT_R32G32_SINT`](modules.md#vk_format_r32g32_sint) \| typeof [`VK_FORMAT_R32G32_SFLOAT`](modules.md#vk_format_r32g32_sfloat) \| typeof [`VK_FORMAT_R32G32B32_UINT`](modules.md#vk_format_r32g32b32_uint) \| typeof [`VK_FORMAT_R32G32B32_SINT`](modules.md#vk_format_r32g32b32_sint) \| typeof [`VK_FORMAT_R32G32B32_SFLOAT`](modules.md#vk_format_r32g32b32_sfloat) \| typeof [`VK_FORMAT_R32G32B32A32_UINT`](modules.md#vk_format_r32g32b32a32_uint) \| typeof [`VK_FORMAT_R32G32B32A32_SINT`](modules.md#vk_format_r32g32b32a32_sint) \| typeof [`VK_FORMAT_R32G32B32A32_SFLOAT`](modules.md#vk_format_r32g32b32a32_sfloat) \| typeof [`VK_FORMAT_R64_UINT`](modules.md#vk_format_r64_uint) \| typeof [`VK_FORMAT_R64_SINT`](modules.md#vk_format_r64_sint) \| typeof [`VK_FORMAT_R64_SFLOAT`](modules.md#vk_format_r64_sfloat) \| typeof [`VK_FORMAT_R64G64_UINT`](modules.md#vk_format_r64g64_uint) \| typeof [`VK_FORMAT_R64G64_SINT`](modules.md#vk_format_r64g64_sint) \| typeof [`VK_FORMAT_R64G64_SFLOAT`](modules.md#vk_format_r64g64_sfloat) \| typeof [`VK_FORMAT_R64G64B64_UINT`](modules.md#vk_format_r64g64b64_uint) \| typeof [`VK_FORMAT_R64G64B64_SINT`](modules.md#vk_format_r64g64b64_sint) \| typeof [`VK_FORMAT_R64G64B64_SFLOAT`](modules.md#vk_format_r64g64b64_sfloat) \| typeof [`VK_FORMAT_R64G64B64A64_UINT`](modules.md#vk_format_r64g64b64a64_uint) \| typeof [`VK_FORMAT_R64G64B64A64_SINT`](modules.md#vk_format_r64g64b64a64_sint) \| typeof [`VK_FORMAT_R64G64B64A64_SFLOAT`](modules.md#vk_format_r64g64b64a64_sfloat) \| typeof [`VK_FORMAT_B10G11R11_UFLOAT_PACK32`](modules.md#vk_format_b10g11r11_ufloat_pack32) \| typeof [`VK_FORMAT_E5B9G9R9_UFLOAT_PACK32`](modules.md#vk_format_e5b9g9r9_ufloat_pack32) \| typeof [`VK_FORMAT_D16_UNORM`](modules.md#vk_format_d16_unorm) \| typeof [`VK_FORMAT_X8_D24_UNORM_PACK32`](modules.md#vk_format_x8_d24_unorm_pack32) \| typeof [`VK_FORMAT_D32_SFLOAT`](modules.md#vk_format_d32_sfloat) \| typeof [`VK_FORMAT_S8_UINT`](modules.md#vk_format_s8_uint) \| typeof [`VK_FORMAT_D16_UNORM_S8_UINT`](modules.md#vk_format_d16_unorm_s8_uint) \| typeof [`VK_FORMAT_D24_UNORM_S8_UINT`](modules.md#vk_format_d24_unorm_s8_uint) \| typeof [`VK_FORMAT_D32_SFLOAT_S8_UINT`](modules.md#vk_format_d32_sfloat_s8_uint) \| typeof [`VK_FORMAT_BC1_RGB_UNORM_BLOCK`](modules.md#vk_format_bc1_rgb_unorm_block) \| typeof [`VK_FORMAT_BC1_RGB_SRGB_BLOCK`](modules.md#vk_format_bc1_rgb_srgb_block) \| typeof [`VK_FORMAT_BC1_RGBA_UNORM_BLOCK`](modules.md#vk_format_bc1_rgba_unorm_block) \| typeof [`VK_FORMAT_BC1_RGBA_SRGB_BLOCK`](modules.md#vk_format_bc1_rgba_srgb_block) \| typeof [`VK_FORMAT_BC2_UNORM_BLOCK`](modules.md#vk_format_bc2_unorm_block) \| typeof [`VK_FORMAT_BC2_SRGB_BLOCK`](modules.md#vk_format_bc2_srgb_block) \| typeof [`VK_FORMAT_BC3_UNORM_BLOCK`](modules.md#vk_format_bc3_unorm_block) \| typeof [`VK_FORMAT_BC3_SRGB_BLOCK`](modules.md#vk_format_bc3_srgb_block) \| typeof [`VK_FORMAT_BC4_UNORM_BLOCK`](modules.md#vk_format_bc4_unorm_block) \| typeof [`VK_FORMAT_BC4_SNORM_BLOCK`](modules.md#vk_format_bc4_snorm_block) \| typeof [`VK_FORMAT_BC5_UNORM_BLOCK`](modules.md#vk_format_bc5_unorm_block) \| typeof [`VK_FORMAT_BC5_SNORM_BLOCK`](modules.md#vk_format_bc5_snorm_block) \| typeof [`VK_FORMAT_BC6H_UFLOAT_BLOCK`](modules.md#vk_format_bc6h_ufloat_block) \| typeof [`VK_FORMAT_BC6H_SFLOAT_BLOCK`](modules.md#vk_format_bc6h_sfloat_block) \| typeof [`VK_FORMAT_BC7_UNORM_BLOCK`](modules.md#vk_format_bc7_unorm_block) \| typeof [`VK_FORMAT_BC7_SRGB_BLOCK`](modules.md#vk_format_bc7_srgb_block) \| typeof [`VK_FORMAT_ETC2_R8G8B8_UNORM_BLOCK`](modules.md#vk_format_etc2_r8g8b8_unorm_block) \| typeof [`VK_FORMAT_ETC2_R8G8B8_SRGB_BLOCK`](modules.md#vk_format_etc2_r8g8b8_srgb_block) \| typeof [`VK_FORMAT_ETC2_R8G8B8A1_UNORM_BLOCK`](modules.md#vk_format_etc2_r8g8b8a1_unorm_block) \| typeof [`VK_FORMAT_ETC2_R8G8B8A1_SRGB_BLOCK`](modules.md#vk_format_etc2_r8g8b8a1_srgb_block) \| typeof [`VK_FORMAT_ETC2_R8G8B8A8_UNORM_BLOCK`](modules.md#vk_format_etc2_r8g8b8a8_unorm_block) \| typeof [`VK_FORMAT_ETC2_R8G8B8A8_SRGB_BLOCK`](modules.md#vk_format_etc2_r8g8b8a8_srgb_block) \| typeof [`VK_FORMAT_EAC_R11_UNORM_BLOCK`](modules.md#vk_format_eac_r11_unorm_block) \| typeof [`VK_FORMAT_EAC_R11_SNORM_BLOCK`](modules.md#vk_format_eac_r11_snorm_block) \| typeof [`VK_FORMAT_EAC_R11G11_UNORM_BLOCK`](modules.md#vk_format_eac_r11g11_unorm_block) \| typeof [`VK_FORMAT_EAC_R11G11_SNORM_BLOCK`](modules.md#vk_format_eac_r11g11_snorm_block) \| typeof [`VK_FORMAT_ASTC_4x4_UNORM_BLOCK`](modules.md#vk_format_astc_4x4_unorm_block) \| typeof [`VK_FORMAT_ASTC_4x4_SRGB_BLOCK`](modules.md#vk_format_astc_4x4_srgb_block) \| typeof [`VK_FORMAT_ASTC_5x4_UNORM_BLOCK`](modules.md#vk_format_astc_5x4_unorm_block) \| typeof [`VK_FORMAT_ASTC_5x4_SRGB_BLOCK`](modules.md#vk_format_astc_5x4_srgb_block) \| typeof [`VK_FORMAT_ASTC_5x5_UNORM_BLOCK`](modules.md#vk_format_astc_5x5_unorm_block) \| typeof [`VK_FORMAT_ASTC_5x5_SRGB_BLOCK`](modules.md#vk_format_astc_5x5_srgb_block) \| typeof [`VK_FORMAT_ASTC_6x5_UNORM_BLOCK`](modules.md#vk_format_astc_6x5_unorm_block) \| typeof [`VK_FORMAT_ASTC_6x5_SRGB_BLOCK`](modules.md#vk_format_astc_6x5_srgb_block) \| typeof [`VK_FORMAT_ASTC_6x6_UNORM_BLOCK`](modules.md#vk_format_astc_6x6_unorm_block) \| typeof [`VK_FORMAT_ASTC_6x6_SRGB_BLOCK`](modules.md#vk_format_astc_6x6_srgb_block) \| typeof [`VK_FORMAT_ASTC_8x5_UNORM_BLOCK`](modules.md#vk_format_astc_8x5_unorm_block) \| typeof [`VK_FORMAT_ASTC_8x5_SRGB_BLOCK`](modules.md#vk_format_astc_8x5_srgb_block) \| typeof [`VK_FORMAT_ASTC_8x6_UNORM_BLOCK`](modules.md#vk_format_astc_8x6_unorm_block) \| typeof [`VK_FORMAT_ASTC_8x6_SRGB_BLOCK`](modules.md#vk_format_astc_8x6_srgb_block) \| typeof [`VK_FORMAT_ASTC_8x8_UNORM_BLOCK`](modules.md#vk_format_astc_8x8_unorm_block) \| typeof [`VK_FORMAT_ASTC_8x8_SRGB_BLOCK`](modules.md#vk_format_astc_8x8_srgb_block) \| typeof [`VK_FORMAT_ASTC_10x5_UNORM_BLOCK`](modules.md#vk_format_astc_10x5_unorm_block) \| typeof [`VK_FORMAT_ASTC_10x5_SRGB_BLOCK`](modules.md#vk_format_astc_10x5_srgb_block) \| typeof [`VK_FORMAT_ASTC_10x6_UNORM_BLOCK`](modules.md#vk_format_astc_10x6_unorm_block) \| typeof [`VK_FORMAT_ASTC_10x6_SRGB_BLOCK`](modules.md#vk_format_astc_10x6_srgb_block) \| typeof [`VK_FORMAT_ASTC_10x8_UNORM_BLOCK`](modules.md#vk_format_astc_10x8_unorm_block) \| typeof [`VK_FORMAT_ASTC_10x8_SRGB_BLOCK`](modules.md#vk_format_astc_10x8_srgb_block) \| typeof [`VK_FORMAT_ASTC_10x10_UNORM_BLOCK`](modules.md#vk_format_astc_10x10_unorm_block) \| typeof [`VK_FORMAT_ASTC_10x10_SRGB_BLOCK`](modules.md#vk_format_astc_10x10_srgb_block) \| typeof [`VK_FORMAT_ASTC_12x10_UNORM_BLOCK`](modules.md#vk_format_astc_12x10_unorm_block) \| typeof [`VK_FORMAT_ASTC_12x10_SRGB_BLOCK`](modules.md#vk_format_astc_12x10_srgb_block) \| typeof [`VK_FORMAT_ASTC_12x12_UNORM_BLOCK`](modules.md#vk_format_astc_12x12_unorm_block) \| typeof [`VK_FORMAT_ASTC_12x12_SRGB_BLOCK`](modules.md#vk_format_astc_12x12_srgb_block) \| typeof [`VK_FORMAT_R10X6_UNORM_PACK16`](modules.md#vk_format_r10x6_unorm_pack16) \| typeof [`VK_FORMAT_R10X6G10X6_UNORM_2PACK16`](modules.md#vk_format_r10x6g10x6_unorm_2pack16) \| typeof [`VK_FORMAT_R10X6G10X6B10X6A10X6_UNORM_4PACK16`](modules.md#vk_format_r10x6g10x6b10x6a10x6_unorm_4pack16) \| typeof [`VK_FORMAT_G10X6B10X6G10X6R10X6_422_UNORM_4PACK16`](modules.md#vk_format_g10x6b10x6g10x6r10x6_422_unorm_4pack16) \| typeof [`VK_FORMAT_B10X6G10X6R10X6G10X6_422_UNORM_4PACK16`](modules.md#vk_format_b10x6g10x6r10x6g10x6_422_unorm_4pack16) \| typeof [`VK_FORMAT_R12X4_UNORM_PACK16`](modules.md#vk_format_r12x4_unorm_pack16) \| typeof [`VK_FORMAT_R12X4G12X4_UNORM_2PACK16`](modules.md#vk_format_r12x4g12x4_unorm_2pack16) \| typeof [`VK_FORMAT_R12X4G12X4B12X4A12X4_UNORM_4PACK16`](modules.md#vk_format_r12x4g12x4b12x4a12x4_unorm_4pack16) \| typeof [`VK_FORMAT_G12X4B12X4G12X4R12X4_422_UNORM_4PACK16`](modules.md#vk_format_g12x4b12x4g12x4r12x4_422_unorm_4pack16) \| typeof [`VK_FORMAT_B12X4G12X4R12X4G12X4_422_UNORM_4PACK16`](modules.md#vk_format_b12x4g12x4r12x4g12x4_422_unorm_4pack16) \| typeof [`VK_FORMAT_PVRTC1_2BPP_UNORM_BLOCK_IMG`](modules.md#vk_format_pvrtc1_2bpp_unorm_block_img) \| typeof [`VK_FORMAT_PVRTC1_4BPP_UNORM_BLOCK_IMG`](modules.md#vk_format_pvrtc1_4bpp_unorm_block_img) \| typeof [`VK_FORMAT_PVRTC2_2BPP_UNORM_BLOCK_IMG`](modules.md#vk_format_pvrtc2_2bpp_unorm_block_img) \| typeof [`VK_FORMAT_PVRTC2_4BPP_UNORM_BLOCK_IMG`](modules.md#vk_format_pvrtc2_4bpp_unorm_block_img) \| typeof [`VK_FORMAT_PVRTC1_2BPP_SRGB_BLOCK_IMG`](modules.md#vk_format_pvrtc1_2bpp_srgb_block_img) \| typeof [`VK_FORMAT_PVRTC1_4BPP_SRGB_BLOCK_IMG`](modules.md#vk_format_pvrtc1_4bpp_srgb_block_img) \| typeof [`VK_FORMAT_PVRTC2_2BPP_SRGB_BLOCK_IMG`](modules.md#vk_format_pvrtc2_2bpp_srgb_block_img) \| typeof [`VK_FORMAT_PVRTC2_4BPP_SRGB_BLOCK_IMG`](modules.md#vk_format_pvrtc2_4bpp_srgb_block_img) \| typeof [`VK_FORMAT_ASTC_4x4_SFLOAT_BLOCK_EXT`](modules.md#vk_format_astc_4x4_sfloat_block_ext) \| typeof [`VK_FORMAT_ASTC_5x4_SFLOAT_BLOCK_EXT`](modules.md#vk_format_astc_5x4_sfloat_block_ext) \| typeof [`VK_FORMAT_ASTC_5x5_SFLOAT_BLOCK_EXT`](modules.md#vk_format_astc_5x5_sfloat_block_ext) \| typeof [`VK_FORMAT_ASTC_6x5_SFLOAT_BLOCK_EXT`](modules.md#vk_format_astc_6x5_sfloat_block_ext) \| typeof [`VK_FORMAT_ASTC_6x6_SFLOAT_BLOCK_EXT`](modules.md#vk_format_astc_6x6_sfloat_block_ext) \| typeof [`VK_FORMAT_ASTC_8x5_SFLOAT_BLOCK_EXT`](modules.md#vk_format_astc_8x5_sfloat_block_ext) \| typeof [`VK_FORMAT_ASTC_8x6_SFLOAT_BLOCK_EXT`](modules.md#vk_format_astc_8x6_sfloat_block_ext) \| typeof [`VK_FORMAT_ASTC_8x8_SFLOAT_BLOCK_EXT`](modules.md#vk_format_astc_8x8_sfloat_block_ext) \| typeof [`VK_FORMAT_ASTC_10x5_SFLOAT_BLOCK_EXT`](modules.md#vk_format_astc_10x5_sfloat_block_ext) \| typeof [`VK_FORMAT_ASTC_10x6_SFLOAT_BLOCK_EXT`](modules.md#vk_format_astc_10x6_sfloat_block_ext) \| typeof [`VK_FORMAT_ASTC_10x8_SFLOAT_BLOCK_EXT`](modules.md#vk_format_astc_10x8_sfloat_block_ext) \| typeof [`VK_FORMAT_ASTC_10x10_SFLOAT_BLOCK_EXT`](modules.md#vk_format_astc_10x10_sfloat_block_ext) \| typeof [`VK_FORMAT_ASTC_12x10_SFLOAT_BLOCK_EXT`](modules.md#vk_format_astc_12x10_sfloat_block_ext) \| typeof [`VK_FORMAT_ASTC_12x12_SFLOAT_BLOCK_EXT`](modules.md#vk_format_astc_12x12_sfloat_block_ext) \| typeof [`VK_FORMAT_A4R4G4B4_UNORM_PACK16_EXT`](modules.md#vk_format_a4r4g4b4_unorm_pack16_ext) \| typeof [`VK_FORMAT_A4B4G4R4_UNORM_PACK16_EXT`](modules.md#vk_format_a4b4g4r4_unorm_pack16_ext)
+
+#### Defined in
+
+[constants.ts:323](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L323)
+
 ## Variables
 
 ### KHR\_DF\_CHANNEL\_RGBSDA\_ALPHA
@@ -276,7 +345,7 @@
 
 #### Defined in
 
-[constants.ts:68](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L68)
+[constants.ts:109](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L109)
 
 ___
 
@@ -286,7 +355,7 @@ ___
 
 #### Defined in
 
-[constants.ts:65](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L65)
+[constants.ts:106](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L106)
 
 ___
 
@@ -296,7 +365,7 @@ ___
 
 #### Defined in
 
-[constants.ts:67](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L67)
+[constants.ts:108](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L108)
 
 ___
 
@@ -306,7 +375,7 @@ ___
 
 #### Defined in
 
-[constants.ts:64](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L64)
+[constants.ts:105](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L105)
 
 ___
 
@@ -316,7 +385,7 @@ ___
 
 #### Defined in
 
-[constants.ts:63](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L63)
+[constants.ts:104](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L104)
 
 ___
 
@@ -326,7 +395,7 @@ ___
 
 #### Defined in
 
-[constants.ts:66](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L66)
+[constants.ts:107](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L107)
 
 ___
 
@@ -336,7 +405,7 @@ ___
 
 #### Defined in
 
-[constants.ts:28](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L28)
+[constants.ts:34](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L34)
 
 ___
 
@@ -346,7 +415,7 @@ ___
 
 #### Defined in
 
-[constants.ts:27](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L27)
+[constants.ts:33](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L33)
 
 ___
 
@@ -356,7 +425,7 @@ ___
 
 #### Defined in
 
-[constants.ts:14](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L14)
+[constants.ts:20](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L20)
 
 ___
 
@@ -366,7 +435,7 @@ ___
 
 #### Defined in
 
-[constants.ts:23](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L23)
+[constants.ts:29](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L29)
 
 ___
 
@@ -376,7 +445,7 @@ ___
 
 #### Defined in
 
-[constants.ts:21](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L21)
+[constants.ts:27](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L27)
 
 ___
 
@@ -386,7 +455,7 @@ ___
 
 #### Defined in
 
-[constants.ts:24](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L24)
+[constants.ts:30](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L30)
 
 ___
 
@@ -396,7 +465,7 @@ ___
 
 #### Defined in
 
-[constants.ts:22](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L22)
+[constants.ts:28](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L28)
 
 ___
 
@@ -406,7 +475,7 @@ ___
 
 #### Defined in
 
-[constants.ts:19](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L19)
+[constants.ts:25](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L25)
 
 ___
 
@@ -416,7 +485,7 @@ ___
 
 #### Defined in
 
-[constants.ts:25](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L25)
+[constants.ts:31](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L31)
 
 ___
 
@@ -426,7 +495,7 @@ ___
 
 #### Defined in
 
-[constants.ts:18](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L18)
+[constants.ts:24](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L24)
 
 ___
 
@@ -436,7 +505,7 @@ ___
 
 #### Defined in
 
-[constants.ts:56](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L56)
+[constants.ts:83](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L83)
 
 ___
 
@@ -446,7 +515,7 @@ ___
 
 #### Defined in
 
-[constants.ts:57](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L57)
+[constants.ts:84](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L84)
 
 ___
 
@@ -456,7 +525,7 @@ ___
 
 #### Defined in
 
-[constants.ts:61](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L61)
+[constants.ts:88](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L88)
 
 ___
 
@@ -466,7 +535,7 @@ ___
 
 #### Defined in
 
-[constants.ts:54](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L54)
+[constants.ts:81](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L81)
 
 ___
 
@@ -476,7 +545,7 @@ ___
 
 #### Defined in
 
-[constants.ts:52](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L52)
+[constants.ts:79](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L79)
 
 ___
 
@@ -486,7 +555,7 @@ ___
 
 #### Defined in
 
-[constants.ts:53](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L53)
+[constants.ts:80](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L80)
 
 ___
 
@@ -496,7 +565,7 @@ ___
 
 #### Defined in
 
-[constants.ts:51](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L51)
+[constants.ts:78](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L78)
 
 ___
 
@@ -506,7 +575,7 @@ ___
 
 #### Defined in
 
-[constants.ts:55](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L55)
+[constants.ts:82](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L82)
 
 ___
 
@@ -516,7 +585,7 @@ ___
 
 #### Defined in
 
-[constants.ts:60](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L60)
+[constants.ts:87](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L87)
 
 ___
 
@@ -526,7 +595,7 @@ ___
 
 #### Defined in
 
-[constants.ts:58](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L58)
+[constants.ts:85](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L85)
 
 ___
 
@@ -536,7 +605,7 @@ ___
 
 #### Defined in
 
-[constants.ts:59](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L59)
+[constants.ts:86](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L86)
 
 ___
 
@@ -546,7 +615,7 @@ ___
 
 #### Defined in
 
-[constants.ts:50](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L50)
+[constants.ts:77](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L77)
 
 ___
 
@@ -556,7 +625,7 @@ ___
 
 #### Defined in
 
-[constants.ts:72](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L72)
+[constants.ts:121](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L121)
 
 ___
 
@@ -566,7 +635,7 @@ ___
 
 #### Defined in
 
-[constants.ts:70](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L70)
+[constants.ts:119](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L119)
 
 ___
 
@@ -576,7 +645,7 @@ ___
 
 #### Defined in
 
-[constants.ts:73](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L73)
+[constants.ts:122](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L122)
 
 ___
 
@@ -586,7 +655,7 @@ ___
 
 #### Defined in
 
-[constants.ts:71](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L71)
+[constants.ts:120](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L120)
 
 ___
 
@@ -596,7 +665,7 @@ ___
 
 #### Defined in
 
-[constants.ts:46](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L46)
+[constants.ts:52](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L52)
 
 ___
 
@@ -606,7 +675,7 @@ ___
 
 #### Defined in
 
-[constants.ts:47](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L47)
+[constants.ts:53](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L53)
 
 ___
 
@@ -616,7 +685,7 @@ ___
 
 #### Defined in
 
-[constants.ts:48](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L48)
+[constants.ts:54](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L54)
 
 ___
 
@@ -626,7 +695,7 @@ ___
 
 #### Defined in
 
-[constants.ts:37](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L37)
+[constants.ts:43](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L43)
 
 ___
 
@@ -636,7 +705,7 @@ ___
 
 #### Defined in
 
-[constants.ts:42](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L42)
+[constants.ts:48](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L48)
 
 ___
 
@@ -646,7 +715,7 @@ ___
 
 #### Defined in
 
-[constants.ts:39](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L39)
+[constants.ts:45](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L45)
 
 ___
 
@@ -656,7 +725,7 @@ ___
 
 #### Defined in
 
-[constants.ts:38](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L38)
+[constants.ts:44](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L44)
 
 ___
 
@@ -666,7 +735,7 @@ ___
 
 #### Defined in
 
-[constants.ts:33](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L33)
+[constants.ts:39](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L39)
 
 ___
 
@@ -676,7 +745,7 @@ ___
 
 #### Defined in
 
-[constants.ts:31](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L31)
+[constants.ts:37](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L37)
 
 ___
 
@@ -686,7 +755,7 @@ ___
 
 #### Defined in
 
-[constants.ts:34](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L34)
+[constants.ts:40](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L40)
 
 ___
 
@@ -696,7 +765,7 @@ ___
 
 #### Defined in
 
-[constants.ts:44](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L44)
+[constants.ts:50](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L50)
 
 ___
 
@@ -706,7 +775,7 @@ ___
 
 #### Defined in
 
-[constants.ts:43](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L43)
+[constants.ts:49](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L49)
 
 ___
 
@@ -716,7 +785,7 @@ ___
 
 #### Defined in
 
-[constants.ts:40](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L40)
+[constants.ts:46](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L46)
 
 ___
 
@@ -726,7 +795,7 @@ ___
 
 #### Defined in
 
-[constants.ts:41](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L41)
+[constants.ts:47](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L47)
 
 ___
 
@@ -736,7 +805,7 @@ ___
 
 #### Defined in
 
-[constants.ts:35](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L35)
+[constants.ts:41](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L41)
 
 ___
 
@@ -746,7 +815,7 @@ ___
 
 #### Defined in
 
-[constants.ts:36](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L36)
+[constants.ts:42](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L42)
 
 ___
 
@@ -756,7 +825,7 @@ ___
 
 #### Defined in
 
-[constants.ts:32](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L32)
+[constants.ts:38](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L38)
 
 ___
 
@@ -766,7 +835,7 @@ ___
 
 #### Defined in
 
-[constants.ts:45](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L45)
+[constants.ts:51](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L51)
 
 ___
 
@@ -776,7 +845,7 @@ ___
 
 #### Defined in
 
-[constants.ts:30](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L30)
+[constants.ts:36](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L36)
 
 ___
 
@@ -786,7 +855,7 @@ ___
 
 #### Defined in
 
-[constants.ts:15](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L15)
+[constants.ts:21](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L21)
 
 ___
 
@@ -796,7 +865,7 @@ ___
 
 #### Defined in
 
-[constants.ts:16](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L16)
+[constants.ts:22](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L22)
 
 ___
 
@@ -806,7 +875,7 @@ ___
 
 #### Defined in
 
-[constants.ts:6](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L6)
+[constants.ts:6](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L6)
 
 ___
 
@@ -816,7 +885,7 @@ ___
 
 #### Defined in
 
-[constants.ts:5](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L5)
+[constants.ts:5](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L5)
 
 ___
 
@@ -826,7 +895,7 @@ ___
 
 #### Defined in
 
-[constants.ts:8](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L8)
+[constants.ts:8](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L8)
 
 ___
 
@@ -836,7 +905,7 @@ ___
 
 #### Defined in
 
-[constants.ts:7](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L7)
+[constants.ts:7](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L7)
 
 ___
 
@@ -846,7 +915,7 @@ ___
 
 #### Defined in
 
-[constants.ts:87](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L87)
+[constants.ts:142](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L142)
 
 ___
 
@@ -856,7 +925,7 @@ ___
 
 #### Defined in
 
-[constants.ts:125](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L125)
+[constants.ts:180](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L180)
 
 ___
 
@@ -866,7 +935,7 @@ ___
 
 #### Defined in
 
-[constants.ts:123](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L123)
+[constants.ts:178](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L178)
 
 ___
 
@@ -876,7 +945,7 @@ ___
 
 #### Defined in
 
-[constants.ts:124](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L124)
+[constants.ts:179](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L179)
 
 ___
 
@@ -886,7 +955,7 @@ ___
 
 #### Defined in
 
-[constants.ts:122](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L122)
+[constants.ts:177](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L177)
 
 ___
 
@@ -896,7 +965,7 @@ ___
 
 #### Defined in
 
-[constants.ts:121](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L121)
+[constants.ts:176](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L176)
 
 ___
 
@@ -906,7 +975,7 @@ ___
 
 #### Defined in
 
-[constants.ts:119](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L119)
+[constants.ts:174](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L174)
 
 ___
 
@@ -916,7 +985,7 @@ ___
 
 #### Defined in
 
-[constants.ts:120](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L120)
+[constants.ts:175](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L175)
 
 ___
 
@@ -926,7 +995,7 @@ ___
 
 #### Defined in
 
-[constants.ts:118](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L118)
+[constants.ts:173](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L173)
 
 ___
 
@@ -936,7 +1005,7 @@ ___
 
 #### Defined in
 
-[constants.ts:266](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L266)
+[constants.ts:321](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L321)
 
 ___
 
@@ -946,7 +1015,7 @@ ___
 
 #### Defined in
 
-[constants.ts:265](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L265)
+[constants.ts:320](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L320)
 
 ___
 
@@ -956,7 +1025,7 @@ ___
 
 #### Defined in
 
-[constants.ts:262](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L262)
+[constants.ts:317](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L317)
 
 ___
 
@@ -966,7 +1035,7 @@ ___
 
 #### Defined in
 
-[constants.ts:228](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L228)
+[constants.ts:283](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L283)
 
 ___
 
@@ -976,7 +1045,7 @@ ___
 
 #### Defined in
 
-[constants.ts:227](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L227)
+[constants.ts:282](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L282)
 
 ___
 
@@ -986,7 +1055,7 @@ ___
 
 #### Defined in
 
-[constants.ts:259](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L259)
+[constants.ts:314](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L314)
 
 ___
 
@@ -996,7 +1065,7 @@ ___
 
 #### Defined in
 
-[constants.ts:222](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L222)
+[constants.ts:277](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L277)
 
 ___
 
@@ -1006,7 +1075,7 @@ ___
 
 #### Defined in
 
-[constants.ts:221](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L221)
+[constants.ts:276](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L276)
 
 ___
 
@@ -1016,7 +1085,7 @@ ___
 
 #### Defined in
 
-[constants.ts:260](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L260)
+[constants.ts:315](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L315)
 
 ___
 
@@ -1026,7 +1095,7 @@ ___
 
 #### Defined in
 
-[constants.ts:224](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L224)
+[constants.ts:279](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L279)
 
 ___
 
@@ -1036,7 +1105,7 @@ ___
 
 #### Defined in
 
-[constants.ts:223](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L223)
+[constants.ts:278](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L278)
 
 ___
 
@@ -1046,7 +1115,7 @@ ___
 
 #### Defined in
 
-[constants.ts:261](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L261)
+[constants.ts:316](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L316)
 
 ___
 
@@ -1056,7 +1125,7 @@ ___
 
 #### Defined in
 
-[constants.ts:226](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L226)
+[constants.ts:281](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L281)
 
 ___
 
@@ -1066,7 +1135,7 @@ ___
 
 #### Defined in
 
-[constants.ts:225](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L225)
+[constants.ts:280](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L280)
 
 ___
 
@@ -1076,7 +1145,7 @@ ___
 
 #### Defined in
 
-[constants.ts:263](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L263)
+[constants.ts:318](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L318)
 
 ___
 
@@ -1086,7 +1155,7 @@ ___
 
 #### Defined in
 
-[constants.ts:230](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L230)
+[constants.ts:285](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L285)
 
 ___
 
@@ -1096,7 +1165,7 @@ ___
 
 #### Defined in
 
-[constants.ts:229](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L229)
+[constants.ts:284](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L284)
 
 ___
 
@@ -1106,7 +1175,7 @@ ___
 
 #### Defined in
 
-[constants.ts:264](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L264)
+[constants.ts:319](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L319)
 
 ___
 
@@ -1116,7 +1185,7 @@ ___
 
 #### Defined in
 
-[constants.ts:232](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L232)
+[constants.ts:287](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L287)
 
 ___
 
@@ -1126,7 +1195,7 @@ ___
 
 #### Defined in
 
-[constants.ts:231](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L231)
+[constants.ts:286](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L286)
 
 ___
 
@@ -1136,7 +1205,7 @@ ___
 
 #### Defined in
 
-[constants.ts:251](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L251)
+[constants.ts:306](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L306)
 
 ___
 
@@ -1146,7 +1215,7 @@ ___
 
 #### Defined in
 
-[constants.ts:206](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L206)
+[constants.ts:261](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L261)
 
 ___
 
@@ -1156,7 +1225,7 @@ ___
 
 #### Defined in
 
-[constants.ts:205](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L205)
+[constants.ts:260](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L260)
 
 ___
 
@@ -1166,7 +1235,7 @@ ___
 
 #### Defined in
 
-[constants.ts:252](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L252)
+[constants.ts:307](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L307)
 
 ___
 
@@ -1176,7 +1245,7 @@ ___
 
 #### Defined in
 
-[constants.ts:208](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L208)
+[constants.ts:263](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L263)
 
 ___
 
@@ -1186,7 +1255,7 @@ ___
 
 #### Defined in
 
-[constants.ts:207](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L207)
+[constants.ts:262](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L262)
 
 ___
 
@@ -1196,7 +1265,7 @@ ___
 
 #### Defined in
 
-[constants.ts:253](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L253)
+[constants.ts:308](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L308)
 
 ___
 
@@ -1206,7 +1275,7 @@ ___
 
 #### Defined in
 
-[constants.ts:210](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L210)
+[constants.ts:265](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L265)
 
 ___
 
@@ -1216,7 +1285,7 @@ ___
 
 #### Defined in
 
-[constants.ts:209](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L209)
+[constants.ts:264](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L264)
 
 ___
 
@@ -1226,7 +1295,7 @@ ___
 
 #### Defined in
 
-[constants.ts:254](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L254)
+[constants.ts:309](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L309)
 
 ___
 
@@ -1236,7 +1305,7 @@ ___
 
 #### Defined in
 
-[constants.ts:212](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L212)
+[constants.ts:267](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L267)
 
 ___
 
@@ -1246,7 +1315,7 @@ ___
 
 #### Defined in
 
-[constants.ts:211](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L211)
+[constants.ts:266](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L266)
 
 ___
 
@@ -1256,7 +1325,7 @@ ___
 
 #### Defined in
 
-[constants.ts:255](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L255)
+[constants.ts:310](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L310)
 
 ___
 
@@ -1266,7 +1335,7 @@ ___
 
 #### Defined in
 
-[constants.ts:214](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L214)
+[constants.ts:269](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L269)
 
 ___
 
@@ -1276,7 +1345,7 @@ ___
 
 #### Defined in
 
-[constants.ts:213](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L213)
+[constants.ts:268](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L268)
 
 ___
 
@@ -1286,7 +1355,7 @@ ___
 
 #### Defined in
 
-[constants.ts:256](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L256)
+[constants.ts:311](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L311)
 
 ___
 
@@ -1296,7 +1365,7 @@ ___
 
 #### Defined in
 
-[constants.ts:216](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L216)
+[constants.ts:271](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L271)
 
 ___
 
@@ -1306,7 +1375,7 @@ ___
 
 #### Defined in
 
-[constants.ts:215](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L215)
+[constants.ts:270](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L270)
 
 ___
 
@@ -1316,7 +1385,7 @@ ___
 
 #### Defined in
 
-[constants.ts:257](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L257)
+[constants.ts:312](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L312)
 
 ___
 
@@ -1326,7 +1395,7 @@ ___
 
 #### Defined in
 
-[constants.ts:218](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L218)
+[constants.ts:273](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L273)
 
 ___
 
@@ -1336,7 +1405,7 @@ ___
 
 #### Defined in
 
-[constants.ts:217](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L217)
+[constants.ts:272](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L272)
 
 ___
 
@@ -1346,7 +1415,7 @@ ___
 
 #### Defined in
 
-[constants.ts:258](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L258)
+[constants.ts:313](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L313)
 
 ___
 
@@ -1356,7 +1425,7 @@ ___
 
 #### Defined in
 
-[constants.ts:220](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L220)
+[constants.ts:275](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L275)
 
 ___
 
@@ -1366,7 +1435,7 @@ ___
 
 #### Defined in
 
-[constants.ts:219](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L219)
+[constants.ts:274](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L274)
 
 ___
 
@@ -1376,7 +1445,7 @@ ___
 
 #### Defined in
 
-[constants.ts:170](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L170)
+[constants.ts:225](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L225)
 
 ___
 
@@ -1386,7 +1455,7 @@ ___
 
 #### Defined in
 
-[constants.ts:237](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L237)
+[constants.ts:292](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L292)
 
 ___
 
@@ -1396,7 +1465,7 @@ ___
 
 #### Defined in
 
-[constants.ts:242](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L242)
+[constants.ts:297](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L297)
 
 ___
 
@@ -1406,7 +1475,7 @@ ___
 
 #### Defined in
 
-[constants.ts:82](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L82)
+[constants.ts:137](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L137)
 
 ___
 
@@ -1416,7 +1485,7 @@ ___
 
 #### Defined in
 
-[constants.ts:86](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L86)
+[constants.ts:141](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L141)
 
 ___
 
@@ -1426,7 +1495,7 @@ ___
 
 #### Defined in
 
-[constants.ts:84](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L84)
+[constants.ts:139](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L139)
 
 ___
 
@@ -1436,7 +1505,7 @@ ___
 
 #### Defined in
 
-[constants.ts:116](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L116)
+[constants.ts:171](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L171)
 
 ___
 
@@ -1446,7 +1515,7 @@ ___
 
 #### Defined in
 
-[constants.ts:114](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L114)
+[constants.ts:169](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L169)
 
 ___
 
@@ -1456,7 +1525,7 @@ ___
 
 #### Defined in
 
-[constants.ts:117](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L117)
+[constants.ts:172](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L172)
 
 ___
 
@@ -1466,7 +1535,7 @@ ___
 
 #### Defined in
 
-[constants.ts:115](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L115)
+[constants.ts:170](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L170)
 
 ___
 
@@ -1476,7 +1545,7 @@ ___
 
 #### Defined in
 
-[constants.ts:113](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L113)
+[constants.ts:168](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L168)
 
 ___
 
@@ -1486,7 +1555,7 @@ ___
 
 #### Defined in
 
-[constants.ts:106](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L106)
+[constants.ts:161](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L161)
 
 ___
 
@@ -1496,7 +1565,7 @@ ___
 
 #### Defined in
 
-[constants.ts:104](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L104)
+[constants.ts:159](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L159)
 
 ___
 
@@ -1506,7 +1575,7 @@ ___
 
 #### Defined in
 
-[constants.ts:107](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L107)
+[constants.ts:162](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L162)
 
 ___
 
@@ -1516,7 +1585,7 @@ ___
 
 #### Defined in
 
-[constants.ts:105](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L105)
+[constants.ts:160](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L160)
 
 ___
 
@@ -1526,7 +1595,7 @@ ___
 
 #### Defined in
 
-[constants.ts:103](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L103)
+[constants.ts:158](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L158)
 
 ___
 
@@ -1536,7 +1605,7 @@ ___
 
 #### Defined in
 
-[constants.ts:182](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L182)
+[constants.ts:237](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L237)
 
 ___
 
@@ -1546,7 +1615,7 @@ ___
 
 #### Defined in
 
-[constants.ts:181](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L181)
+[constants.ts:236](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L236)
 
 ___
 
@@ -1556,7 +1625,7 @@ ___
 
 #### Defined in
 
-[constants.ts:180](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L180)
+[constants.ts:235](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L235)
 
 ___
 
@@ -1566,7 +1635,7 @@ ___
 
 #### Defined in
 
-[constants.ts:179](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L179)
+[constants.ts:234](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L234)
 
 ___
 
@@ -1576,7 +1645,7 @@ ___
 
 #### Defined in
 
-[constants.ts:184](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L184)
+[constants.ts:239](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L239)
 
 ___
 
@@ -1586,7 +1655,7 @@ ___
 
 #### Defined in
 
-[constants.ts:183](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L183)
+[constants.ts:238](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L238)
 
 ___
 
@@ -1596,7 +1665,7 @@ ___
 
 #### Defined in
 
-[constants.ts:186](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L186)
+[constants.ts:241](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L241)
 
 ___
 
@@ -1606,7 +1675,7 @@ ___
 
 #### Defined in
 
-[constants.ts:185](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L185)
+[constants.ts:240](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L240)
 
 ___
 
@@ -1616,7 +1685,7 @@ ___
 
 #### Defined in
 
-[constants.ts:188](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L188)
+[constants.ts:243](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L243)
 
 ___
 
@@ -1626,7 +1695,7 @@ ___
 
 #### Defined in
 
-[constants.ts:187](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L187)
+[constants.ts:242](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L242)
 
 ___
 
@@ -1636,7 +1705,7 @@ ___
 
 #### Defined in
 
-[constants.ts:190](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L190)
+[constants.ts:245](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L245)
 
 ___
 
@@ -1646,7 +1715,7 @@ ___
 
 #### Defined in
 
-[constants.ts:189](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L189)
+[constants.ts:244](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L244)
 
 ___
 
@@ -1656,7 +1725,7 @@ ___
 
 #### Defined in
 
-[constants.ts:192](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L192)
+[constants.ts:247](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L247)
 
 ___
 
@@ -1666,7 +1735,7 @@ ___
 
 #### Defined in
 
-[constants.ts:191](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L191)
+[constants.ts:246](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L246)
 
 ___
 
@@ -1676,7 +1745,7 @@ ___
 
 #### Defined in
 
-[constants.ts:194](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L194)
+[constants.ts:249](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L249)
 
 ___
 
@@ -1686,7 +1755,7 @@ ___
 
 #### Defined in
 
-[constants.ts:193](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L193)
+[constants.ts:248](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L248)
 
 ___
 
@@ -1696,7 +1765,7 @@ ___
 
 #### Defined in
 
-[constants.ts:172](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L172)
+[constants.ts:227](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L227)
 
 ___
 
@@ -1706,7 +1775,7 @@ ___
 
 #### Defined in
 
-[constants.ts:176](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L176)
+[constants.ts:231](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L231)
 
 ___
 
@@ -1716,7 +1785,7 @@ ___
 
 #### Defined in
 
-[constants.ts:177](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L177)
+[constants.ts:232](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L232)
 
 ___
 
@@ -1726,7 +1795,7 @@ ___
 
 #### Defined in
 
-[constants.ts:174](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L174)
+[constants.ts:229](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L229)
 
 ___
 
@@ -1736,7 +1805,7 @@ ___
 
 #### Defined in
 
-[constants.ts:178](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L178)
+[constants.ts:233](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L233)
 
 ___
 
@@ -1746,7 +1815,7 @@ ___
 
 #### Defined in
 
-[constants.ts:171](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L171)
+[constants.ts:226](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L226)
 
 ___
 
@@ -1756,7 +1825,7 @@ ___
 
 #### Defined in
 
-[constants.ts:204](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L204)
+[constants.ts:259](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L259)
 
 ___
 
@@ -1766,7 +1835,7 @@ ___
 
 #### Defined in
 
-[constants.ts:203](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L203)
+[constants.ts:258](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L258)
 
 ___
 
@@ -1776,7 +1845,7 @@ ___
 
 #### Defined in
 
-[constants.ts:202](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L202)
+[constants.ts:257](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L257)
 
 ___
 
@@ -1786,7 +1855,7 @@ ___
 
 #### Defined in
 
-[constants.ts:201](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L201)
+[constants.ts:256](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L256)
 
 ___
 
@@ -1796,7 +1865,7 @@ ___
 
 #### Defined in
 
-[constants.ts:198](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L198)
+[constants.ts:253](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L253)
 
 ___
 
@@ -1806,7 +1875,7 @@ ___
 
 #### Defined in
 
-[constants.ts:197](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L197)
+[constants.ts:252](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L252)
 
 ___
 
@@ -1816,7 +1885,7 @@ ___
 
 #### Defined in
 
-[constants.ts:200](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L200)
+[constants.ts:255](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L255)
 
 ___
 
@@ -1826,7 +1895,7 @@ ___
 
 #### Defined in
 
-[constants.ts:199](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L199)
+[constants.ts:254](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L254)
 
 ___
 
@@ -1836,7 +1905,7 @@ ___
 
 #### Defined in
 
-[constants.ts:196](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L196)
+[constants.ts:251](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L251)
 
 ___
 
@@ -1846,7 +1915,7 @@ ___
 
 #### Defined in
 
-[constants.ts:195](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L195)
+[constants.ts:250](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L250)
 
 ___
 
@@ -1856,7 +1925,7 @@ ___
 
 #### Defined in
 
-[constants.ts:236](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L236)
+[constants.ts:291](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L291)
 
 ___
 
@@ -1866,7 +1935,7 @@ ___
 
 #### Defined in
 
-[constants.ts:241](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L241)
+[constants.ts:296](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L296)
 
 ___
 
@@ -1876,7 +1945,7 @@ ___
 
 #### Defined in
 
-[constants.ts:247](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L247)
+[constants.ts:302](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L302)
 
 ___
 
@@ -1886,7 +1955,7 @@ ___
 
 #### Defined in
 
-[constants.ts:243](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L243)
+[constants.ts:298](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L298)
 
 ___
 
@@ -1896,7 +1965,7 @@ ___
 
 #### Defined in
 
-[constants.ts:248](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L248)
+[constants.ts:303](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L303)
 
 ___
 
@@ -1906,7 +1975,7 @@ ___
 
 #### Defined in
 
-[constants.ts:244](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L244)
+[constants.ts:299](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L299)
 
 ___
 
@@ -1916,7 +1985,7 @@ ___
 
 #### Defined in
 
-[constants.ts:249](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L249)
+[constants.ts:304](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L304)
 
 ___
 
@@ -1926,7 +1995,7 @@ ___
 
 #### Defined in
 
-[constants.ts:245](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L245)
+[constants.ts:300](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L300)
 
 ___
 
@@ -1936,7 +2005,7 @@ ___
 
 #### Defined in
 
-[constants.ts:250](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L250)
+[constants.ts:305](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L305)
 
 ___
 
@@ -1946,7 +2015,7 @@ ___
 
 #### Defined in
 
-[constants.ts:246](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L246)
+[constants.ts:301](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L301)
 
 ___
 
@@ -1956,7 +2025,7 @@ ___
 
 #### Defined in
 
-[constants.ts:235](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L235)
+[constants.ts:290](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L290)
 
 ___
 
@@ -1966,7 +2035,7 @@ ___
 
 #### Defined in
 
-[constants.ts:234](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L234)
+[constants.ts:289](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L289)
 
 ___
 
@@ -1976,7 +2045,7 @@ ___
 
 #### Defined in
 
-[constants.ts:233](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L233)
+[constants.ts:288](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L288)
 
 ___
 
@@ -1986,7 +2055,7 @@ ___
 
 #### Defined in
 
-[constants.ts:240](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L240)
+[constants.ts:295](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L295)
 
 ___
 
@@ -1996,7 +2065,7 @@ ___
 
 #### Defined in
 
-[constants.ts:239](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L239)
+[constants.ts:294](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L294)
 
 ___
 
@@ -2006,7 +2075,7 @@ ___
 
 #### Defined in
 
-[constants.ts:238](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L238)
+[constants.ts:293](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L293)
 
 ___
 
@@ -2016,7 +2085,7 @@ ___
 
 #### Defined in
 
-[constants.ts:145](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L145)
+[constants.ts:200](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L200)
 
 ___
 
@@ -2026,7 +2095,7 @@ ___
 
 #### Defined in
 
-[constants.ts:144](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L144)
+[constants.ts:199](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L199)
 
 ___
 
@@ -2036,7 +2105,7 @@ ___
 
 #### Defined in
 
-[constants.ts:142](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L142)
+[constants.ts:197](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L197)
 
 ___
 
@@ -2046,7 +2115,7 @@ ___
 
 #### Defined in
 
-[constants.ts:143](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L143)
+[constants.ts:198](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L198)
 
 ___
 
@@ -2056,7 +2125,7 @@ ___
 
 #### Defined in
 
-[constants.ts:141](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L141)
+[constants.ts:196](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L196)
 
 ___
 
@@ -2066,7 +2135,7 @@ ___
 
 #### Defined in
 
-[constants.ts:140](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L140)
+[constants.ts:195](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L195)
 
 ___
 
@@ -2076,7 +2145,7 @@ ___
 
 #### Defined in
 
-[constants.ts:139](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L139)
+[constants.ts:194](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L194)
 
 ___
 
@@ -2086,7 +2155,7 @@ ___
 
 #### Defined in
 
-[constants.ts:137](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L137)
+[constants.ts:192](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L192)
 
 ___
 
@@ -2096,7 +2165,7 @@ ___
 
 #### Defined in
 
-[constants.ts:138](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L138)
+[constants.ts:193](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L193)
 
 ___
 
@@ -2106,7 +2175,7 @@ ___
 
 #### Defined in
 
-[constants.ts:136](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L136)
+[constants.ts:191](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L191)
 
 ___
 
@@ -2116,7 +2185,7 @@ ___
 
 #### Defined in
 
-[constants.ts:135](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L135)
+[constants.ts:190](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L190)
 
 ___
 
@@ -2126,7 +2195,7 @@ ___
 
 #### Defined in
 
-[constants.ts:134](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L134)
+[constants.ts:189](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L189)
 
 ___
 
@@ -2136,7 +2205,7 @@ ___
 
 #### Defined in
 
-[constants.ts:132](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L132)
+[constants.ts:187](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L187)
 
 ___
 
@@ -2146,7 +2215,7 @@ ___
 
 #### Defined in
 
-[constants.ts:133](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L133)
+[constants.ts:188](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L188)
 
 ___
 
@@ -2156,7 +2225,7 @@ ___
 
 #### Defined in
 
-[constants.ts:131](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L131)
+[constants.ts:186](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L186)
 
 ___
 
@@ -2166,7 +2235,7 @@ ___
 
 #### Defined in
 
-[constants.ts:130](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L130)
+[constants.ts:185](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L185)
 
 ___
 
@@ -2176,7 +2245,7 @@ ___
 
 #### Defined in
 
-[constants.ts:129](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L129)
+[constants.ts:184](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L184)
 
 ___
 
@@ -2186,7 +2255,7 @@ ___
 
 #### Defined in
 
-[constants.ts:127](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L127)
+[constants.ts:182](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L182)
 
 ___
 
@@ -2196,7 +2265,7 @@ ___
 
 #### Defined in
 
-[constants.ts:128](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L128)
+[constants.ts:183](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L183)
 
 ___
 
@@ -2206,7 +2275,7 @@ ___
 
 #### Defined in
 
-[constants.ts:126](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L126)
+[constants.ts:181](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L181)
 
 ___
 
@@ -2216,7 +2285,7 @@ ___
 
 #### Defined in
 
-[constants.ts:157](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L157)
+[constants.ts:212](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L212)
 
 ___
 
@@ -2226,7 +2295,7 @@ ___
 
 #### Defined in
 
-[constants.ts:156](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L156)
+[constants.ts:211](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L211)
 
 ___
 
@@ -2236,7 +2305,7 @@ ___
 
 #### Defined in
 
-[constants.ts:155](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L155)
+[constants.ts:210](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L210)
 
 ___
 
@@ -2246,7 +2315,7 @@ ___
 
 #### Defined in
 
-[constants.ts:154](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L154)
+[constants.ts:209](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L209)
 
 ___
 
@@ -2256,7 +2325,7 @@ ___
 
 #### Defined in
 
-[constants.ts:153](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L153)
+[constants.ts:208](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L208)
 
 ___
 
@@ -2266,7 +2335,7 @@ ___
 
 #### Defined in
 
-[constants.ts:152](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L152)
+[constants.ts:207](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L207)
 
 ___
 
@@ -2276,7 +2345,7 @@ ___
 
 #### Defined in
 
-[constants.ts:151](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L151)
+[constants.ts:206](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L206)
 
 ___
 
@@ -2286,7 +2355,7 @@ ___
 
 #### Defined in
 
-[constants.ts:150](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L150)
+[constants.ts:205](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L205)
 
 ___
 
@@ -2296,7 +2365,7 @@ ___
 
 #### Defined in
 
-[constants.ts:149](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L149)
+[constants.ts:204](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L204)
 
 ___
 
@@ -2306,7 +2375,7 @@ ___
 
 #### Defined in
 
-[constants.ts:148](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L148)
+[constants.ts:203](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L203)
 
 ___
 
@@ -2316,7 +2385,7 @@ ___
 
 #### Defined in
 
-[constants.ts:147](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L147)
+[constants.ts:202](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L202)
 
 ___
 
@@ -2326,7 +2395,7 @@ ___
 
 #### Defined in
 
-[constants.ts:146](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L146)
+[constants.ts:201](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L201)
 
 ___
 
@@ -2336,7 +2405,7 @@ ___
 
 #### Defined in
 
-[constants.ts:81](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L81)
+[constants.ts:136](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L136)
 
 ___
 
@@ -2346,7 +2415,7 @@ ___
 
 #### Defined in
 
-[constants.ts:80](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L80)
+[constants.ts:135](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L135)
 
 ___
 
@@ -2356,7 +2425,7 @@ ___
 
 #### Defined in
 
-[constants.ts:85](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L85)
+[constants.ts:140](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L140)
 
 ___
 
@@ -2366,7 +2435,7 @@ ___
 
 #### Defined in
 
-[constants.ts:83](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L83)
+[constants.ts:138](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L138)
 
 ___
 
@@ -2376,7 +2445,7 @@ ___
 
 #### Defined in
 
-[constants.ts:169](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L169)
+[constants.ts:224](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L224)
 
 ___
 
@@ -2386,7 +2455,7 @@ ___
 
 #### Defined in
 
-[constants.ts:168](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L168)
+[constants.ts:223](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L223)
 
 ___
 
@@ -2396,7 +2465,7 @@ ___
 
 #### Defined in
 
-[constants.ts:167](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L167)
+[constants.ts:222](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L222)
 
 ___
 
@@ -2406,7 +2475,7 @@ ___
 
 #### Defined in
 
-[constants.ts:166](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L166)
+[constants.ts:221](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L221)
 
 ___
 
@@ -2416,7 +2485,7 @@ ___
 
 #### Defined in
 
-[constants.ts:165](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L165)
+[constants.ts:220](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L220)
 
 ___
 
@@ -2426,7 +2495,7 @@ ___
 
 #### Defined in
 
-[constants.ts:164](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L164)
+[constants.ts:219](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L219)
 
 ___
 
@@ -2436,7 +2505,7 @@ ___
 
 #### Defined in
 
-[constants.ts:163](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L163)
+[constants.ts:218](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L218)
 
 ___
 
@@ -2446,7 +2515,7 @@ ___
 
 #### Defined in
 
-[constants.ts:162](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L162)
+[constants.ts:217](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L217)
 
 ___
 
@@ -2456,7 +2525,7 @@ ___
 
 #### Defined in
 
-[constants.ts:161](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L161)
+[constants.ts:216](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L216)
 
 ___
 
@@ -2466,7 +2535,7 @@ ___
 
 #### Defined in
 
-[constants.ts:160](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L160)
+[constants.ts:215](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L215)
 
 ___
 
@@ -2476,7 +2545,7 @@ ___
 
 #### Defined in
 
-[constants.ts:159](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L159)
+[constants.ts:214](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L214)
 
 ___
 
@@ -2486,7 +2555,7 @@ ___
 
 #### Defined in
 
-[constants.ts:158](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L158)
+[constants.ts:213](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L213)
 
 ___
 
@@ -2496,7 +2565,7 @@ ___
 
 #### Defined in
 
-[constants.ts:111](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L111)
+[constants.ts:166](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L166)
 
 ___
 
@@ -2506,7 +2575,7 @@ ___
 
 #### Defined in
 
-[constants.ts:109](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L109)
+[constants.ts:164](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L164)
 
 ___
 
@@ -2516,7 +2585,7 @@ ___
 
 #### Defined in
 
-[constants.ts:112](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L112)
+[constants.ts:167](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L167)
 
 ___
 
@@ -2526,7 +2595,7 @@ ___
 
 #### Defined in
 
-[constants.ts:110](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L110)
+[constants.ts:165](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L165)
 
 ___
 
@@ -2536,7 +2605,7 @@ ___
 
 #### Defined in
 
-[constants.ts:108](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L108)
+[constants.ts:163](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L163)
 
 ___
 
@@ -2546,7 +2615,7 @@ ___
 
 #### Defined in
 
-[constants.ts:101](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L101)
+[constants.ts:156](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L156)
 
 ___
 
@@ -2556,7 +2625,7 @@ ___
 
 #### Defined in
 
-[constants.ts:99](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L99)
+[constants.ts:154](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L154)
 
 ___
 
@@ -2566,7 +2635,7 @@ ___
 
 #### Defined in
 
-[constants.ts:102](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L102)
+[constants.ts:157](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L157)
 
 ___
 
@@ -2576,7 +2645,7 @@ ___
 
 #### Defined in
 
-[constants.ts:100](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L100)
+[constants.ts:155](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L155)
 
 ___
 
@@ -2586,7 +2655,7 @@ ___
 
 #### Defined in
 
-[constants.ts:98](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L98)
+[constants.ts:153](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L153)
 
 ___
 
@@ -2596,7 +2665,7 @@ ___
 
 #### Defined in
 
-[constants.ts:96](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L96)
+[constants.ts:151](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L151)
 
 ___
 
@@ -2606,7 +2675,7 @@ ___
 
 #### Defined in
 
-[constants.ts:94](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L94)
+[constants.ts:149](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L149)
 
 ___
 
@@ -2616,7 +2685,7 @@ ___
 
 #### Defined in
 
-[constants.ts:97](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L97)
+[constants.ts:152](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L152)
 
 ___
 
@@ -2626,7 +2695,7 @@ ___
 
 #### Defined in
 
-[constants.ts:95](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L95)
+[constants.ts:150](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L150)
 
 ___
 
@@ -2636,7 +2705,7 @@ ___
 
 #### Defined in
 
-[constants.ts:93](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L93)
+[constants.ts:148](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L148)
 
 ___
 
@@ -2646,7 +2715,7 @@ ___
 
 #### Defined in
 
-[constants.ts:91](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L91)
+[constants.ts:146](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L146)
 
 ___
 
@@ -2656,7 +2725,7 @@ ___
 
 #### Defined in
 
-[constants.ts:89](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L89)
+[constants.ts:144](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L144)
 
 ___
 
@@ -2666,7 +2735,7 @@ ___
 
 #### Defined in
 
-[constants.ts:92](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L92)
+[constants.ts:147](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L147)
 
 ___
 
@@ -2676,7 +2745,7 @@ ___
 
 #### Defined in
 
-[constants.ts:90](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L90)
+[constants.ts:145](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L145)
 
 ___
 
@@ -2686,7 +2755,7 @@ ___
 
 #### Defined in
 
-[constants.ts:88](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L88)
+[constants.ts:143](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L143)
 
 ___
 
@@ -2696,7 +2765,7 @@ ___
 
 #### Defined in
 
-[constants.ts:175](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L175)
+[constants.ts:230](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L230)
 
 ___
 
@@ -2706,7 +2775,7 @@ ___
 
 #### Defined in
 
-[constants.ts:79](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L79)
+[constants.ts:134](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L134)
 
 ___
 
@@ -2716,7 +2785,7 @@ ___
 
 #### Defined in
 
-[constants.ts:173](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/constants.ts#L173)
+[constants.ts:228](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/constants.ts#L228)
 
 ## Functions
 
@@ -2740,7 +2809,7 @@ copies, so the original file should not be overwritten after reading.
 
 #### Defined in
 
-[read.ts:14](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/read.ts#L14)
+[read.ts:14](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/read.ts#L14)
 
 ___
 
@@ -2769,4 +2838,4 @@ Options:
 
 #### Defined in
 
-[write.ts:23](https://github.com/donmccurdy/KTX-Parse/blob/9988acf/src/write.ts#L23)
+[write.ts:35](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/write.ts#L35)
