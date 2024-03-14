@@ -1,5 +1,5 @@
 import { BufferReader } from './buffer-reader.js';
-import { KHR_DF_SAMPLE_DATATYPE_SIGNED } from './constants.js';
+import { KHR_DF_SAMPLE_DATATYPE_SIGNED, Supercompression, VKFormat } from './constants.js';
 import { KTX2_ID } from './constants-internal.js';
 import { KTX2Container, KTX2DataFormatDescriptorBasicFormat } from './container.js';
 import { decodeText } from './util.js';
@@ -43,7 +43,7 @@ export function read(data: Uint8Array): KTX2Container {
 	const headerByteLength = 17 * Uint32Array.BYTES_PER_ELEMENT;
 	const headerReader = new BufferReader(data, KTX2_ID.length, headerByteLength, true);
 
-	container.vkFormat = headerReader._nextUint32();
+	container.vkFormat = headerReader._nextUint32() as VKFormat;
 	container.typeSize = headerReader._nextUint32();
 	container.pixelWidth = headerReader._nextUint32();
 	container.pixelHeight = headerReader._nextUint32();
@@ -53,7 +53,7 @@ export function read(data: Uint8Array): KTX2Container {
 
 	const levelCount = headerReader._nextUint32();
 
-	container.supercompressionScheme = headerReader._nextUint32();
+	container.supercompressionScheme = headerReader._nextUint32() as Supercompression;
 
 	const dfdByteOffset = headerReader._nextUint32();
 	const dfdByteLength = headerReader._nextUint32();
@@ -74,7 +74,7 @@ export function read(data: Uint8Array): KTX2Container {
 			levelData: new Uint8Array(
 				data.buffer,
 				data.byteOffset + levelReader._nextUint64(),
-				levelReader._nextUint64()
+				levelReader._nextUint64(),
 			),
 			uncompressedByteLength: levelReader._nextUint64(),
 		});

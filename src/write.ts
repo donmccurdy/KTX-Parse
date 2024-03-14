@@ -1,7 +1,19 @@
 import { HEADER_BYTE_LENGTH, KTX2_ID, KTX_WRITER, NUL } from './constants-internal.js';
-import { KHR_DF_KHR_DESCRIPTORTYPE_BASICFORMAT, KHR_DF_SAMPLE_DATATYPE_SIGNED } from './constants.js';
+import {
+	KHR_DF_KHR_DESCRIPTORTYPE_BASICFORMAT,
+	KHR_DF_SAMPLE_DATATYPE_SIGNED,
+	KHR_SUPERCOMPRESSION_NONE,
+} from './constants.js';
 import { KTX2Container } from './container.js';
-import { concat, encodeText } from './util.js';
+import {
+	concat,
+	encodeText,
+	getBlockCount,
+	getBlockDimensions,
+	getBlockByteLength,
+	getPadding,
+	leastCommonMultiple,
+} from './util.js';
 
 interface WriteOptions {
 	keepWriter?: boolean;
@@ -72,7 +84,7 @@ export function write(container: KTX2Container, options: WriteOptions = {}): Uin
 		const keyData = encodeText(key);
 		const valueData = typeof value === 'string' ? concat([encodeText(value), NUL]) : value;
 		const kvByteLength = keyData.byteLength + 1 + valueData.byteLength;
-		const kvPadding = kvByteLength % 4 ? 4 - (kvByteLength % 4) : 0; // align(4)
+		const kvPadding = getPadding(kvByteLength, 4); // align(4)
 		keyValueData.push(
 			concat([
 				new Uint32Array([kvByteLength]),
@@ -80,7 +92,7 @@ export function write(container: KTX2Container, options: WriteOptions = {}): Uin
 				NUL,
 				valueData,
 				new Uint8Array(kvPadding).fill(0x00), // align(4)
-			])
+			]),
 		);
 	}
 
@@ -166,15 +178,36 @@ export function write(container: KTX2Container, options: WriteOptions = {}): Uin
 
 	const levelData: Uint8Array[] = [];
 	const levelIndex = new DataView(new ArrayBuffer(container.levels.length * 3 * 8));
+	const levelDataByteOffsets = new Uint32Array(container.levels.length);
 
+	let levelAlign = 0;
+	if (container.supercompressionScheme === KHR_SUPERCOMPRESSION_NONE) {
+		levelAlign = leastCommonMultiple(getBlockByteLength(container), 4);
+	}
+
+	// Level data is ordered small → large.
 	let levelDataByteOffset = (sgdByteOffset || kvdByteOffset + kvdBuffer.byteLength) + sgdBuffer.byteLength;
-	for (let i = 0; i < container.levels.length; i++) {
+	for (let i = container.levels.length - 1; i >= 0; i--) {
+		// Level padding.
+		if (levelDataByteOffset % levelAlign) {
+			const paddingBytes = getPadding(levelDataByteOffset, levelAlign);
+			levelData.push(new Uint8Array(paddingBytes));
+			levelDataByteOffset += paddingBytes;
+		}
+
+		// Level data.
 		const level = container.levels[i];
 		levelData.push(level.levelData);
-		levelIndex.setBigUint64(i * 24 + 0, BigInt(levelDataByteOffset), true);
+		levelDataByteOffsets[i] = levelDataByteOffset;
+		levelDataByteOffset += level.levelData.byteLength;
+	}
+
+	// Level index is ordered large → small.
+	for (let i = 0; i < container.levels.length; i++) {
+		const level = container.levels[i];
+		levelIndex.setBigUint64(i * 24 + 0, BigInt(levelDataByteOffsets[i]), true);
 		levelIndex.setBigUint64(i * 24 + 8, BigInt(level.levelData.byteLength), true);
 		levelIndex.setBigUint64(i * 24 + 16, BigInt(level.uncompressedByteLength), true);
-		levelDataByteOffset += level.levelData.byteLength;
 	}
 
 	///////////////////////////////////////////////////
@@ -216,6 +249,6 @@ export function write(container: KTX2Container, options: WriteOptions = {}): Uin
 				: new ArrayBuffer(0),
 			sgdBuffer,
 			...levelData,
-		])
+		]),
 	);
 }

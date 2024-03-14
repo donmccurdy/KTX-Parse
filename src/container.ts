@@ -7,6 +7,8 @@ import {
 	KHR_DF_VENDORID_KHRONOS,
 	KHR_DF_VERSION,
 	KHR_SUPERCOMPRESSION_NONE,
+	Supercompression,
+	VKFormat,
 	VK_FORMAT_UNDEFINED,
 } from './constants.js';
 
@@ -20,7 +22,7 @@ export class KTX2Container {
 	 * Specifies the image format using Vulkan VkFormat enum values. When using Basis Universal
 	 * texture formats, `vkFormat` must be VK_FORMAT_UNDEFINED.
 	 */
-	public vkFormat = VK_FORMAT_UNDEFINED;
+	public vkFormat: VKFormat = VK_FORMAT_UNDEFINED;
 
 	/**
 	 * Size of the data type in bytes used to upload the data to a graphics API. When `vkFormat` is
@@ -48,7 +50,7 @@ export class KTX2Container {
 	public faceCount = 1;
 
 	/** Indicates which supercompression scheme has been applied to mip level images, if any. */
-	public supercompressionScheme = KHR_SUPERCOMPRESSION_NONE;
+	public supercompressionScheme: Supercompression = KHR_SUPERCOMPRESSION_NONE;
 
 	/** Mip levels, ordered largest (original) to smallest (~1px). */
 	public levels: KTX2Level[] = [];
