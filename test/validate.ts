@@ -19,8 +19,7 @@ for (const srcPath of await glob(join('test', 'data', 'reference', '*.ktx2'))) {
 		await writeFile(dstPath, dstView);
 
 		try {
-			const { stdout } = await $('ktx', ['validate', '--warnings-as-errors', dstPath]);
-			t.log(stdout);
+			await $('ktx', ['validate', '--warnings-as-errors', dstPath]);
 		} catch (e) {
 			const { stdout } = e as SpawnResult;
 			t.fail(stdout);

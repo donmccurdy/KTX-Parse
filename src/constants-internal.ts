@@ -9,6 +9,9 @@ export const KTX_WRITER = `KTX-Parse v${PACKAGE_VERSION}`;
 
 export const NUL = new Uint8Array([0x00]);
 
+export type vec3 = [number, number, number];
+export type vec2 = [number, number, number];
+
 ///////////////////////////////////////////////////
 // KTX2 Header.
 ///////////////////////////////////////////////////
