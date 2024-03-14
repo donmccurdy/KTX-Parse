@@ -138,18 +138,24 @@ export function getBlockCount(container: KTX2Container, levelIndex: number): num
 }
 
 /**
- * Given `vkFormat`, returns block dimensions as [width, height, depth].
+ * Given a KTX2 container, returns block dimensions as [width, height, depth]. Requires valid DFD.
+ */
+export function getBlockDimensions(container: KTX2Container): vec3 {
+	const [x, y, z, _] = container.dataFormatDescriptor[0].texelBlockDimension;
+	return [x + 1, y + 1, z + 1];
+}
+
+/**
+ * Given `vkFormat`, returns block dimensions as [width, height, depth]. Does not support
+ * VK_FORMAT_UNDEFINED.
  *
  * References:
  * - https://github.khronos.org/KTX-Specification/ktxspec.v2.html#_mippadding
  * - https://registry.khronos.org/vulkan/specs/1.2-extensions/html/vkspec.html#formats-compatibility
  */
-export function getBlockDimensions(container: KTX2Container): vec3 {
-	const vkFormat = container.vkFormat;
+export function getBlockDimensionsByVKFormat(vkFormat: VKFormat): vec3 {
 	if (vkFormat === VK_FORMAT_UNDEFINED) {
-		// TODO(cleanup): Could we just use the DFD for all formats?
-		const [x, y, z, _] = container.dataFormatDescriptor[0].texelBlockDimension;
-		return [x + 1, y + 1, z + 1];
+		throw new Error('Unknown block dimensions for VK_FORMAT_UNDEFINED.');
 	} else if (vkFormat >= VK_FORMAT_BC1_RGB_UNORM_BLOCK && vkFormat <= VK_FORMAT_BC7_SRGB_BLOCK) {
 		return [4, 4, 1];
 	} else if (vkFormat >= VK_FORMAT_ETC2_R8G8B8_UNORM_BLOCK && vkFormat <= VK_FORMAT_EAC_R11G11_SNORM_BLOCK) {
