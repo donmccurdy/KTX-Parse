@@ -24,7 +24,7 @@
     "coverage": "c8 --reporter=lcov --reporter=text ava --no-worker-threads test/test.ts --tap",
     "coverage:report": "c8 report --reporter=text-lcov > coverage/coverage.lcov",
     "docs": "typedoc src/index.ts --plugin typedoc-plugin-markdown --out ./docs",
-    "preversion": "yarn dist && yarn test",
+    "preversion": "yarn dist && yarn test && yarn validate",
     "version": "rimraf dist/* && yarn dist && yarn docs && git add -u",
     "postversion": "git push && git push --tags && npm publish && yarn coverage:report"
   },
