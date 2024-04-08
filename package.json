@@ -31,7 +31,7 @@
   "devDependencies": {
     "@expo/spawn-async": "^1.7.2",
     "@types/tmp": "^0.2.6",
-    "@typescript-eslint/eslint-plugin": "7.4.0",
+    "@typescript-eslint/eslint-plugin": "7.5.0",
     "ava": "6.1.2",
     "c8": "9.1.0",
     "eslint": "8.57.0",
@@ -43,9 +43,9 @@
     "source-map-support": "0.5.21",
     "tmp": "^0.2.3",
     "tsx": "^4.7.0",
-    "typedoc": "0.25.12",
+    "typedoc": "0.25.13",
     "typedoc-plugin-markdown": "3.17.1",
-    "typescript": "5.4.3"
+    "typescript": "5.4.4"
   },
   "files": [
     "dist/",
