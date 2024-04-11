@@ -5,15 +5,7 @@ import {
 	KHR_SUPERCOMPRESSION_NONE,
 } from './constants.js';
 import { KTX2Container } from './container.js';
-import {
-	concat,
-	encodeText,
-	getBlockCount,
-	getBlockDimensions,
-	getBlockByteLength,
-	getPadding,
-	leastCommonMultiple,
-} from './util.js';
+import { concat, encodeText, getBlockByteLength, getPadding, leastCommonMultiple } from './util.js';
 
 interface WriteOptions {
 	keepWriter?: boolean;
