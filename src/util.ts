@@ -81,8 +81,8 @@ export function concat(buffers: (ArrayBuffer | Uint8Array)[]): Uint8Array {
 
 /** Returns the least common multiple (LCM) for two positive integers. */
 export function leastCommonMultiple(a: number, b: number): number {
-	let max = Math.max(a, b);
-	let min = Math.min(a, b);
+	const max = Math.max(a, b);
+	const min = Math.min(a, b);
 	let lcm = max;
 
 	while (lcm % min !== 0) {
@@ -141,7 +141,7 @@ export function getBlockCount(container: KTX2Container, levelIndex: number): num
  * Given a KTX2 container, returns block dimensions as [width, height, depth]. Requires valid DFD.
  */
 export function getBlockDimensions(container: KTX2Container): vec3 {
-	const [x, y, z, _] = container.dataFormatDescriptor[0].texelBlockDimension;
+	const [x, y, z] = container.dataFormatDescriptor[0].texelBlockDimension;
 	return [x + 1, y + 1, z + 1];
 }
 
