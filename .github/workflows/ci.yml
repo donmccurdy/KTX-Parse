@@ -16,6 +16,7 @@ jobs:
 
         env:
             CI: true
+            LINT: ${{ matrix.node-version == '20.x' && true || false }}
             COVERAGE: ${{ matrix.node-version == '20.x' && true || false }}
 
         steps:
@@ -28,7 +29,7 @@ jobs:
             - run: yarn dist
             - run: yarn test
             - run: yarn lint
-              if: ${{ matrix.node-version == '18.x' }}
+              if: ${{ env.LINT == 'true' }}
 
             # Coverage.
             - name: Run coverage
