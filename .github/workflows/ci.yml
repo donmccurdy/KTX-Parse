@@ -28,6 +28,7 @@ jobs:
             - run: yarn dist
             - run: yarn test
             - run: yarn lint
+              if: ${{ env.COVERAGE == '18.x' }}
 
             # Coverage.
             - name: Run coverage
