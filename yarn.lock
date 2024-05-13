@@ -2906,9 +2906,9 @@ get-symbol-description@^1.0.0:
     get-intrinsic "^1.1.1"
 
 get-tsconfig@^4.7.3:
-  version "4.7.4"
-  resolved "https://registry.yarnpkg.com/get-tsconfig/-/get-tsconfig-4.7.4.tgz#228e1a3e37125aeb4467e9b992b92c4533093bd2"
-  integrity sha512-ofbkKj+0pjXjhejr007J/fLf+sW+8H7K5GCm+msC8q3IpvgjobpyPqSRFemNyIMxklC0zeJpi7VDFna19FacvQ==
+  version "4.7.5"
+  resolved "https://registry.yarnpkg.com/get-tsconfig/-/get-tsconfig-4.7.5.tgz#5e012498579e9a6947511ed0cd403272c7acbbaf"
+  integrity sha512-ZCuZCnlqNzjb4QprAzXKdpp/gh6KTxSJuw3IBsPnV/7fV4NxC9ckB+vPTt8w7fJA0TaSD7c55BR47JD6MEDyDw==
   dependencies:
     resolve-pkg-maps "^1.0.0"
 
@@ -2926,16 +2926,16 @@ glob-parent@^6.0.2:
   dependencies:
     is-glob "^4.0.3"
 
-glob@10.3.12:
-  version "10.3.12"
-  resolved "https://registry.yarnpkg.com/glob/-/glob-10.3.12.tgz#3a65c363c2e9998d220338e88a5f6ac97302960b"
-  integrity sha512-TCNv8vJ+xz4QiqTpfOJA7HvYv+tNIRHKfUWw/q+v2jdgN4ebz+KY9tGx5J4rHP0o84mNP+ApH66HRX8us3Khqg==
+glob@10.3.15:
+  version "10.3.15"
+  resolved "https://registry.yarnpkg.com/glob/-/glob-10.3.15.tgz#e72bc61bc3038c90605f5dd48543dc67aaf3b50d"
+  integrity sha512-0c6RlJt1TICLyvJYIApxb8GsXoai0KUP7AxKKAtsYXdgJR1mGEUa7DgwShbdk1nly0PYoZj01xd4hzbq3fsjpw==
   dependencies:
     foreground-child "^3.1.0"
     jackspeak "^2.3.6"
     minimatch "^9.0.1"
     minipass "^7.0.4"
-    path-scurry "^1.10.2"
+    path-scurry "^1.11.0"
 
 glob@^10.3.7:
   version "10.3.10"
@@ -4066,10 +4066,10 @@ path-scurry@^1.10.1:
     lru-cache "^9.1.1 || ^10.0.0"
     minipass "^5.0.0 || ^6.0.2 || ^7.0.0"
 
-path-scurry@^1.10.2:
-  version "1.10.2"
-  resolved "https://registry.yarnpkg.com/path-scurry/-/path-scurry-1.10.2.tgz#8f6357eb1239d5fa1da8b9f70e9c080675458ba7"
-  integrity sha512-7xTavNy5RQXnsjANvVvMkEjvloOinkAjv/Z6Ildz9v2RinZ4SBKTWFOVRbaF8p0vpHnyjV/UwNDdKuUv6M5qcA==
+path-scurry@^1.11.0:
+  version "1.11.1"
+  resolved "https://registry.yarnpkg.com/path-scurry/-/path-scurry-1.11.1.tgz#7960a668888594a0720b12a911d1a742ab9f11d2"
+  integrity sha512-Xa4Nw17FS9ApQFJ9umLiJS4orGjm7ZzwUrwamcGQuHSzDyth9boKDaycYdDcZDuqYATXw4HFXgaqWTctW/v1HA==
   dependencies:
     lru-cache "^10.2.0"
     minipass "^5.0.0 || ^6.0.2 || ^7.0.0"
@@ -4540,10 +4540,10 @@ reusify@^1.0.4:
   resolved "https://registry.yarnpkg.com/reusify/-/reusify-1.0.4.tgz#90da382b1e126efc02146e90845a88db12925d76"
   integrity sha512-U9nH88a3fc/ekCF1l0/UP1IosiuIjyTh7hBvXVMHYgVcfGvt897Xguj2UOLDeI5BG2m7/uwyaLVT6fbtCwTyzw==
 
-rimraf@5.0.5:
-  version "5.0.5"
-  resolved "https://registry.yarnpkg.com/rimraf/-/rimraf-5.0.5.tgz#9be65d2d6e683447d2e9013da2bf451139a61ccf"
-  integrity sha512-CqDakW+hMe/Bz202FPEymy68P+G50RfMQK+Qo5YUqc9SPipvbGjCGKd0RSKEelbsfQuw3g5NZDSrlZZAJurH1A==
+rimraf@5.0.7:
+  version "5.0.7"
+  resolved "https://registry.yarnpkg.com/rimraf/-/rimraf-5.0.7.tgz#27bddf202e7d89cb2e0381656380d1734a854a74"
+  integrity sha512-nV6YcJo5wbLW77m+8KjH8aB/7/rxQy9SZ0HY5shnwULfS+9nmTtVXAJET5NdZmCzA4fPI/Hm1wo/Po/4mopOdg==
   dependencies:
     glob "^10.3.7"
 
@@ -5100,9 +5100,9 @@ tslib@^2.0.3, tslib@^2.4.0:
   integrity sha512-AEYxH93jGFPn/a2iVAwW87VuUIkR1FVUKB77NwMF7nBTDkDrrT/Hpt/IrCJ0QXhW27jTBDcf5ZY7w6RiqTMw2Q==
 
 tsx@^4.7.0:
-  version "4.9.3"
-  resolved "https://registry.yarnpkg.com/tsx/-/tsx-4.9.3.tgz#801ca18ca22b3d2f7acd89d4b888aa2425ea1302"
-  integrity sha512-czVbetlILiyJZI5zGlj2kw9vFiSeyra9liPD4nG+Thh4pKTi0AmMEQ8zdV/L2xbIVKrIqif4sUNrsMAOksx9Zg==
+  version "4.10.2"
+  resolved "https://registry.yarnpkg.com/tsx/-/tsx-4.10.2.tgz#ed1a39f556e208e899d2d8b204aa4108fe7b4668"
+  integrity sha512-gOfACgv1ElsIjvt7Fp0rMJKGnMGjox0JfGOfX3kmZCV/yZumaNqtHGKBXt1KgaYS9KjDOmqGeI8gHk/W7kWVZg==
   dependencies:
     esbuild "~0.20.2"
     get-tsconfig "^4.7.3"
