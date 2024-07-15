@@ -37,7 +37,7 @@
     "c8": "10.1.2",
     "eslint": "8.57.0",
     "eslint-config-prettier": "9.1.0",
-    "glob": "10.4.5",
+    "glob": "11.0.0",
     "microbundle": "0.15.1",
     "prettier": "3.3.3",
     "rimraf": "5.0.9",
