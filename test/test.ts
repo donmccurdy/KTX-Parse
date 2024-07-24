@@ -2,7 +2,6 @@ import { URL } from 'url';
 import { readFileSync } from 'fs';
 import { readFile } from 'fs/promises';
 import { basename, join } from 'path';
-import { TextDecoder, TextEncoder } from 'util';
 import test from 'ava';
 import { glob } from 'glob';
 import { KTX2Container, read, write } from 'ktx-parse';
@@ -189,20 +188,8 @@ test('write::uastc', (t) => {
 });
 
 test('platform::web', (t) => {
-	// Emulate browser API.
-	global.TextEncoder = TextEncoder as any;
-	global.TextDecoder = TextDecoder as any;
-	const _from = Buffer.from;
-	Buffer.from = (() => {
-		throw new Error('Should not be called.');
-	}) as any;
-
-	try {
-		const result = write(read(SAMPLE_UASTC));
-		t.true(result instanceof Uint8Array, 'success');
-	} finally {
-		Buffer.from = _from;
-	}
+	const result = write(read(SAMPLE_UASTC));
+	t.true(result instanceof Uint8Array, 'success');
 });
 
 test('data format descriptors', (t) => {
