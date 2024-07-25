@@ -68,5 +68,6 @@
     "nodeArguments": [
       "--import=tsx"
     ]
-  }
+  },
+  "dependencies": {}
 }
