@@ -1,31 +1,28 @@
-[ktx-parse](../README.md) / [Exports](../modules.md) / KTX2Level
+[**ktx-parse**](../README.md) • **Docs**
+
+***
+
+[ktx-parse](../globals.md) / KTX2Level
 
 # Interface: KTX2Level
-
-## Table of contents
-
-### Properties
-
-- [levelData](KTX2Level.md#leveldata)
-- [uncompressedByteLength](KTX2Level.md#uncompressedbytelength)
 
 ## Properties
 
 ### levelData
 
-• **levelData**: `Uint8Array`
+> **levelData**: `Uint8Array`
 
 Compressed data of the mip level.
 
 #### Defined in
 
-[container.ts:88](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/container.ts#L88)
+[container.ts:88](https://github.com/donmccurdy/KTX-Parse/blob/181955da6070d09378df06abb0240a902cac355e/src/container.ts#L88)
 
-___
+***
 
 ### uncompressedByteLength
 
-• **uncompressedByteLength**: `number`
+> **uncompressedByteLength**: `number`
 
 Size of the mip level after reflation from supercompression, if applicable. When
 `supercompressionType` is BASISLZ, `uncompressedByteLength` must be 0. When
@@ -38,4 +35,4 @@ size of decoded RGBA32 pixels._
 
 #### Defined in
 
-[container.ts:100](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/container.ts#L100)
+[container.ts:100](https://github.com/donmccurdy/KTX-Parse/blob/181955da6070d09378df06abb0240a902cac355e/src/container.ts#L100)

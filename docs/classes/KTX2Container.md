@@ -1,4 +1,8 @@
-[ktx-parse](../README.md) / [Exports](../modules.md) / KTX2Container
+[**ktx-parse**](../README.md) • **Docs**
+
+***
+
+[ktx-parse](../globals.md) / KTX2Container
 
 # Class: KTX2Container
 
@@ -6,32 +10,11 @@ Represents an unpacked KTX 2.0 texture container. Data for individual mip levels
 the `.levels` array, typically compressed in Basis Universal formats. Additional properties
 provide metadata required to process, transcode, and upload these textures.
 
-## Table of contents
-
-### Constructors
-
-- [constructor](KTX2Container.md#constructor)
-
-### Properties
-
-- [dataFormatDescriptor](KTX2Container.md#dataformatdescriptor)
-- [faceCount](KTX2Container.md#facecount)
-- [globalData](KTX2Container.md#globaldata)
-- [keyValue](KTX2Container.md#keyvalue)
-- [layerCount](KTX2Container.md#layercount)
-- [levels](KTX2Container.md#levels)
-- [pixelDepth](KTX2Container.md#pixeldepth)
-- [pixelHeight](KTX2Container.md#pixelheight)
-- [pixelWidth](KTX2Container.md#pixelwidth)
-- [supercompressionScheme](KTX2Container.md#supercompressionscheme)
-- [typeSize](KTX2Container.md#typesize)
-- [vkFormat](KTX2Container.md#vkformat)
-
 ## Constructors
 
-### constructor
+### new KTX2Container()
 
-• **new KTX2Container**(): [`KTX2Container`](KTX2Container.md)
+> **new KTX2Container**(): [`KTX2Container`](KTX2Container.md)
 
 #### Returns
 
@@ -41,19 +24,19 @@ provide metadata required to process, transcode, and upload these textures.
 
 ### dataFormatDescriptor
 
-• **dataFormatDescriptor**: [`KTX2DataFormatDescriptorBasicFormat`](../interfaces/KTX2DataFormatDescriptorBasicFormat.md)[]
+> **dataFormatDescriptor**: [`KTX2DataFormatDescriptorBasicFormat`](../interfaces/KTX2DataFormatDescriptorBasicFormat.md)[]
 
 Data Format Descriptor.
 
 #### Defined in
 
-[container.ts:59](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/container.ts#L59)
+[container.ts:59](https://github.com/donmccurdy/KTX-Parse/blob/181955da6070d09378df06abb0240a902cac355e/src/container.ts#L59)
 
-___
+***
 
 ### faceCount
 
-• **faceCount**: `number` = `1`
+> **faceCount**: `number` = `1`
 
 Number of cubemap faces. For cubemaps and cubemap arrays, `faceCount` must be 6. For all
 other textures, `faceCount` must be 1. Cubemap faces are stored in +X, -X, +Y, -Y, +Z, -Z
@@ -61,130 +44,130 @@ order.
 
 #### Defined in
 
-[container.ts:50](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/container.ts#L50)
+[container.ts:50](https://github.com/donmccurdy/KTX-Parse/blob/181955da6070d09378df06abb0240a902cac355e/src/container.ts#L50)
 
-___
+***
 
 ### globalData
 
-• **globalData**: ``null`` \| [`KTX2GlobalDataBasisLZ`](../interfaces/KTX2GlobalDataBasisLZ.md) = `null`
+> **globalData**: `null` \| [`KTX2GlobalDataBasisLZ`](../interfaces/KTX2GlobalDataBasisLZ.md) = `null`
 
 Supercompression Global Data.
 
 #### Defined in
 
-[container.ts:79](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/container.ts#L79)
+[container.ts:79](https://github.com/donmccurdy/KTX-Parse/blob/181955da6070d09378df06abb0240a902cac355e/src/container.ts#L79)
 
-___
+***
 
 ### keyValue
 
-• **keyValue**: `Object` = `{}`
+> **keyValue**: `object` = `{}`
 
 Key/Value Data.
 
-#### Index signature
+#### Index Signature
 
-▪ [key: `string`]: `string` \| `Uint8Array`
+ \[`key`: `string`\]: `string` \| `Uint8Array`
 
 #### Defined in
 
-[container.ts:76](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/container.ts#L76)
+[container.ts:76](https://github.com/donmccurdy/KTX-Parse/blob/181955da6070d09378df06abb0240a902cac355e/src/container.ts#L76)
 
-___
+***
 
 ### layerCount
 
-• **layerCount**: `number` = `0`
+> **layerCount**: `number` = `0`
 
 Number of array elements (array textures only).
 
 #### Defined in
 
-[container.ts:43](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/container.ts#L43)
+[container.ts:43](https://github.com/donmccurdy/KTX-Parse/blob/181955da6070d09378df06abb0240a902cac355e/src/container.ts#L43)
 
-___
+***
 
 ### levels
 
-• **levels**: [`KTX2Level`](../interfaces/KTX2Level.md)[] = `[]`
+> **levels**: [`KTX2Level`](../interfaces/KTX2Level.md)[] = `[]`
 
 Mip levels, ordered largest (original) to smallest (~1px).
 
 #### Defined in
 
-[container.ts:56](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/container.ts#L56)
+[container.ts:56](https://github.com/donmccurdy/KTX-Parse/blob/181955da6070d09378df06abb0240a902cac355e/src/container.ts#L56)
 
-___
+***
 
 ### pixelDepth
 
-• **pixelDepth**: `number` = `0`
+> **pixelDepth**: `number` = `0`
 
 Depth of the texture image for level 0, in pixels (3D textures only).
 
 #### Defined in
 
-[container.ts:40](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/container.ts#L40)
+[container.ts:40](https://github.com/donmccurdy/KTX-Parse/blob/181955da6070d09378df06abb0240a902cac355e/src/container.ts#L40)
 
-___
+***
 
 ### pixelHeight
 
-• **pixelHeight**: `number` = `0`
+> **pixelHeight**: `number` = `0`
 
 Height of the texture image for level 0, in pixels.
 
 #### Defined in
 
-[container.ts:37](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/container.ts#L37)
+[container.ts:37](https://github.com/donmccurdy/KTX-Parse/blob/181955da6070d09378df06abb0240a902cac355e/src/container.ts#L37)
 
-___
+***
 
 ### pixelWidth
 
-• **pixelWidth**: `number` = `0`
+> **pixelWidth**: `number` = `0`
 
 Width of the texture image for level 0, in pixels.
 
 #### Defined in
 
-[container.ts:34](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/container.ts#L34)
+[container.ts:34](https://github.com/donmccurdy/KTX-Parse/blob/181955da6070d09378df06abb0240a902cac355e/src/container.ts#L34)
 
-___
+***
 
 ### supercompressionScheme
 
-• **supercompressionScheme**: [`Supercompression`](../modules.md#supercompression) = `KHR_SUPERCOMPRESSION_NONE`
+> **supercompressionScheme**: [`Supercompression`](../type-aliases/Supercompression.md) = `KHR_SUPERCOMPRESSION_NONE`
 
 Indicates which supercompression scheme has been applied to mip level images, if any.
 
 #### Defined in
 
-[container.ts:53](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/container.ts#L53)
+[container.ts:53](https://github.com/donmccurdy/KTX-Parse/blob/181955da6070d09378df06abb0240a902cac355e/src/container.ts#L53)
 
-___
+***
 
 ### typeSize
 
-• **typeSize**: `number` = `1`
+> **typeSize**: `number` = `1`
 
 Size of the data type in bytes used to upload the data to a graphics API. When `vkFormat` is
 VK_FORMAT_UNDEFINED, `typeSize` must be 1.
 
 #### Defined in
 
-[container.ts:31](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/container.ts#L31)
+[container.ts:31](https://github.com/donmccurdy/KTX-Parse/blob/181955da6070d09378df06abb0240a902cac355e/src/container.ts#L31)
 
-___
+***
 
 ### vkFormat
 
-• **vkFormat**: [`VKFormat`](../modules.md#vkformat) = `VK_FORMAT_UNDEFINED`
+> **vkFormat**: [`VKFormat`](../type-aliases/VKFormat.md) = `VK_FORMAT_UNDEFINED`
 
 Specifies the image format using Vulkan VkFormat enum values. When using Basis Universal
 texture formats, `vkFormat` must be VK_FORMAT_UNDEFINED.
 
 #### Defined in
 
-[container.ts:25](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/container.ts#L25)
+[container.ts:25](https://github.com/donmccurdy/KTX-Parse/blob/181955da6070d09378df06abb0240a902cac355e/src/container.ts#L25)

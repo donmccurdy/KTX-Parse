@@ -1,4 +1,6 @@
-ktx-parse / [Exports](modules.md)
+**ktx-parse** • [**Docs**](globals.md)
+
+***
 
 # ktx-parse
 
@@ -36,7 +38,7 @@ const data = write(container); // → Uint8Array
 
 See API documentation for more details:
 
-- [`KTX2Container`](./docs/classes/KTX2Container.md)
+- [`KTX2Container`](_media/KTX2Container.md)
 - [`read(byteArray)`](./docs/modules.md#read)
 - [`write(container)`](./docs/modules.md#write)
 

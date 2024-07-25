@@ -1,89 +1,81 @@
-[ktx-parse](../README.md) / [Exports](../modules.md) / KTX2BasicFormatSample
+[**ktx-parse**](../README.md) • **Docs**
+
+***
+
+[ktx-parse](../globals.md) / KTX2BasicFormatSample
 
 # Interface: KTX2BasicFormatSample
-
-## Table of contents
-
-### Properties
-
-- [bitLength](KTX2BasicFormatSample.md#bitlength)
-- [bitOffset](KTX2BasicFormatSample.md#bitoffset)
-- [channelID](KTX2BasicFormatSample.md#channelid)
-- [channelType](KTX2BasicFormatSample.md#channeltype)
-- [sampleLower](KTX2BasicFormatSample.md#samplelower)
-- [samplePosition](KTX2BasicFormatSample.md#sampleposition)
-- [sampleUpper](KTX2BasicFormatSample.md#sampleupper)
 
 ## Properties
 
 ### bitLength
 
-• **bitLength**: `number`
+> **bitLength**: `number`
 
 #### Defined in
 
-[container.ts:124](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/container.ts#L124)
+[container.ts:124](https://github.com/donmccurdy/KTX-Parse/blob/181955da6070d09378df06abb0240a902cac355e/src/container.ts#L124)
 
-___
+***
 
 ### bitOffset
 
-• **bitOffset**: `number`
+> **bitOffset**: `number`
 
 #### Defined in
 
-[container.ts:123](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/container.ts#L123)
+[container.ts:123](https://github.com/donmccurdy/KTX-Parse/blob/181955da6070d09378df06abb0240a902cac355e/src/container.ts#L123)
 
-___
+***
 
-### channelID
+### ~~channelID?~~
 
-• `Optional` **channelID**: `number`
+> `optional` **channelID**: `number`
 
-**`Deprecated`**
+#### Deprecated
 
 Renamed to 'channelType'.
 
 #### Defined in
 
-[container.ts:126](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/container.ts#L126)
+[container.ts:126](https://github.com/donmccurdy/KTX-Parse/blob/181955da6070d09378df06abb0240a902cac355e/src/container.ts#L126)
 
-___
+***
 
 ### channelType
 
-• **channelType**: `number`
+> **channelType**: `number`
 
 #### Defined in
 
-[container.ts:127](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/container.ts#L127)
+[container.ts:127](https://github.com/donmccurdy/KTX-Parse/blob/181955da6070d09378df06abb0240a902cac355e/src/container.ts#L127)
 
-___
+***
 
 ### sampleLower
 
-• **sampleLower**: `number`
+> **sampleLower**: `number`
 
 #### Defined in
 
-[container.ts:129](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/container.ts#L129)
+[container.ts:129](https://github.com/donmccurdy/KTX-Parse/blob/181955da6070d09378df06abb0240a902cac355e/src/container.ts#L129)
 
-___
+***
 
 ### samplePosition
 
-• **samplePosition**: `number`[]
+> **samplePosition**: `number`[]
 
 #### Defined in
 
-[container.ts:128](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/container.ts#L128)
+[container.ts:128](https://github.com/donmccurdy/KTX-Parse/blob/181955da6070d09378df06abb0240a902cac355e/src/container.ts#L128)
 
-___
+***
 
 ### sampleUpper
 
-• **sampleUpper**: `number`
+> **sampleUpper**: `number`
 
 #### Defined in
 
-[container.ts:130](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/container.ts#L130)
+[container.ts:130](https://github.com/donmccurdy/KTX-Parse/blob/181955da6070d09378df06abb0240a902cac355e/src/container.ts#L130)

@@ -1,133 +1,121 @@
-[ktx-parse](../README.md) / [Exports](../modules.md) / KTX2DataFormatDescriptorBasicFormat
+[**ktx-parse**](../README.md) • **Docs**
+
+***
+
+[ktx-parse](../globals.md) / KTX2DataFormatDescriptorBasicFormat
 
 # Interface: KTX2DataFormatDescriptorBasicFormat
-
-## Table of contents
-
-### Properties
-
-- [bytesPlane](KTX2DataFormatDescriptorBasicFormat.md#bytesplane)
-- [colorModel](KTX2DataFormatDescriptorBasicFormat.md#colormodel)
-- [colorPrimaries](KTX2DataFormatDescriptorBasicFormat.md#colorprimaries)
-- [descriptorBlockSize](KTX2DataFormatDescriptorBasicFormat.md#descriptorblocksize)
-- [descriptorType](KTX2DataFormatDescriptorBasicFormat.md#descriptortype)
-- [flags](KTX2DataFormatDescriptorBasicFormat.md#flags)
-- [samples](KTX2DataFormatDescriptorBasicFormat.md#samples)
-- [texelBlockDimension](KTX2DataFormatDescriptorBasicFormat.md#texelblockdimension)
-- [transferFunction](KTX2DataFormatDescriptorBasicFormat.md#transferfunction)
-- [vendorId](KTX2DataFormatDescriptorBasicFormat.md#vendorid)
-- [versionNumber](KTX2DataFormatDescriptorBasicFormat.md#versionnumber)
 
 ## Properties
 
 ### bytesPlane
 
-• **bytesPlane**: [`number`, `number`, `number`, `number`, `number`, `number`, `number`, `number`]
+> **bytesPlane**: [`number`, `number`, `number`, `number`, `number`, `number`, `number`, `number`]
 
 #### Defined in
 
-[container.ts:118](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/container.ts#L118)
+[container.ts:118](https://github.com/donmccurdy/KTX-Parse/blob/181955da6070d09378df06abb0240a902cac355e/src/container.ts#L118)
 
-___
+***
 
 ### colorModel
 
-• **colorModel**: `number`
+> **colorModel**: `number`
 
 #### Defined in
 
-[container.ts:113](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/container.ts#L113)
+[container.ts:113](https://github.com/donmccurdy/KTX-Parse/blob/181955da6070d09378df06abb0240a902cac355e/src/container.ts#L113)
 
-___
+***
 
 ### colorPrimaries
 
-• **colorPrimaries**: `number`
+> **colorPrimaries**: `number`
 
 #### Defined in
 
-[container.ts:114](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/container.ts#L114)
+[container.ts:114](https://github.com/donmccurdy/KTX-Parse/blob/181955da6070d09378df06abb0240a902cac355e/src/container.ts#L114)
 
-___
+***
 
-### descriptorBlockSize
+### ~~descriptorBlockSize~~
 
-• **descriptorBlockSize**: `number`
+> **descriptorBlockSize**: `number`
 
-**`Deprecated`**
+#### Deprecated
 
 Inferred.
 
 #### Defined in
 
-[container.ts:112](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/container.ts#L112)
+[container.ts:112](https://github.com/donmccurdy/KTX-Parse/blob/181955da6070d09378df06abb0240a902cac355e/src/container.ts#L112)
 
-___
+***
 
 ### descriptorType
 
-• **descriptorType**: `number`
+> **descriptorType**: `number`
 
 #### Defined in
 
-[container.ts:109](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/container.ts#L109)
+[container.ts:109](https://github.com/donmccurdy/KTX-Parse/blob/181955da6070d09378df06abb0240a902cac355e/src/container.ts#L109)
 
-___
+***
 
 ### flags
 
-• **flags**: `number`
+> **flags**: `number`
 
 #### Defined in
 
-[container.ts:116](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/container.ts#L116)
+[container.ts:116](https://github.com/donmccurdy/KTX-Parse/blob/181955da6070d09378df06abb0240a902cac355e/src/container.ts#L116)
 
-___
+***
 
 ### samples
 
-• **samples**: [`KTX2BasicFormatSample`](KTX2BasicFormatSample.md)[]
+> **samples**: [`KTX2BasicFormatSample`](KTX2BasicFormatSample.md)[]
 
 #### Defined in
 
-[container.ts:119](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/container.ts#L119)
+[container.ts:119](https://github.com/donmccurdy/KTX-Parse/blob/181955da6070d09378df06abb0240a902cac355e/src/container.ts#L119)
 
-___
+***
 
 ### texelBlockDimension
 
-• **texelBlockDimension**: [`number`, `number`, `number`, `number`]
+> **texelBlockDimension**: [`number`, `number`, `number`, `number`]
 
 #### Defined in
 
-[container.ts:117](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/container.ts#L117)
+[container.ts:117](https://github.com/donmccurdy/KTX-Parse/blob/181955da6070d09378df06abb0240a902cac355e/src/container.ts#L117)
 
-___
+***
 
 ### transferFunction
 
-• **transferFunction**: `number`
+> **transferFunction**: `number`
 
 #### Defined in
 
-[container.ts:115](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/container.ts#L115)
+[container.ts:115](https://github.com/donmccurdy/KTX-Parse/blob/181955da6070d09378df06abb0240a902cac355e/src/container.ts#L115)
 
-___
+***
 
 ### vendorId
 
-• **vendorId**: `number`
+> **vendorId**: `number`
 
 #### Defined in
 
-[container.ts:108](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/container.ts#L108)
+[container.ts:108](https://github.com/donmccurdy/KTX-Parse/blob/181955da6070d09378df06abb0240a902cac355e/src/container.ts#L108)
 
-___
+***
 
 ### versionNumber
 
-• **versionNumber**: `number`
+> **versionNumber**: `number`
 
 #### Defined in
 
-[container.ts:110](https://github.com/donmccurdy/KTX-Parse/blob/30a25c2/src/container.ts#L110)
+[container.ts:110](https://github.com/donmccurdy/KTX-Parse/blob/181955da6070d09378df06abb0240a902cac355e/src/container.ts#L110)
