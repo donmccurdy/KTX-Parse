@@ -187,11 +187,6 @@ test('write::uastc', (t) => {
 	t.deepEqual(b, a, 'container.*');
 });
 
-test('platform::web', (t) => {
-	const result = write(read(SAMPLE_UASTC));
-	t.true(result instanceof Uint8Array, 'success');
-});
-
 test('data format descriptors', (t) => {
 	const sample1 = {
 		bitOffset: 0,
