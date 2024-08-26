@@ -45,7 +45,7 @@
     "tmp": "^0.2.3",
     "tsx": "^4.7.0",
     "typedoc": "0.26.6",
-    "typedoc-plugin-markdown": "4.2.5",
+    "typedoc-plugin-markdown": "4.2.6",
     "typescript": "5.5.4",
     "typescript-eslint": "^7.6.0"
   },
