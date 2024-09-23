@@ -5294,10 +5294,10 @@ typed-array-length@^1.0.6:
     is-typed-array "^1.1.13"
     possible-typed-array-names "^1.0.0"
 
-typedoc-plugin-markdown@4.2.7:
-  version "4.2.7"
-  resolved "https://registry.yarnpkg.com/typedoc-plugin-markdown/-/typedoc-plugin-markdown-4.2.7.tgz#8072b5d91b14492309f536159c9184f8e57e2223"
-  integrity sha512-bLsQdweSm48P9j6kGqQ3/4GCH5zu2EnURSkkxqirNc+uVFE9YK825ogDw+WbNkRHIV6eZK/1U43gT7YfglyYOg==
+typedoc-plugin-markdown@4.2.8:
+  version "4.2.8"
+  resolved "https://registry.yarnpkg.com/typedoc-plugin-markdown/-/typedoc-plugin-markdown-4.2.8.tgz#02a83a31c2fc1107cf0de98d58fc0e2fceb21d73"
+  integrity sha512-1EDsc66jaCjZtxdYy+Rl0KDU1WY/iyuCOOPaeFzcYFZ81FNXV8CmgUDOHri20WGmYnkEM5nQ+ooxj1vyuQo0Lg==
 
 typedoc@0.26.7:
   version "0.26.7"
