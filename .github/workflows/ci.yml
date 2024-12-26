@@ -12,12 +12,12 @@ jobs:
 
         strategy:
             matrix:
-                node-version: [20.x, 22.x]
+                node-version: [22.x]
 
         env:
             CI: true
-            LINT: ${{ matrix.node-version == '20.x' && true || false }}
-            COVERAGE: ${{ matrix.node-version == '20.x' && true || false }}
+            LINT: ${{ matrix.node-version == '22.x' && true || false }}
+            COVERAGE: ${{ matrix.node-version == '22.x' && true || false }}
 
         steps:
             - uses: actions/checkout@v4
