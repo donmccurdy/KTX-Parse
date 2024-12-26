@@ -38,7 +38,6 @@
 		"c8": "10.1.2",
 		"microbundle": "0.15.1",
 		"rimraf": "6.0.1",
-		"tsx": "^4.7.0",
 		"typedoc": "0.27.2",
 		"typedoc-plugin-markdown": "4.3.1",
 		"typescript": "5.7.2"
@@ -60,7 +59,7 @@
 			"ts": "module"
 		},
 		"nodeArguments": [
-			"--import=tsx"
+			"--experimental-strip-types"
 		]
 	}
 }
