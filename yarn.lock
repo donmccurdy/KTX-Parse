@@ -2142,13 +2142,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/tmp@npm:^0.2.6":
-  version: 0.2.6
-  resolution: "@types/tmp@npm:0.2.6"
-  checksum: 10c0/a11bfa2cd8eaa6c5d62f62a3569192d7a2c28efdc5c17af0b0551db85816b2afc8156f3ca15ac76f0b142ae1403f04f44279871424233a1f3390b2e5fc828cd0
-  languageName: node
-  linkType: hard
-
 "@types/unist@npm:*":
   version: 3.0.2
   resolution: "@types/unist@npm:3.0.2"
@@ -4807,12 +4800,10 @@ __metadata:
     "@biomejs/biome": "npm:^1.9.4"
     "@expo/spawn-async": "npm:^1.7.2"
     "@types/node": "npm:^22.10.2"
-    "@types/tmp": "npm:^0.2.6"
     ava: "npm:6.2.0"
     c8: "npm:10.1.2"
     microbundle: "npm:0.15.1"
     rimraf: "npm:6.0.1"
-    tmp: "npm:^0.2.3"
     tsx: "npm:^4.7.0"
     typedoc: "npm:0.27.2"
     typedoc-plugin-markdown: "npm:4.3.1"
@@ -7119,13 +7110,6 @@ __metadata:
     globalyzer: "npm:0.1.0"
     globrex: "npm:^0.1.2"
   checksum: 10c0/cbe072f0d213a1395d30aa94845a051d4af18fe8ffb79c8e99ac1787cd25df69083f17791a53997cb65f469f48950cb61426ccc0683cc9df170ac2430e883702
-  languageName: node
-  linkType: hard
-
-"tmp@npm:^0.2.3":
-  version: 0.2.3
-  resolution: "tmp@npm:0.2.3"
-  checksum: 10c0/3e809d9c2f46817475b452725c2aaa5d11985cf18d32a7a970ff25b568438e2c076c2e8609224feef3b7923fa9749b74428e3e634f6b8e520c534eef2fd24125
   languageName: node
   linkType: hard
 
