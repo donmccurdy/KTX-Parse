@@ -1,7 +1,7 @@
 import { BufferReader } from './buffer-reader.js';
-import { KHR_DF_SAMPLE_DATATYPE_SIGNED, Supercompression, VKFormat } from './constants.js';
+import { KHR_DF_SAMPLE_DATATYPE_SIGNED, type Supercompression, type VKFormat } from './constants.js';
 import { KTX2_ID } from './constants-internal.js';
-import { KTX2Container, KTX2DataFormatDescriptorBasicFormat } from './container.js';
+import { KTX2Container, type KTX2DataFormatDescriptorBasicFormat } from './container.js';
 import { decodeText } from './util.js';
 
 /**
@@ -129,8 +129,8 @@ export function read(data: Uint8Array): KTX2Container {
 				dfdReader._nextUint8(),
 				dfdReader._nextUint8(),
 			],
-			sampleLower: -Infinity,
-			sampleUpper: Infinity,
+			sampleLower: Number.NEGATIVE_INFINITY,
+			sampleUpper: Number.POSITIVE_INFINITY,
 		};
 
 		if (sample.channelType & KHR_DF_SAMPLE_DATATYPE_SIGNED) {

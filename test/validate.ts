@@ -1,10 +1,10 @@
-import { readFile, writeFile } from 'fs/promises';
-import { basename, join } from 'path';
+import { readFile, writeFile } from 'node:fs/promises';
+import { basename, join } from 'node:path';
 import test from 'ava';
 import { glob } from 'glob';
 import { read, write } from 'ktx-parse';
 import tmp from 'tmp';
-import $, { SpawnResult } from '@expo/spawn-async';
+import $, { type SpawnResult } from '@expo/spawn-async';
 
 tmp.setGracefulCleanup();
 

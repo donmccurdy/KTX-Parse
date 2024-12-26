@@ -1,13 +1,11 @@
-import { URL } from 'url';
-import { readFileSync } from 'fs';
-import { readFile } from 'fs/promises';
-import { basename, join } from 'path';
+import { URL } from 'node:url';
+import { readFile, glob } from 'node:fs/promises';
+import { basename, join } from 'node:path';
 import test from 'ava';
-import { glob } from 'glob';
 import { KTX2Container, read, write } from 'ktx-parse';
 
-const SAMPLE_ETC1S = readFileSync(new URL('./data/test_etc1s.ktx2', import.meta.url));
-const SAMPLE_UASTC = readFileSync(new URL('./data/test_uastc.ktx2', import.meta.url));
+const SAMPLE_ETC1S = await readFile(new URL('./data/test_etc1s.ktx2', import.meta.url));
+const SAMPLE_UASTC = await readFile(new URL('./data/test_uastc.ktx2', import.meta.url));
 
 test('read::invalid', (t) => {
 	t.throws(() => read(new Uint8Array(99)), { message: /Missing KTX 2\.0 identifier/ }, 'rejects invalid header');
@@ -80,14 +78,14 @@ test('read::padding', async (t) => {
 	// 4 contiguous NUL bytes.
 	const sample = await readFile(new URL('./data/test_padding.ktx2', import.meta.url));
 	const container = read(sample);
-	t.is(container.keyValue['KTXorientation'], 'rd', 'KTXorientation');
+	t.is(container.keyValue.KTXorientation, 'rd', 'KTXorientation');
 	t.is(
-		container.keyValue['KTXwriter'],
+		container.keyValue.KTXwriter,
 		'toktx v4.0.beta1.380.g0d851050 / libktx v4.0.beta1.350.g2c40ba4d.dirty',
 		'KTXwriter',
 	);
 	t.deepEqual(
-		container.keyValue['KHRtoktxScParams'],
+		container.keyValue.KHRtoktxScParams,
 		new Uint8Array([
 			45, 45, 98, 99, 109, 112, 32, 45, 45, 99, 108, 101, 118, 101, 108, 32, 49, 32, 45, 45, 113, 108, 101, 118,
 			101, 108, 32, 49, 57, 50,
@@ -154,7 +152,7 @@ test('write::etc1s', (t) => {
 	}
 
 	// Remove KTXWriter (intentionally changed) and data too large for deepEquals().
-	a.keyValue['KTXwriter'] = b.keyValue['KTXwriter'] = 'TEST';
+	a.keyValue.KTXwriter = b.keyValue.KTXwriter = 'TEST';
 	a.levels = b.levels = [];
 	a.globalData = b.globalData = null;
 
@@ -180,7 +178,7 @@ test('write::uastc', (t) => {
 	t.is(b.globalData, null, 'container.globalData = null (2/2)');
 
 	// Remove KTXWriter (intentionally changed) and data too large for deepEquals().
-	a.keyValue['KTXwriter'] = b.keyValue['KTXwriter'] = 'TEST';
+	a.keyValue.KTXwriter = b.keyValue.KTXwriter = 'TEST';
 	a.levels = b.levels = [];
 	a.globalData = b.globalData = null;
 
@@ -213,28 +211,24 @@ test('data format descriptors', (t) => {
 });
 
 test('lossless round trip', async (t) => {
-	const paths = await glob(join('test', 'data', 'reference', '*.ktx2'));
-
-	await Promise.all(
-		paths.map(async (path) => {
-			const srcView = await readFile(path);
-			const srcContainer = read(srcView);
-			const dstView = write(srcContainer, { keepWriter: true });
-			const dstContainer = read(dstView);
-			// TODO(feat): Try to replicate KTX-Software output byte for byte.
-			// t.ok(typedArrayEquals(srcView, dstView), basename(path));
-			t.deepEqual(srcContainer, dstContainer, basename(path));
-		}),
-	);
+	for await (const path of glob(join('test', 'data', 'reference', '*.ktx2'))) {
+		const srcView = await readFile(path);
+		const srcContainer = read(srcView);
+		const dstView = write(srcContainer, { keepWriter: true });
+		const dstContainer = read(dstView);
+		// TODO(feat): Try to replicate KTX-Software output byte for byte.
+		// t.ok(typedArrayEquals(srcView, dstView), basename(path));
+		t.deepEqual(srcContainer, dstContainer, basename(path));
+	}
 });
 
 test('read kv', (t) => {
 	const a = read(SAMPLE_ETC1S);
-	a.keyValue['TestUint8Array'] = new Uint8Array([0, 0, 0, 16]);
+	a.keyValue.TestUint8Array = new Uint8Array([0, 0, 0, 16]);
 	const b = write(a);
 	const c = read(b);
 	t.true(
-		typedArrayEquals(c.keyValue['TestUint8Array'] as Uint8Array, new Uint8Array([0, 0, 0, 16])),
+		typedArrayEquals(c.keyValue.TestUint8Array as Uint8Array, new Uint8Array([0, 0, 0, 16])),
 		'container.keyValue[TestUint8Array]',
 	);
 });
