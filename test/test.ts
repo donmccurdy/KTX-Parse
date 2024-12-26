@@ -1,6 +1,6 @@
-import { URL } from 'node:url';
-import { readFile, glob } from 'node:fs/promises';
+import { glob, readFile } from 'node:fs/promises';
 import { basename, join } from 'node:path';
+import { URL } from 'node:url';
 import test from 'ava';
 import { KTX2Container, read, write } from 'ktx-parse';
 
@@ -87,8 +87,8 @@ test('read::padding', async (t) => {
 	t.deepEqual(
 		container.keyValue.KHRtoktxScParams,
 		new Uint8Array([
-			45, 45, 98, 99, 109, 112, 32, 45, 45, 99, 108, 101, 118, 101, 108, 32, 49, 32, 45, 45, 113, 108, 101, 118,
-			101, 108, 32, 49, 57, 50,
+			45, 45, 98, 99, 109, 112, 32, 45, 45, 99, 108, 101, 118, 101, 108, 32, 49, 32, 45, 45, 113, 108, 101, 118, 101,
+			108, 32, 49, 57, 50,
 		]),
 		'KHRtoktxScParams',
 	);
@@ -143,10 +143,7 @@ test('write::etc1s', (t) => {
 			'container.globalData.selectorsData',
 		);
 		t.true(typedArrayEquals(b.globalData.tablesData, a.globalData.tablesData), 'container.globalData.tablesData');
-		t.true(
-			typedArrayEquals(b.globalData.extendedData, a.globalData.extendedData),
-			'container.globalData.extendedData',
-		);
+		t.true(typedArrayEquals(b.globalData.extendedData, a.globalData.extendedData), 'container.globalData.extendedData');
 	} else {
 		t.fail('container.globalData missing');
 	}

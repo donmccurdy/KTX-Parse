@@ -1,9 +1,9 @@
-import { glob, readFile, writeFile, mkdtemp } from 'node:fs/promises';
-import { basename, join, sep } from 'node:path';
+import { glob, mkdtemp, readFile, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
+import { basename, join, sep } from 'node:path';
+import $, { type SpawnResult } from '@expo/spawn-async';
 import test from 'ava';
 import { read, write } from 'ktx-parse';
-import $, { type SpawnResult } from '@expo/spawn-async';
 
 const tmpDir = await mkdtemp(`${tmpdir()}${sep}`);
 
