@@ -25,7 +25,7 @@
 		"coverage:report": "c8 report --reporter=text-lcov > coverage/coverage.lcov",
 		"docs": "typedoc src/index.ts --plugin typedoc-plugin-markdown --out ./docs",
 		"preversion": "yarn dist && yarn test && yarn validate",
-		"version": "rimraf dist/* && yarn dist && yarn docs && git add -u",
+		"version": "node --experimental-strip-types scripts/clean.ts && yarn dist && yarn docs && git add -u",
 		"postversion": "git push && git push --tags && npm publish && yarn coverage:report",
 		"check": "biome check src test",
 		"ci": "biome ci src test"
@@ -37,7 +37,6 @@
 		"ava": "6.2.0",
 		"c8": "10.1.2",
 		"microbundle": "0.15.1",
-		"rimraf": "6.0.1",
 		"typedoc": "0.27.2",
 		"typedoc-plugin-markdown": "4.3.1",
 		"typescript": "5.7.2"
