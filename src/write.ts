@@ -4,7 +4,7 @@ import {
 	KHR_DF_SAMPLE_DATATYPE_SIGNED,
 	KHR_SUPERCOMPRESSION_NONE,
 } from './constants.js';
-import { KTX2Container } from './container.js';
+import type { KTX2Container } from './container.js';
 import { concat, encodeText, getBlockByteLength, getPadding, leastCommonMultiple } from './util.js';
 
 interface WriteOptions {
@@ -25,6 +25,7 @@ const DEFAULT_OPTIONS: WriteOptions = { keepWriter: false };
  * @param options
  */
 export function write(container: KTX2Container, options: WriteOptions = {}): Uint8Array {
+	// biome-ignore lint/style/noParameterAssign: Merging defaults only.
 	options = { ...DEFAULT_OPTIONS, ...options };
 
 	///////////////////////////////////////////////////

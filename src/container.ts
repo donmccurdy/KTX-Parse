@@ -7,8 +7,8 @@ import {
 	KHR_DF_VENDORID_KHRONOS,
 	KHR_DF_VERSION,
 	KHR_SUPERCOMPRESSION_NONE,
-	Supercompression,
-	VKFormat,
+	type Supercompression,
+	type VKFormat,
 	VK_FORMAT_UNDEFINED,
 } from './constants.js';
 

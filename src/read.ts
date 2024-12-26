@@ -1,7 +1,7 @@
 import { BufferReader } from './buffer-reader.js';
-import { KHR_DF_SAMPLE_DATATYPE_SIGNED, Supercompression, VKFormat } from './constants.js';
 import { KTX2_ID } from './constants-internal.js';
-import { KTX2Container, KTX2DataFormatDescriptorBasicFormat } from './container.js';
+import { KHR_DF_SAMPLE_DATATYPE_SIGNED, type Supercompression, type VKFormat } from './constants.js';
+import { KTX2Container, type KTX2DataFormatDescriptorBasicFormat } from './container.js';
 import { decodeText } from './util.js';
 
 /**
@@ -71,11 +71,7 @@ export function read(data: Uint8Array): KTX2Container {
 
 	for (let i = 0; i < levelCount; i++) {
 		container.levels.push({
-			levelData: new Uint8Array(
-				data.buffer,
-				data.byteOffset + levelReader._nextUint64(),
-				levelReader._nextUint64(),
-			),
+			levelData: new Uint8Array(data.buffer, data.byteOffset + levelReader._nextUint64(), levelReader._nextUint64()),
 			uncompressedByteLength: levelReader._nextUint64(),
 		});
 	}
@@ -123,14 +119,9 @@ export function read(data: Uint8Array): KTX2Container {
 			bitOffset: dfdReader._nextUint16(),
 			bitLength: dfdReader._nextUint8(),
 			channelType: dfdReader._nextUint8(),
-			samplePosition: [
-				dfdReader._nextUint8(),
-				dfdReader._nextUint8(),
-				dfdReader._nextUint8(),
-				dfdReader._nextUint8(),
-			],
-			sampleLower: -Infinity,
-			sampleUpper: Infinity,
+			samplePosition: [dfdReader._nextUint8(), dfdReader._nextUint8(), dfdReader._nextUint8(), dfdReader._nextUint8()],
+			sampleLower: Number.NEGATIVE_INFINITY,
+			sampleUpper: Number.POSITIVE_INFINITY,
 		};
 
 		if (sample.channelType & KHR_DF_SAMPLE_DATATYPE_SIGNED) {

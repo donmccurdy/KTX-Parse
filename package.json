@@ -1,73 +1,66 @@
 {
-  "name": "ktx-parse",
-  "version": "0.7.1",
-  "description": "KTX 2.0 (.ktx2) parser and serializer.",
-  "type": "module",
-  "sideEffects": false,
-  "source": "./src/index.ts",
-  "types": "./dist/index.d.ts",
-  "main": "./dist/ktx-parse.cjs",
-  "module": "./dist/ktx-parse.esm.js",
-  "exports": {
-    "types": "./dist/index.d.ts",
-    "require": "./dist/ktx-parse.cjs",
-    "default": "./dist/ktx-parse.modern.js"
-  },
-  "repository": "github:donmccurdy/ktx-parse",
-  "author": "Don McCurdy <dm@donmccurdy.com>",
-  "license": "MIT",
-  "scripts": {
-    "dist": "microbundle --format cjs,esm,modern --no-compress --define PACKAGE_VERSION=$npm_package_version",
-    "watch": "microbundle watch --format cjs,esm,modern --no-compress --define PACKAGE_VERSION=$npm_package_version",
-    "test": "ava --no-worker-threads test/test.ts",
-    "validate": "ava --no-worker-threads test/validate.ts",
-    "coverage": "c8 --reporter=lcov --reporter=text ava --no-worker-threads test/test.ts --tap",
-    "coverage:report": "c8 report --reporter=text-lcov > coverage/coverage.lcov",
-    "docs": "typedoc src/index.ts --plugin typedoc-plugin-markdown --out ./docs",
-    "preversion": "yarn dist && yarn test && yarn validate",
-    "version": "rimraf dist/* && yarn dist && yarn docs && git add -u",
-    "postversion": "git push && git push --tags && npm publish && yarn coverage:report",
-    "lint": "eslint \"{src,test}/**/*.ts\""
-  },
-  "devDependencies": {
-    "@eslint/js": "^9.0.0",
-    "@expo/spawn-async": "^1.7.2",
-    "@types/tmp": "^0.2.6",
-    "ava": "6.2.0",
-    "c8": "10.1.2",
-    "eslint": "8.57.0",
-    "eslint-config-prettier": "9.1.0",
-    "glob": "11.0.0",
-    "microbundle": "0.15.1",
-    "prettier": "3.4.1",
-    "rimraf": "6.0.1",
-    "source-map-support": "0.5.21",
-    "tmp": "^0.2.3",
-    "tsx": "^4.7.0",
-    "typedoc": "0.27.2",
-    "typedoc-plugin-markdown": "4.3.1",
-    "typescript": "5.7.2",
-    "typescript-eslint": "^7.6.0"
-  },
-  "files": [
-    "dist/",
-    "src/",
-    "README.md",
-    "LICENSE",
-    "package.json"
-  ],
-  "browserslist": [
-    "defaults",
-    "not IE 11",
-    "node >= 14"
-  ],
-  "ava": {
-    "extensions": {
-      "ts": "module"
-    },
-    "nodeArguments": [
-      "--import=tsx"
-    ]
-  },
-  "dependencies": {}
+	"name": "ktx-parse",
+	"version": "0.7.1",
+	"description": "KTX 2.0 (.ktx2) parser and serializer.",
+	"type": "module",
+	"sideEffects": false,
+	"source": "./src/index.ts",
+	"types": "./dist/index.d.ts",
+	"main": "./dist/ktx-parse.cjs",
+	"module": "./dist/ktx-parse.esm.js",
+	"exports": {
+		"types": "./dist/index.d.ts",
+		"require": "./dist/ktx-parse.cjs",
+		"default": "./dist/ktx-parse.modern.js"
+	},
+	"repository": "github:donmccurdy/ktx-parse",
+	"author": "Don McCurdy <dm@donmccurdy.com>",
+	"license": "MIT",
+	"scripts": {
+		"dist": "microbundle --format cjs,esm,modern --no-compress --define PACKAGE_VERSION=$npm_package_version",
+		"watch": "microbundle watch --format cjs,esm,modern --no-compress --define PACKAGE_VERSION=$npm_package_version",
+		"test": "ava --no-worker-threads test/test.ts",
+		"validate": "ava --no-worker-threads test/validate.ts",
+		"coverage": "c8 --reporter=lcov --reporter=text ava --no-worker-threads test/test.ts --tap",
+		"coverage:report": "c8 report --reporter=text-lcov > coverage/coverage.lcov",
+		"docs": "typedoc src/index.ts --plugin typedoc-plugin-markdown --out ./docs",
+		"preversion": "yarn dist && yarn test && yarn validate",
+		"version": "rimraf dist/* && yarn dist && yarn docs && git add -u",
+		"postversion": "git push && git push --tags && npm publish && yarn coverage:report",
+		"check": "biome check src test",
+		"ci": "biome ci src test"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "^1.9.4",
+		"@expo/spawn-async": "^1.7.2",
+		"@types/node": "^22.10.2",
+		"ava": "6.2.0",
+		"c8": "10.1.2",
+		"microbundle": "0.15.1",
+		"rimraf": "6.0.1",
+		"tsx": "^4.7.0",
+		"typedoc": "0.27.2",
+		"typedoc-plugin-markdown": "4.3.1",
+		"typescript": "5.7.2"
+	},
+	"files": [
+		"dist/",
+		"src/",
+		"README.md",
+		"LICENSE",
+		"package.json"
+	],
+	"browserslist": [
+		"defaults",
+		"not IE 11",
+		"node >= 14"
+	],
+	"ava": {
+		"extensions": {
+			"ts": "module"
+		},
+		"nodeArguments": [
+			"--import=tsx"
+		]
+	}
 }

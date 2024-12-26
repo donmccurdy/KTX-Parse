@@ -1,18 +1,6 @@
-import { vec3 } from './constants-internal.js';
+import type { vec3 } from './constants-internal.js';
 import {
-	VKFormat,
-	VK_FORMAT_ASTC_10x10_SRGB_BLOCK,
-	VK_FORMAT_ASTC_10x10_UNORM_BLOCK,
-	VK_FORMAT_ASTC_10x5_SRGB_BLOCK,
-	VK_FORMAT_ASTC_10x5_UNORM_BLOCK,
-	VK_FORMAT_ASTC_10x6_SRGB_BLOCK,
-	VK_FORMAT_ASTC_10x6_UNORM_BLOCK,
-	VK_FORMAT_ASTC_10x8_SRGB_BLOCK,
-	VK_FORMAT_ASTC_10x8_UNORM_BLOCK,
-	VK_FORMAT_ASTC_12x10_SRGB_BLOCK,
-	VK_FORMAT_ASTC_12x10_UNORM_BLOCK,
-	VK_FORMAT_ASTC_12x12_SRGB_BLOCK,
-	VK_FORMAT_ASTC_12x12_UNORM_BLOCK,
+	type VKFormat,
 	VK_FORMAT_ASTC_4x4_SRGB_BLOCK,
 	VK_FORMAT_ASTC_4x4_UNORM_BLOCK,
 	VK_FORMAT_ASTC_5x4_SRGB_BLOCK,
@@ -29,6 +17,18 @@ import {
 	VK_FORMAT_ASTC_8x6_UNORM_BLOCK,
 	VK_FORMAT_ASTC_8x8_SRGB_BLOCK,
 	VK_FORMAT_ASTC_8x8_UNORM_BLOCK,
+	VK_FORMAT_ASTC_10x5_SRGB_BLOCK,
+	VK_FORMAT_ASTC_10x5_UNORM_BLOCK,
+	VK_FORMAT_ASTC_10x6_SRGB_BLOCK,
+	VK_FORMAT_ASTC_10x6_UNORM_BLOCK,
+	VK_FORMAT_ASTC_10x8_SRGB_BLOCK,
+	VK_FORMAT_ASTC_10x8_UNORM_BLOCK,
+	VK_FORMAT_ASTC_10x10_SRGB_BLOCK,
+	VK_FORMAT_ASTC_10x10_UNORM_BLOCK,
+	VK_FORMAT_ASTC_12x10_SRGB_BLOCK,
+	VK_FORMAT_ASTC_12x10_UNORM_BLOCK,
+	VK_FORMAT_ASTC_12x12_SRGB_BLOCK,
+	VK_FORMAT_ASTC_12x12_UNORM_BLOCK,
 	VK_FORMAT_BC1_RGB_UNORM_BLOCK,
 	VK_FORMAT_BC7_SRGB_BLOCK,
 	VK_FORMAT_EAC_R11G11_SNORM_BLOCK,
@@ -113,9 +113,7 @@ export function getBlockCount(container: KTX2Container, levelIndex: number): num
 
 	for (let i = 0; i < 3; i++) {
 		if (pixelDimensions[i] > 0) {
-			const dimBlockCount = Math.ceil(
-				Math.floor(pixelDimensions[i] * Math.pow(2, -levelIndex)) / blockDimensions[i],
-			);
+			const dimBlockCount = Math.ceil(Math.floor(pixelDimensions[i] * 2 ** -levelIndex) / blockDimensions[i]);
 			blockCount *= Math.max(1, dimBlockCount);
 		}
 	}
@@ -150,53 +148,70 @@ export function getBlockDimensions(container: KTX2Container): vec3 {
 export function getBlockDimensionsByVKFormat(vkFormat: VKFormat): vec3 {
 	if (vkFormat === VK_FORMAT_UNDEFINED) {
 		throw new Error('Unknown block dimensions for VK_FORMAT_UNDEFINED.');
-	} else if (vkFormat >= VK_FORMAT_BC1_RGB_UNORM_BLOCK && vkFormat <= VK_FORMAT_BC7_SRGB_BLOCK) {
+	}
+	if (vkFormat >= VK_FORMAT_BC1_RGB_UNORM_BLOCK && vkFormat <= VK_FORMAT_BC7_SRGB_BLOCK) {
 		return [4, 4, 1];
-	} else if (vkFormat >= VK_FORMAT_ETC2_R8G8B8_UNORM_BLOCK && vkFormat <= VK_FORMAT_EAC_R11G11_SNORM_BLOCK) {
+	}
+	if (vkFormat >= VK_FORMAT_ETC2_R8G8B8_UNORM_BLOCK && vkFormat <= VK_FORMAT_EAC_R11G11_SNORM_BLOCK) {
 		return [4, 4, 1];
-	} else if (vkFormat === VK_FORMAT_ASTC_4x4_UNORM_BLOCK || vkFormat === VK_FORMAT_ASTC_4x4_SRGB_BLOCK) {
+	}
+	if (vkFormat === VK_FORMAT_ASTC_4x4_UNORM_BLOCK || vkFormat === VK_FORMAT_ASTC_4x4_SRGB_BLOCK) {
 		return [4, 4, 1];
-	} else if (vkFormat === VK_FORMAT_ASTC_5x4_UNORM_BLOCK || vkFormat === VK_FORMAT_ASTC_5x4_SRGB_BLOCK) {
+	}
+	if (vkFormat === VK_FORMAT_ASTC_5x4_UNORM_BLOCK || vkFormat === VK_FORMAT_ASTC_5x4_SRGB_BLOCK) {
 		return [5, 4, 1];
-	} else if (vkFormat === VK_FORMAT_ASTC_5x5_UNORM_BLOCK || vkFormat === VK_FORMAT_ASTC_5x5_SRGB_BLOCK) {
+	}
+	if (vkFormat === VK_FORMAT_ASTC_5x5_UNORM_BLOCK || vkFormat === VK_FORMAT_ASTC_5x5_SRGB_BLOCK) {
 		return [5, 5, 1];
-	} else if (vkFormat === VK_FORMAT_ASTC_6x5_UNORM_BLOCK || vkFormat === VK_FORMAT_ASTC_6x5_SRGB_BLOCK) {
+	}
+	if (vkFormat === VK_FORMAT_ASTC_6x5_UNORM_BLOCK || vkFormat === VK_FORMAT_ASTC_6x5_SRGB_BLOCK) {
 		return [6, 5, 1];
-	} else if (vkFormat === VK_FORMAT_ASTC_6x6_UNORM_BLOCK || vkFormat === VK_FORMAT_ASTC_6x6_SRGB_BLOCK) {
+	}
+	if (vkFormat === VK_FORMAT_ASTC_6x6_UNORM_BLOCK || vkFormat === VK_FORMAT_ASTC_6x6_SRGB_BLOCK) {
 		return [6, 6, 1];
-	} else if (vkFormat === VK_FORMAT_ASTC_8x5_UNORM_BLOCK || vkFormat === VK_FORMAT_ASTC_8x5_SRGB_BLOCK) {
+	}
+	if (vkFormat === VK_FORMAT_ASTC_8x5_UNORM_BLOCK || vkFormat === VK_FORMAT_ASTC_8x5_SRGB_BLOCK) {
 		return [8, 5, 1];
-	} else if (vkFormat === VK_FORMAT_ASTC_8x6_UNORM_BLOCK || vkFormat === VK_FORMAT_ASTC_8x6_SRGB_BLOCK) {
+	}
+	if (vkFormat === VK_FORMAT_ASTC_8x6_UNORM_BLOCK || vkFormat === VK_FORMAT_ASTC_8x6_SRGB_BLOCK) {
 		return [8, 6, 1];
-	} else if (vkFormat === VK_FORMAT_ASTC_8x8_UNORM_BLOCK || vkFormat === VK_FORMAT_ASTC_8x8_SRGB_BLOCK) {
+	}
+	if (vkFormat === VK_FORMAT_ASTC_8x8_UNORM_BLOCK || vkFormat === VK_FORMAT_ASTC_8x8_SRGB_BLOCK) {
 		return [8, 8, 1];
-	} else if (vkFormat === VK_FORMAT_ASTC_10x5_UNORM_BLOCK || vkFormat === VK_FORMAT_ASTC_10x5_SRGB_BLOCK) {
+	}
+	if (vkFormat === VK_FORMAT_ASTC_10x5_UNORM_BLOCK || vkFormat === VK_FORMAT_ASTC_10x5_SRGB_BLOCK) {
 		return [10, 5, 1];
-	} else if (vkFormat === VK_FORMAT_ASTC_10x6_UNORM_BLOCK || vkFormat === VK_FORMAT_ASTC_10x6_SRGB_BLOCK) {
+	}
+	if (vkFormat === VK_FORMAT_ASTC_10x6_UNORM_BLOCK || vkFormat === VK_FORMAT_ASTC_10x6_SRGB_BLOCK) {
 		return [10, 6, 1];
-	} else if (vkFormat === VK_FORMAT_ASTC_10x8_UNORM_BLOCK || vkFormat === VK_FORMAT_ASTC_10x8_SRGB_BLOCK) {
+	}
+	if (vkFormat === VK_FORMAT_ASTC_10x8_UNORM_BLOCK || vkFormat === VK_FORMAT_ASTC_10x8_SRGB_BLOCK) {
 		return [10, 8, 1];
-	} else if (vkFormat === VK_FORMAT_ASTC_10x10_UNORM_BLOCK || vkFormat === VK_FORMAT_ASTC_10x10_SRGB_BLOCK) {
+	}
+	if (vkFormat === VK_FORMAT_ASTC_10x10_UNORM_BLOCK || vkFormat === VK_FORMAT_ASTC_10x10_SRGB_BLOCK) {
 		return [10, 10, 1];
-	} else if (vkFormat === VK_FORMAT_ASTC_12x10_UNORM_BLOCK || vkFormat === VK_FORMAT_ASTC_12x10_SRGB_BLOCK) {
+	}
+	if (vkFormat === VK_FORMAT_ASTC_12x10_UNORM_BLOCK || vkFormat === VK_FORMAT_ASTC_12x10_SRGB_BLOCK) {
 		return [12, 10, 1];
-	} else if (vkFormat === VK_FORMAT_ASTC_12x12_UNORM_BLOCK || vkFormat === VK_FORMAT_ASTC_12x12_SRGB_BLOCK) {
+	}
+	if (vkFormat === VK_FORMAT_ASTC_12x12_UNORM_BLOCK || vkFormat === VK_FORMAT_ASTC_12x12_SRGB_BLOCK) {
 		return [12, 12, 1];
-	} else if (
+	}
+	if (
 		vkFormat === VK_FORMAT_PVRTC1_2BPP_UNORM_BLOCK_IMG ||
 		vkFormat === VK_FORMAT_PVRTC1_2BPP_SRGB_BLOCK_IMG ||
 		vkFormat === VK_FORMAT_PVRTC2_2BPP_UNORM_BLOCK_IMG ||
 		vkFormat === VK_FORMAT_PVRTC2_2BPP_SRGB_BLOCK_IMG
 	) {
 		return [8, 4, 1];
-	} else if (
+	}
+	if (
 		vkFormat === VK_FORMAT_PVRTC1_4BPP_UNORM_BLOCK_IMG ||
 		vkFormat === VK_FORMAT_PVRTC1_4BPP_SRGB_BLOCK_IMG ||
 		vkFormat === VK_FORMAT_PVRTC2_4BPP_UNORM_BLOCK_IMG ||
 		vkFormat === VK_FORMAT_PVRTC2_4BPP_SRGB_BLOCK_IMG
 	) {
 		return [4, 4, 1];
-	} else {
-		return [1, 1, 1];
 	}
+	return [1, 1, 1];
 }

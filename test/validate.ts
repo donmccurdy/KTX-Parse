@@ -1,20 +1,17 @@
-import { readFile, writeFile } from 'fs/promises';
-import { basename, join } from 'path';
+import { glob, mkdtemp, readFile, writeFile } from 'node:fs/promises';
+import { tmpdir } from 'node:os';
+import { basename, join, sep } from 'node:path';
+import $, { type SpawnResult } from '@expo/spawn-async';
 import test from 'ava';
-import { glob } from 'glob';
 import { read, write } from 'ktx-parse';
-import tmp from 'tmp';
-import $, { SpawnResult } from '@expo/spawn-async';
 
-tmp.setGracefulCleanup();
+const tmpDir = await mkdtemp(`${tmpdir()}${sep}`);
 
-const dstDir = tmp.dirSync();
-
-for (const srcPath of await glob(join('test', 'data', 'reference', '*.ktx2'))) {
+for await (const srcPath of glob(join('test', 'data', 'reference', '*.ktx2'))) {
 	test(srcPath, async (t) => {
 		const srcView = await readFile(srcPath);
 		const srcContainer = read(srcView);
-		const dstPath = join(dstDir.name, basename(srcPath));
+		const dstPath = join(tmpDir, basename(srcPath));
 		const dstView = write(srcContainer, { keepWriter: true });
 		await writeFile(dstPath, dstView);
 
