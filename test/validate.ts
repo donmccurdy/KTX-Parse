@@ -3,7 +3,7 @@ import { tmpdir } from 'node:os';
 import { basename, join, sep } from 'node:path';
 import test from 'ava';
 import { read, write } from 'ktx-parse';
-import { type SpawnResult, spawnAsync } from '../scripts/spawn-async.ts';
+import { type SpawnResult, spawnAsync } from '../scripts/spawn-async.js';
 
 const tmpDir = await mkdtemp(`${tmpdir()}${sep}`);
 
