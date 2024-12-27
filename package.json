@@ -32,7 +32,6 @@
 	},
 	"devDependencies": {
 		"@biomejs/biome": "^1.9.4",
-		"@expo/spawn-async": "^1.7.2",
 		"@types/node": "^22.10.2",
 		"ava": "6.2.0",
 		"c8": "10.1.2",
