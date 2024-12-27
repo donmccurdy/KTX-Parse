@@ -1,9 +1,9 @@
 import { glob, mkdtemp, readFile, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { basename, join, sep } from 'node:path';
-import $, { type SpawnResult } from '@expo/spawn-async';
 import test from 'ava';
 import { read, write } from 'ktx-parse';
+import { type SpawnResult, spawnAsync } from '../scripts/spawn-async.ts';
 
 const tmpDir = await mkdtemp(`${tmpdir()}${sep}`);
 
@@ -16,7 +16,7 @@ for await (const srcPath of glob(join('test', 'data', 'reference', '*.ktx2'))) {
 		await writeFile(dstPath, dstView);
 
 		try {
-			await $('ktx', ['validate', '--warnings-as-errors', dstPath]);
+			await spawnAsync('ktx', ['validate', '--warnings-as-errors', dstPath]);
 		} catch (e) {
 			const { stdout } = e as SpawnResult;
 			t.fail(stdout);

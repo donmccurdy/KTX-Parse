@@ -1,6 +1,6 @@
 {
 	"extends": "../tsconfig.json",
-	"include": ["**/*.ts"],
+	"include": ["**/*.ts", "../scripts/*.ts"],
 	"compilerOptions": {
 		"strict": false
 	}
