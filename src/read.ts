@@ -1,7 +1,8 @@
 import { BufferReader } from './buffer-reader.js';
 import { KTX2_ID } from './constants-internal.js';
 import { KHR_DF_SAMPLE_DATATYPE_SIGNED, type Supercompression, type VKFormat } from './constants.js';
-import { KTX2Container, type KTX2DataFormatDescriptorBasicFormat } from './container.js';
+import type { KTX2BasicFormatSample, KTX2Container, KTX2DataFormatDescriptorBasicFormat } from './container.js';
+import { createDefaultContainer } from './create-default-container.js';
 import { decodeText } from './util.js';
 
 /**
@@ -34,7 +35,7 @@ export function read(data: Uint8Array): KTX2Container {
 		throw new Error('Missing KTX 2.0 identifier.');
 	}
 
-	const container = new KTX2Container();
+	const container = createDefaultContainer();
 
 	///////////////////////////////////////////////////
 	// Header.
@@ -82,37 +83,52 @@ export function read(data: Uint8Array): KTX2Container {
 
 	const dfdReader = new BufferReader(data, dfdByteOffset, dfdByteLength, true);
 
+	dfdReader._skip(4); // totalSize
+	const vendorId = dfdReader._nextUint16();
+	const descriptorType = dfdReader._nextUint16();
+	const versionNumber = dfdReader._nextUint16();
+	const descriptorBlockSize = dfdReader._nextUint16();
+	const colorModel = dfdReader._nextUint8();
+	const colorPrimaries = dfdReader._nextUint8();
+	const transferFunction = dfdReader._nextUint8();
+	const flags = dfdReader._nextUint8();
+
+	const texelBlockDimension = [
+		dfdReader._nextUint8(),
+		dfdReader._nextUint8(),
+		dfdReader._nextUint8(),
+		dfdReader._nextUint8(),
+	] as KTX2DataFormatDescriptorBasicFormat['texelBlockDimension'];
+
+	const bytesPlane = [
+		dfdReader._nextUint8(),
+		dfdReader._nextUint8(),
+		dfdReader._nextUint8(),
+		dfdReader._nextUint8(),
+		dfdReader._nextUint8(),
+		dfdReader._nextUint8(),
+		dfdReader._nextUint8(),
+		dfdReader._nextUint8(),
+	] as KTX2DataFormatDescriptorBasicFormat['bytesPlane'];
+
+	const samples = [] as KTX2BasicFormatSample[];
+
 	const dfd: KTX2DataFormatDescriptorBasicFormat = {
-		vendorId: dfdReader._skip(4 /* totalSize */)._nextUint16(),
-		descriptorType: dfdReader._nextUint16(),
-		versionNumber: dfdReader._nextUint16(),
-		descriptorBlockSize: dfdReader._nextUint16(),
-		colorModel: dfdReader._nextUint8(),
-		colorPrimaries: dfdReader._nextUint8(),
-		transferFunction: dfdReader._nextUint8(),
-		flags: dfdReader._nextUint8(),
-		texelBlockDimension: [
-			dfdReader._nextUint8(),
-			dfdReader._nextUint8(),
-			dfdReader._nextUint8(),
-			dfdReader._nextUint8(),
-		],
-		bytesPlane: [
-			dfdReader._nextUint8(),
-			dfdReader._nextUint8(),
-			dfdReader._nextUint8(),
-			dfdReader._nextUint8(),
-			dfdReader._nextUint8(),
-			dfdReader._nextUint8(),
-			dfdReader._nextUint8(),
-			dfdReader._nextUint8(),
-		],
-		samples: [],
+		vendorId,
+		descriptorType,
+		versionNumber,
+		colorModel,
+		colorPrimaries,
+		transferFunction,
+		flags,
+		texelBlockDimension,
+		bytesPlane,
+		samples,
 	};
 
 	const sampleStart = 6;
 	const sampleWords = 4;
-	const numSamples = (dfd.descriptorBlockSize / 4 - sampleStart) / sampleWords;
+	const numSamples = (descriptorBlockSize / 4 - sampleStart) / sampleWords;
 
 	for (let i = 0; i < numSamples; i++) {
 		const sample = {

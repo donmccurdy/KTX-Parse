@@ -17,66 +17,52 @@ import {
  * the `.levels` array, typically compressed in Basis Universal formats. Additional properties
  * provide metadata required to process, transcode, and upload these textures.
  */
-export class KTX2Container {
+export interface KTX2Container {
 	/**
 	 * Specifies the image format using Vulkan VkFormat enum values. When using Basis Universal
 	 * texture formats, `vkFormat` must be VK_FORMAT_UNDEFINED.
 	 */
-	public vkFormat: VKFormat = VK_FORMAT_UNDEFINED;
+	vkFormat: VKFormat;
 
 	/**
 	 * Size of the data type in bytes used to upload the data to a graphics API. When `vkFormat` is
 	 * VK_FORMAT_UNDEFINED, `typeSize` must be 1.
 	 */
-	public typeSize = 1;
+	typeSize: number;
 
 	/** Width of the texture image for level 0, in pixels. */
-	public pixelWidth = 0;
+	pixelWidth: number;
 
 	/** Height of the texture image for level 0, in pixels. */
-	public pixelHeight = 0;
+	pixelHeight: number;
 
 	/** Depth of the texture image for level 0, in pixels (3D textures only). */
-	public pixelDepth = 0;
+	pixelDepth: number;
 
 	/** Number of array elements (array textures only). */
-	public layerCount = 0;
+	layerCount: number;
 
 	/**
 	 * Number of cubemap faces. For cubemaps and cubemap arrays, `faceCount` must be 6. For all
 	 * other textures, `faceCount` must be 1. Cubemap faces are stored in +X, -X, +Y, -Y, +Z, -Z
 	 * order.
 	 */
-	public faceCount = 1;
+	faceCount: number;
 
 	/** Indicates which supercompression scheme has been applied to mip level images, if any. */
-	public supercompressionScheme: Supercompression = KHR_SUPERCOMPRESSION_NONE;
+	supercompressionScheme: Supercompression;
 
 	/** Mip levels, ordered largest (original) to smallest (~1px). */
-	public levels: KTX2Level[] = [];
+	levels: KTX2Level[];
 
 	/** Data Format Descriptor. */
-	public dataFormatDescriptor: KTX2DataFormatDescriptorBasicFormat[] = [
-		{
-			vendorId: KHR_DF_VENDORID_KHRONOS,
-			descriptorType: KHR_DF_KHR_DESCRIPTORTYPE_BASICFORMAT,
-			descriptorBlockSize: 0,
-			versionNumber: KHR_DF_VERSION,
-			colorModel: KHR_DF_MODEL_UNSPECIFIED,
-			colorPrimaries: KHR_DF_PRIMARIES_BT709,
-			transferFunction: KHR_DF_TRANSFER_SRGB,
-			flags: KHR_DF_FLAG_ALPHA_STRAIGHT,
-			texelBlockDimension: [0, 0, 0, 0],
-			bytesPlane: [0, 0, 0, 0, 0, 0, 0, 0],
-			samples: [],
-		},
-	];
+	dataFormatDescriptor: KTX2DataFormatDescriptorBasicFormat[];
 
 	/** Key/Value Data. */
-	public keyValue: { [key: string]: string | Uint8Array } = {};
+	keyValue: { [key: string]: string | Uint8Array };
 
 	/** Supercompression Global Data. */
-	public globalData: KTX2GlobalDataBasisLZ | null = null;
+	globalData: KTX2GlobalDataBasisLZ | null;
 }
 
 ///////////////////////////////////////////////////
@@ -108,8 +94,6 @@ export interface KTX2DataFormatDescriptorBasicFormat {
 	vendorId: number;
 	descriptorType: number;
 	versionNumber: number;
-	/** @deprecated Inferred. */
-	descriptorBlockSize: number;
 	colorModel: number;
 	colorPrimaries: number;
 	transferFunction: number;
@@ -122,8 +106,6 @@ export interface KTX2DataFormatDescriptorBasicFormat {
 export interface KTX2BasicFormatSample {
 	bitOffset: number;
 	bitLength: number;
-	/** @deprecated Renamed to 'channelType'. */
-	channelID?: number;
 	channelType: number;
 	samplePosition: number[];
 	sampleLower: number;
