@@ -229,6 +229,19 @@ test('read kv', (t) => {
 	);
 });
 
+test('sort kv', (t) => {
+	const a = read(SAMPLE_ETC1S);
+	a.keyValue = {
+		b: '123',
+		a: '456',
+		c: '789',
+		ab: '012',
+	};
+	const b = read(write(a));
+
+	t.deepEqual(Object.keys(b.keyValue), ['KTXwriter', 'a', 'ab', 'b', 'c'], 'sorted keys');
+});
+
 test('createDefaultContainer', (t) => {
 	const container = createDefaultContainer();
 

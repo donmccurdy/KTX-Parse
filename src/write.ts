@@ -66,14 +66,14 @@ export function write(container: KTX2Container, options: WriteOptions = {}): Uin
 	///////////////////////////////////////////////////
 
 	const keyValueData: Uint8Array[] = [];
-	let keyValue = container.keyValue;
+	const keyValueList = Object.entries({
+		...container.keyValue,
+		...(!options.keepWriter && { KTXwriter: KTX_WRITER }),
+	});
 
-	if (!options.keepWriter) {
-		keyValue = { ...container.keyValue, KTXwriter: KTX_WRITER };
-	}
+	keyValueList.sort((a, b) => (a[0] > b[0] ? 1 : -1));
 
-	for (const key in keyValue) {
-		const value = keyValue[key];
+	for (const [key, value] of keyValueList) {
 		const keyData = encodeText(key);
 		const valueData = typeof value === 'string' ? concat([encodeText(value), NUL]) : value;
 		const kvByteLength = keyData.byteLength + 1 + valueData.byteLength;
