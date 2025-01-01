@@ -134,10 +134,6 @@ export function write(container: KTX2Container, options: WriteOptions = {}): Uin
 		const sample = dfd.samples[i];
 		const sampleByteOffset = 28 + i * 16;
 
-		if (sample.channelID) {
-			throw new Error('channelID has been renamed to channelType.');
-		}
-
 		dfdView.setUint16(sampleByteOffset + 0, sample.bitOffset, true);
 		dfdView.setUint8(sampleByteOffset + 2, sample.bitLength);
 		dfdView.setUint8(sampleByteOffset + 3, sample.channelType);

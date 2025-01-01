@@ -2,7 +2,7 @@ import { glob, readFile } from 'node:fs/promises';
 import { basename, join } from 'node:path';
 import { URL } from 'node:url';
 import test from 'ava';
-import { KTX2Container, read, write } from 'ktx-parse';
+import { createDefaultContainer, read, write } from 'ktx-parse';
 
 const SAMPLE_ETC1S = await readFile(new URL('./data/test_etc1s.ktx2', import.meta.url));
 const SAMPLE_UASTC = await readFile(new URL('./data/test_uastc.ktx2', import.meta.url));
@@ -14,7 +14,7 @@ test('read::invalid', (t) => {
 test('read::etc1s', (t) => {
 	const container = read(SAMPLE_ETC1S);
 
-	t.true(container instanceof KTX2Container, 'creates container');
+	t.assert(container, 'creates container');
 	t.is(container.vkFormat, 0, 'vkFormat');
 	t.is(container.typeSize, 1, 'typeSize');
 	t.is(container.pixelWidth, 256, 'pixelWidth');
@@ -38,7 +38,7 @@ test('read::etc1s', (t) => {
 test('read::uastc', (t) => {
 	const container = read(SAMPLE_UASTC);
 
-	t.true(container instanceof KTX2Container, 'creates container');
+	t.assert(container, 'creates container');
 	t.is(container.vkFormat, 0, 'vkFormat');
 	t.is(container.typeSize, 1, 'typeSize');
 	t.is(container.pixelWidth, 256, 'pixelWidth');
@@ -194,7 +194,6 @@ test('data format descriptors', (t) => {
 	const sample2 = { ...sample1, bitLength: 15 };
 
 	const a = read(SAMPLE_UASTC);
-	a.dataFormatDescriptor[0].descriptorBlockSize += 16;
 	a.dataFormatDescriptor[0].samples = [sample1, sample2];
 	const b = read(write(a));
 
@@ -228,6 +227,20 @@ test('read kv', (t) => {
 		typedArrayEquals(c.keyValue.TestUint8Array as Uint8Array, new Uint8Array([0, 0, 0, 16])),
 		'container.keyValue[TestUint8Array]',
 	);
+});
+
+test('createDefaultContainer', (t) => {
+	const container = createDefaultContainer();
+
+	t.is(container.vkFormat, 0, 'vkFormat');
+	t.is(container.typeSize, 1, 'typeSize');
+	t.is(container.pixelWidth, 0, 'pixelWidth');
+	t.is(container.pixelHeight, 0, 'pixelHeight');
+	t.is(container.pixelDepth, 0, 'pixelDepth');
+	t.is(container.layerCount, 0, 'layerCount');
+	t.is(container.faceCount, 1, 'faceCount');
+	t.is(container.levels.length, 0, 'levels.length');
+	t.is(container.supercompressionScheme, 0, 'supercompressionScheme');
 });
 
 function typedArrayEquals(a: Uint8Array, b: Uint8Array): boolean {
