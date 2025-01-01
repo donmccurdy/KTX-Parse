@@ -1,9 +1,9 @@
+import { spawn } from 'node:child_process';
 import { glob, mkdtemp, readFile, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { basename, join, sep } from 'node:path';
 import test from 'ava';
 import { read, write } from 'ktx-parse';
-import { type SpawnResult, spawnAsync } from '../scripts/spawn-async.js';
 
 const tmpDir = await mkdtemp(`${tmpdir()}${sep}`);
 
@@ -23,5 +23,31 @@ for await (const srcPath of glob(join('test', 'data', 'reference', '*.ktx2'))) {
 		}
 
 		t.pass('ok');
+	});
+}
+
+///////////////////////////////////////////////////////////////////////////////
+// UTILITIES
+
+type SpawnResult = { code: number; stdout: string; stderr: string };
+
+function spawnAsync(command: string, args: string[]): Promise<SpawnResult> {
+	return new Promise((resolve) => {
+		const p = spawn(command, args);
+
+		let stdout = '';
+		let stderr = '';
+
+		p.stdout.on('data', (x) => {
+			stdout += x.toString();
+		});
+
+		p.stderr.on('data', (x) => {
+			stderr += x.toString();
+		});
+
+		p.on('exit', (code) => {
+			resolve({ code: code ?? 0, stdout, stderr });
+		});
 	});
 }
