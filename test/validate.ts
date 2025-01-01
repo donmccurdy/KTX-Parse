@@ -1,7 +1,7 @@
-import { glob, mkdtemp, readFile, writeFile } from 'node:fs/promises';
 import { spawn } from 'node:child_process';
-import { basename, join, sep } from 'node:path';
+import { glob, mkdtemp, readFile, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
+import { basename, join, sep } from 'node:path';
 import test from 'ava';
 import { read, write } from 'ktx-parse';
 
