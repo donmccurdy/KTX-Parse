@@ -24,11 +24,12 @@
 		"coverage": "c8 --reporter=lcov --reporter=text ava --no-worker-threads test/test.ts --tap",
 		"coverage:report": "c8 report --reporter=text-lcov > coverage/coverage.lcov",
 		"docs": "typedoc src/index.ts --plugin typedoc-plugin-markdown --out ./docs",
+		"clean": "rm -rf dist/* || true",
 		"preversion": "yarn dist && yarn test && yarn validate",
-		"version": "node --experimental-strip-types scripts/clean.ts && yarn dist && yarn docs && git add -u",
+		"version": "yarn clean && yarn dist && yarn docs && git add -u",
 		"postversion": "git push && git push --tags && npm publish && yarn coverage:report",
-		"check": "biome check src test scripts",
-		"ci": "biome ci src test scripts"
+		"lint": "biome check src test",
+		"lint:ci": "biome ci src test"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "^1.9.4",
