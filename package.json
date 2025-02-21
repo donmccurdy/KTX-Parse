@@ -1,6 +1,6 @@
 {
 	"name": "ktx-parse",
-	"version": "0.7.1",
+	"version": "1.0.0-alpha.0",
 	"description": "KTX 2.0 (.ktx2) parser and serializer.",
 	"type": "module",
 	"sideEffects": false,
@@ -17,18 +17,21 @@
 	"author": "Don McCurdy <dm@donmccurdy.com>",
 	"license": "MIT",
 	"scripts": {
-		"dist": "microbundle --format cjs,esm,modern --no-compress --define PACKAGE_VERSION=$npm_package_version",
+		"build": "microbundle --format cjs,esm,modern --no-compress --define PACKAGE_VERSION=$npm_package_version",
 		"watch": "microbundle watch --format cjs,esm,modern --no-compress --define PACKAGE_VERSION=$npm_package_version",
 		"test": "ava --no-worker-threads test/test.ts",
 		"validate": "ava --no-worker-threads test/validate.ts",
 		"coverage": "c8 --reporter=lcov --reporter=text ava --no-worker-threads test/test.ts --tap",
 		"coverage:report": "c8 report --reporter=text-lcov > coverage/coverage.lcov",
-		"clean": "rm -rf dist/* || true",
-		"preversion": "yarn dist && yarn test && yarn validate",
-		"version": "yarn clean && yarn dist && git add -u",
-		"postversion": "git push && git push --tags && npm publish && yarn coverage:report",
 		"lint": "biome check src test",
-		"lint:ci": "biome ci src test"
+		"lint:ci": "biome ci src test",
+		"clean": "rm -rf dist/* || true",
+		"release": "yarn postversion:commit && yarn npm publish && yarn postversion:push",
+		"prerelease": "yarn postversion:commit && yarn npm publish --tag alpha && yarn postversion:push",
+		"postversion:commit": "git add -u && git commit -m \"chore(release): v$npm_package_version\" && git tag -a v$npm_package_version -m v$npm_package_version",
+		"postversion:push": "git push && git push --tags && yarn coverage:report",
+		"prepublish": "yarn lint && yarn test && yarn validate",
+		"prepack": "yarn clean && yarn build"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "^1.9.4",
@@ -58,5 +61,6 @@
 			"--experimental-strip-types"
 		]
 	},
-	"packageManager": "yarn@4.6.0"
+	"packageManager": "yarn@4.6.0",
+	"stableVersion": "1.0.0"
 }
