@@ -6,7 +6,7 @@
 [![CI](https://github.com/donmccurdy/KTX-parse/workflows/CI/badge.svg?branch=main&event=push)](https://github.com/donmccurdy/KTX-parse/actions?query=workflow%3ACI)
 [![Coverage](https://codecov.io/gh/donmccurdy/KTX-Parse/branch/main/graph/badge.svg?token=S30LCC3L04)](https://codecov.io/gh/donmccurdy/KTX-Parse)
 
-*KTX 2.0 (.ktx2) parser and serializer.*
+_KTX 2.0 (.ktx2) parser and serializer._
 
 ## Quickstart
 
@@ -19,7 +19,7 @@ npm install --save ktx-parse
 Import:
 
 ```js
-import { read, write } from 'ktx-parse';
+import { read, write } from "ktx-parse";
 ```
 
 Usage:
@@ -32,11 +32,7 @@ const container = read(data /* ← Uint8Array or Buffer */);
 const data = write(container); // → Uint8Array
 ```
 
-See API documentation for more details:
-
-- [`KTX2Container`](./docs/classes/KTX2Container.md)
-- [`read(byteArray)`](./docs/modules.md#read)
-- [`write(container)`](./docs/modules.md#write)
+See [API documentation](https://tsdocs.dev/docs/ktx-parse/) for more details.
 
 ## Encoding / Decoding
 
@@ -56,5 +52,4 @@ The following tools may be used to produce Basis Universal compressed textures i
 Basis Universal texture formats (ETC1S and UASTC) cannot be directly read by a GPU, but are designed to be very efficiently rewritten into many of the specific GPU texture formats that different GPUs require. This process is called _transcoding_, and typically happens on the viewing device after a target output format (e.g. ETC1, ASTC, BC1, ...) is chosen. These transcoders can also fully _decode_ texture data to uncompressed RGBA formats, if raw pixel data is required.
 
 - [BinomialLLC/basis_universal](https://github.com/BinomialLLC/basis_universal/) provides official C++ and WebAssembly transcoders, which support all Basis Universal input formats and can transcode to any output format (with appropriate compilation flags). With common settings, a transcoder will likely be > 200kb on web. This transcoder can read KTX 2.0 files directly.
-- [KhronosGroup/Universal-Texture-Transcoders](https://github.com/KhronosGroup/Universal-Texture-Transcoders) provides very small, fast WebAssembly transcoders each supporting only a single output texture format. Each transcoder is roughly 10-20kb, and the viewing device can choose which transcoder to download, as appropriate. These transcoders cannot read KTX 2.0 files directly. Instead, unpack the KTX 2.0 files with `ktx-parse` first, then transcode the mip levels using a low-level transcoder. *Only UASTC texture formats currently supported.*
-
+- [KhronosGroup/Universal-Texture-Transcoders](https://github.com/KhronosGroup/Universal-Texture-Transcoders) provides very small, fast WebAssembly transcoders each supporting only a single output texture format. Each transcoder is roughly 10-20kb, and the viewing device can choose which transcoder to download, as appropriate. These transcoders cannot read KTX 2.0 files directly. Instead, unpack the KTX 2.0 files with `ktx-parse` first, then transcode the mip levels using a low-level transcoder. _Only UASTC texture formats currently supported._

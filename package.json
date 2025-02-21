@@ -23,10 +23,9 @@
 		"validate": "ava --no-worker-threads test/validate.ts",
 		"coverage": "c8 --reporter=lcov --reporter=text ava --no-worker-threads test/test.ts --tap",
 		"coverage:report": "c8 report --reporter=text-lcov > coverage/coverage.lcov",
-		"docs": "typedoc src/index.ts --plugin typedoc-plugin-markdown --out ./docs",
 		"clean": "rm -rf dist/* || true",
 		"preversion": "yarn dist && yarn test && yarn validate",
-		"version": "yarn clean && yarn dist && yarn docs && git add -u",
+		"version": "yarn clean && yarn dist && git add -u",
 		"postversion": "git push && git push --tags && npm publish && yarn coverage:report",
 		"lint": "biome check src test",
 		"lint:ci": "biome ci src test"
@@ -37,28 +36,14 @@
 		"ava": "6.2.0",
 		"c8": "10.1.2",
 		"microbundle": "0.15.1",
-		"typedoc": "0.27.2",
-		"typedoc-plugin-markdown": "4.3.1",
 		"typescript": "5.7.2"
 	},
-	"files": [
-		"dist/",
-		"src/",
-		"README.md",
-		"LICENSE",
-		"package.json"
-	],
-	"browserslist": [
-		"defaults",
-		"not IE 11",
-		"node >= 14"
-	],
+	"files": ["dist/", "src/", "README.md", "LICENSE", "package.json"],
+	"browserslist": ["defaults", "not IE 11", "node >= 14"],
 	"ava": {
 		"extensions": {
 			"ts": "module"
 		},
-		"nodeArguments": [
-			"--experimental-strip-types"
-		]
+		"nodeArguments": ["--experimental-strip-types"]
 	}
 }
