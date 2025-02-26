@@ -1,6 +1,6 @@
 {
 	"name": "ktx-parse",
-	"version": "1.0.0-alpha.0",
+	"version": "1.0.0",
 	"description": "KTX 2.0 (.ktx2) parser and serializer.",
 	"type": "module",
 	"sideEffects": false,
@@ -61,6 +61,5 @@
 			"--experimental-strip-types"
 		]
 	},
-	"packageManager": "yarn@4.6.0",
-	"stableVersion": "1.0.0"
+	"packageManager": "yarn@4.6.0"
 }
