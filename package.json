@@ -34,7 +34,7 @@
 		"prepack": "yarn clean && yarn build"
 	},
 	"devDependencies": {
-		"@biomejs/biome": "^2.0.0",
+		"@biomejs/biome": "^1.9.4",
 		"@types/node": "^24.0.3",
 		"ava": "6.4.0",
 		"c8": "10.1.3",
