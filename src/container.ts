@@ -1,16 +1,4 @@
-import {
-	KHR_DF_FLAG_ALPHA_STRAIGHT,
-	KHR_DF_KHR_DESCRIPTORTYPE_BASICFORMAT,
-	KHR_DF_MODEL_UNSPECIFIED,
-	KHR_DF_PRIMARIES_BT709,
-	KHR_DF_TRANSFER_SRGB,
-	KHR_DF_VENDORID_KHRONOS,
-	KHR_DF_VERSION,
-	KHR_SUPERCOMPRESSION_NONE,
-	type Supercompression,
-	type VKFormat,
-	VK_FORMAT_UNDEFINED,
-} from './constants.js';
+import type { Supercompression, VKFormat } from './constants.js';
 
 /**
  * Represents an unpacked KTX 2.0 texture container. Data for individual mip levels are stored in

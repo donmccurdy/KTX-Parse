@@ -9,25 +9,25 @@ export class BufferReader {
 		this._offset = 0;
 	}
 
-	_nextUint8() {
+	_nextUint8(): number {
 		const value = this._dataView.getUint8(this._offset);
 		this._offset += 1;
 		return value;
 	}
 
-	_nextUint16() {
+	_nextUint16(): number {
 		const value = this._dataView.getUint16(this._offset, this._littleEndian);
 		this._offset += 2;
 		return value;
 	}
 
-	_nextUint32() {
+	_nextUint32(): number {
 		const value = this._dataView.getUint32(this._offset, this._littleEndian);
 		this._offset += 4;
 		return value;
 	}
 
-	_nextUint64() {
+	_nextUint64(): number {
 		const left = this._dataView.getUint32(this._offset, this._littleEndian);
 		const right = this._dataView.getUint32(this._offset + 4, this._littleEndian);
 		// TODO(cleanup): Just test this...
@@ -37,19 +37,19 @@ export class BufferReader {
 		return value;
 	}
 
-	_nextInt32() {
+	_nextInt32(): number {
 		const value = this._dataView.getInt32(this._offset, this._littleEndian);
 		this._offset += 4;
 		return value;
 	}
 
-	_nextUint8Array(len: number) {
+	_nextUint8Array(len: number): Uint8Array {
 		const value = new Uint8Array(this._dataView.buffer, this._dataView.byteOffset + this._offset, len);
 		this._offset += len;
 		return value;
 	}
 
-	_skip(bytes: number) {
+	_skip(bytes: number): this {
 		this._offset += bytes;
 		return this;
 	}
