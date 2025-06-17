@@ -1,14 +1,20 @@
 {
-  "compilerOptions": {
-    "paths": {
-      "ktx-parse": ["./"]
-    },
-    "moduleResolution": "nodenext",
-    "lib": ["es2020", "dom"],
-    "target": "es2020",
-    "module": "nodenext",
-    "declaration": true,
-    "typeRoots": ["node_modules/@types"],
-    "strict": true
-  }
+	"compilerOptions": {
+		"paths": {
+			"ktx-parse": ["./"]
+		},
+		"moduleResolution": "NodeNext",
+		"module": "NodeNext",
+		"lib": ["es2022"],
+		"target": "es2022",
+		"isolatedModules": true,
+		"isolatedDeclarations": true,
+		"allowJs": false,
+		"declaration": true,
+		"stripInternal": true,
+		"strict": true,
+		"erasableSyntaxOnly": true,
+		"verbatimModuleSyntax": true,
+		"useDefineForClassFields": true
+	}
 }
