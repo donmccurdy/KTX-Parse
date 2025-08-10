@@ -51,8 +51,7 @@ export function read(data: Uint8Array): KTX2Container {
 	container.pixelDepth = headerReader._nextUint32();
 	container.layerCount = headerReader._nextUint32();
 	container.faceCount = headerReader._nextUint32();
-
-	const levelCount = headerReader._nextUint32();
+	container.levelCount = headerReader._nextUint32();
 
 	container.supercompressionScheme = headerReader._nextUint32() as Supercompression;
 
@@ -67,10 +66,10 @@ export function read(data: Uint8Array): KTX2Container {
 	// Level Index.
 	///////////////////////////////////////////////////
 
-	const levelByteLength = levelCount * 3 * 8;
+	const levelByteLength = Math.max(container.levelCount, 1) * 3 * 8;
 	const levelReader = new BufferReader(data, KTX2_ID.length + headerByteLength, levelByteLength, true);
 
-	for (let i = 0; i < levelCount; i++) {
+	for (let i = 0, il = Math.max(container.levelCount, 1); i < il; i++) {
 		container.levels.push({
 			levelData: new Uint8Array(data.buffer, data.byteOffset + levelReader._nextUint64(), levelReader._nextUint64()),
 			uncompressedByteLength: levelReader._nextUint64(),
@@ -193,7 +192,7 @@ export function read(data: Uint8Array): KTX2Container {
 	const extendedByteLength = sgdReader._nextUint32();
 
 	const imageDescs = [];
-	for (let i = 0; i < levelCount; i++) {
+	for (let i = 0, il = Math.max(container.levelCount, 1); i < il; i++) {
 		imageDescs.push({
 			imageFlags: sgdReader._nextUint32(),
 			rgbSliceByteOffset: sgdReader._nextUint32(),

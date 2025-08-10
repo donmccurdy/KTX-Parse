@@ -212,7 +212,7 @@ export function write(container: KTX2Container, options: WriteOptions = {}): Uin
 	headerView.setUint32(16, container.pixelDepth, true);
 	headerView.setUint32(20, container.layerCount, true);
 	headerView.setUint32(24, container.faceCount, true);
-	headerView.setUint32(28, container.levels.length, true);
+	headerView.setUint32(28, container.levelCount, true);
 	headerView.setUint32(32, container.supercompressionScheme, true);
 
 	headerView.setUint32(36, dfdByteOffset, true);

@@ -2,8 +2,9 @@ import { glob, readFile } from 'node:fs/promises';
 import { basename, join } from 'node:path';
 import { URL } from 'node:url';
 import test from 'ava';
-import { createDefaultContainer, read, write } from 'ktx-parse';
+import { createDefaultContainer, read, VK_FORMAT_R8G8B8A8_SRGB, write } from 'ktx-parse';
 
+const SAMPLE_RGBA8 = await readFile(new URL('./data/test_rgba8.ktx2', import.meta.url));
 const SAMPLE_ETC1S = await readFile(new URL('./data/test_etc1s.ktx2', import.meta.url));
 const SAMPLE_UASTC = await readFile(new URL('./data/test_uastc.ktx2', import.meta.url));
 
@@ -22,6 +23,7 @@ test('read::etc1s', (t) => {
 	t.is(container.pixelDepth, 0, 'pixelDepth');
 	t.is(container.layerCount, 0, 'layerCount');
 	t.is(container.faceCount, 1, 'faceCount');
+	t.is(container.levelCount, 9, 'levelCount');
 	t.is(container.levels.length, 9, 'levels.length');
 	t.is(container.supercompressionScheme, 1, 'supercompressionScheme');
 	t.deepEqual(
@@ -46,6 +48,7 @@ test('read::uastc', (t) => {
 	t.is(container.pixelDepth, 0, 'pixelDepth');
 	t.is(container.layerCount, 0, 'layerCount');
 	t.is(container.faceCount, 1, 'faceCount');
+	t.is(container.levelCount, 9, 'levelCount');
 	t.is(container.levels.length, 9, 'levels.length');
 	t.is(container.supercompressionScheme, 0, 'supercompressionScheme');
 	t.deepEqual(
@@ -252,8 +255,27 @@ test('createDefaultContainer', (t) => {
 	t.is(container.pixelDepth, 0, 'pixelDepth');
 	t.is(container.layerCount, 0, 'layerCount');
 	t.is(container.faceCount, 1, 'faceCount');
+	t.is(container.levelCount, 0, 'levels.length');
 	t.is(container.levels.length, 0, 'levels.length');
 	t.is(container.supercompressionScheme, 0, 'supercompressionScheme');
+});
+
+test('levelCount', (t) => {
+	// 0 = runtime mipmaps, 1 = base level only.
+
+	const a = read(SAMPLE_RGBA8);
+	t.is(a.vkFormat, VK_FORMAT_R8G8B8A8_SRGB, 'a.vkFormat');
+	t.is(a.levelCount, 0, 'a.levelCount');
+
+	const b = read(write(a));
+	t.is(b.vkFormat, VK_FORMAT_R8G8B8A8_SRGB, 'b.vkFormat');
+	t.is(b.levelCount, 0, 'b.levelCount');
+
+	a.levelCount = 1;
+
+	const c = read(write(a));
+	t.is(c.vkFormat, VK_FORMAT_R8G8B8A8_SRGB, 'c.vkFormat');
+	t.is(c.levelCount, 1, 'c.levelCount');
 });
 
 function typedArrayEquals(a: Uint8Array, b: Uint8Array): boolean {
