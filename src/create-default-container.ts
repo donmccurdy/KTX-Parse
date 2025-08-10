@@ -26,6 +26,7 @@ export function createDefaultContainer(): KTX2Container {
 		pixelDepth: 0,
 		layerCount: 0,
 		faceCount: 1,
+		levelCount: 0,
 		supercompressionScheme: KHR_SUPERCOMPRESSION_NONE,
 		levels: [],
 		dataFormatDescriptor: [
