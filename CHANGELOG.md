@@ -1,5 +1,15 @@
 # Changelog
 
+## v1.1
+
+- feat: Support `levelCount = 0`, runtime-generated mipmaps (#199)
+
+## v1.0
+
+- refactor: KTX2Container now a plain object (#174)
+- fix: Sort key/value data (#175)
+- chore: Improvements in build process and testing
+
 ## v0.4
 
 - Removed UMD builds
