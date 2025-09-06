@@ -12,7 +12,7 @@ import { decodeText } from './util.js';
  *
  * @param data Bytes of KTX 2.0 file, as Uint8Array or Buffer.
  */
-export function read(data: Uint8Array): KTX2Container {
+export function read(data: Uint8Array<ArrayBuffer>): KTX2Container {
 	///////////////////////////////////////////////////
 	// KTX 2.0 Identifier.
 	///////////////////////////////////////////////////
@@ -167,7 +167,7 @@ export function read(data: Uint8Array): KTX2Container {
 		container.keyValue[key] = kvdReader._nextUint8Array(keyValueByteLength - keyData.byteLength - 1);
 
 		if (key.match(/^ktx/i)) {
-			const text = decodeText(container.keyValue[key] as Uint8Array);
+			const text = decodeText(container.keyValue[key] as Uint8Array<ArrayBuffer>);
 			container.keyValue[key] = text.substring(0, text.lastIndexOf('\x00'));
 		}
 

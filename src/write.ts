@@ -5,7 +5,7 @@ import {
 	KHR_SUPERCOMPRESSION_NONE,
 } from './constants.js';
 import type { KTX2Container } from './container.js';
-import { concat, encodeText, getBlockByteLength, getPadding, leastCommonMultiple } from './util.js';
+import { concat, encodeText, getBlockByteLength, getPadding, leastCommonMultiple, toView } from './util.js';
 
 interface WriteOptions {
 	keepWriter?: boolean;
@@ -32,7 +32,7 @@ export function write(container: KTX2Container, options: WriteOptions = {}): Uin
 	// Supercompression Global Data (SGD).
 	///////////////////////////////////////////////////
 
-	let sgdBuffer = new ArrayBuffer(0);
+	let sgdBuffer = new Uint8Array(new ArrayBuffer(0));
 	if (container.globalData) {
 		const sgdHeaderBuffer = new ArrayBuffer(20 + container.globalData.imageDescs.length * 5 * 4);
 		const sgdHeaderView = new DataView(sgdHeaderBuffer);
@@ -53,7 +53,7 @@ export function write(container: KTX2Container, options: WriteOptions = {}): Uin
 		}
 
 		sgdBuffer = concat([
-			sgdHeaderBuffer,
+			toView(sgdHeaderBuffer),
 			container.globalData.endpointsData,
 			container.globalData.selectorsData,
 			container.globalData.tablesData,
@@ -65,7 +65,7 @@ export function write(container: KTX2Container, options: WriteOptions = {}): Uin
 	// Key/Value Data (KVD).
 	///////////////////////////////////////////////////
 
-	const keyValueData: Uint8Array[] = [];
+	const keyValueData: Uint8Array<ArrayBuffer>[] = [];
 	const keyValueList = Object.entries({
 		...container.keyValue,
 		...(!options.keepWriter && { KTXwriter: KTX_WRITER }),
@@ -80,7 +80,7 @@ export function write(container: KTX2Container, options: WriteOptions = {}): Uin
 		const kvPadding = getPadding(kvByteLength, 4); // align(4)
 		keyValueData.push(
 			concat([
-				new Uint32Array([kvByteLength]),
+				toView(new Uint32Array([kvByteLength])),
 				keyData,
 				NUL,
 				valueData,
@@ -165,7 +165,7 @@ export function write(container: KTX2Container, options: WriteOptions = {}): Uin
 	// Level Index.
 	///////////////////////////////////////////////////
 
-	const levelData: Uint8Array[] = [];
+	const levelData: Uint8Array<ArrayBuffer>[] = [];
 	const levelIndex = new DataView(new ArrayBuffer(container.levels.length * 3 * 8));
 	const levelDataByteOffsets = new Uint32Array(container.levels.length);
 
@@ -228,14 +228,14 @@ export function write(container: KTX2Container, options: WriteOptions = {}): Uin
 
 	return new Uint8Array(
 		concat([
-			new Uint8Array(KTX2_ID).buffer,
-			headerBuffer,
-			levelIndex.buffer,
-			dfdBuffer,
+			new Uint8Array(KTX2_ID),
+			toView(headerBuffer),
+			toView(levelIndex.buffer),
+			toView(dfdBuffer),
 			kvdBuffer,
 			sgdByteOffset > 0
-				? new ArrayBuffer(sgdByteOffset - (kvdByteOffset + kvdBuffer.byteLength)) // align(8)
-				: new ArrayBuffer(0),
+				? toView(new ArrayBuffer(sgdByteOffset - (kvdByteOffset + kvdBuffer.byteLength))) // align(8)
+				: toView(new ArrayBuffer(0)),
 			sgdBuffer,
 			...levelData,
 		]),
