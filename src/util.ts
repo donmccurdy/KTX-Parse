@@ -73,14 +73,18 @@ export function concat(buffers: Uint8Array<ArrayBuffer>[]): Uint8Array<ArrayBuff
 	return result;
 }
 
-export function toView(view: ArrayBuffer|ArrayBufferView): Uint8Array<ArrayBuffer> {
+export function toView(view: ArrayBuffer | ArrayBufferView): Uint8Array<ArrayBuffer> {
 	if (view instanceof Uint8Array) {
 		return view as Uint8Array<ArrayBuffer>;
 	}
 	if (view instanceof ArrayBuffer) {
 		return new Uint8Array(view);
 	}
-	return new Uint8Array<ArrayBuffer>(view.buffer as ArrayBuffer, view.byteOffset, view.byteLength / Uint8Array.BYTES_PER_ELEMENT);
+	return new Uint8Array<ArrayBuffer>(
+		view.buffer as ArrayBuffer,
+		view.byteOffset,
+		view.byteLength / Uint8Array.BYTES_PER_ELEMENT,
+	);
 }
 
 /** Returns the least common multiple (LCM) for two positive integers. */
