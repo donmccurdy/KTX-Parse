@@ -1,9 +1,9 @@
-import { HEADER_BYTE_LENGTH, KTX2_ID, KTX_WRITER, NUL } from './constants-internal.js';
 import {
 	KHR_DF_KHR_DESCRIPTORTYPE_BASICFORMAT,
 	KHR_DF_SAMPLE_DATATYPE_SIGNED,
 	KHR_SUPERCOMPRESSION_NONE,
 } from './constants.js';
+import { HEADER_BYTE_LENGTH, KTX_WRITER, KTX2_ID, NUL } from './constants-internal.js';
 import type { KTX2Container } from './container.js';
 import { concat, encodeText, getBlockByteLength, getPadding, leastCommonMultiple, toView } from './util.js';
 

@@ -2,7 +2,7 @@ import { glob, readFile } from 'node:fs/promises';
 import { basename, join } from 'node:path';
 import { URL } from 'node:url';
 import test from 'ava';
-import { VK_FORMAT_R8G8B8A8_SRGB, createDefaultContainer, read, write } from 'ktx-parse';
+import { createDefaultContainer, read, VK_FORMAT_R8G8B8A8_SRGB, write } from 'ktx-parse';
 
 const SAMPLE_RGBA8 = await readFile(new URL('./data/test_rgba8.ktx2', import.meta.url));
 const SAMPLE_ETC1S = await readFile(new URL('./data/test_etc1s.ktx2', import.meta.url));
