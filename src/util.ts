@@ -1,6 +1,4 @@
-import type { vec3 } from './constants-internal.js';
 import {
-	type VKFormat,
 	VK_FORMAT_ASTC_4x4_SRGB_BLOCK,
 	VK_FORMAT_ASTC_4x4_UNORM_BLOCK,
 	VK_FORMAT_ASTC_5x4_SRGB_BLOCK,
@@ -42,7 +40,9 @@ import {
 	VK_FORMAT_PVRTC2_4BPP_SRGB_BLOCK_IMG,
 	VK_FORMAT_PVRTC2_4BPP_UNORM_BLOCK_IMG,
 	VK_FORMAT_UNDEFINED,
+	type VKFormat,
 } from './constants.js';
+import type { vec3 } from './constants-internal.js';
 import type { KTX2Container } from './container.js';
 
 /** Encodes text to an ArrayBuffer. */

@@ -1,6 +1,6 @@
 import { BufferReader } from './buffer-reader.js';
-import { KTX2_ID } from './constants-internal.js';
 import { KHR_DF_SAMPLE_DATATYPE_SIGNED, type Supercompression, type VKFormat } from './constants.js';
+import { KTX2_ID } from './constants-internal.js';
 import type { KTX2BasicFormatSample, KTX2Container, KTX2DataFormatDescriptorBasicFormat } from './container.js';
 import { createDefaultContainer } from './create-default-container.js';
 import { decodeText } from './util.js';
