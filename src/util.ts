@@ -46,17 +46,17 @@ import {
 import type { KTX2Container } from './container.js';
 
 /** Encodes text to an ArrayBuffer. */
-export function encodeText(text: string): Uint8Array {
-	return new TextEncoder().encode(text);
+export function encodeText(text: string): Uint8Array<ArrayBuffer> {
+	return new TextEncoder().encode(text) as Uint8Array<ArrayBuffer>;
 }
 
 /** Decodes an ArrayBuffer to text. */
-export function decodeText(buffer: Uint8Array): string {
+export function decodeText(buffer: Uint8Array<ArrayBuffer>): string {
 	return new TextDecoder().decode(buffer);
 }
 
-/** Concatenates N ArrayBuffers. */
-export function concat(buffers: (ArrayBuffer | Uint8Array)[]): Uint8Array {
+/** Concatenates N byte arrays. */
+export function concat(buffers: Uint8Array<ArrayBuffer>[]): Uint8Array<ArrayBuffer> {
 	let totalByteLength = 0;
 	for (const buffer of buffers) {
 		totalByteLength += buffer.byteLength;
@@ -71,6 +71,20 @@ export function concat(buffers: (ArrayBuffer | Uint8Array)[]): Uint8Array {
 	}
 
 	return result;
+}
+
+export function toView(view: ArrayBuffer | ArrayBufferView): Uint8Array<ArrayBuffer> {
+	if (view instanceof Uint8Array) {
+		return view as Uint8Array<ArrayBuffer>;
+	}
+	if (view instanceof ArrayBuffer) {
+		return new Uint8Array(view);
+	}
+	return new Uint8Array<ArrayBuffer>(
+		view.buffer as ArrayBuffer,
+		view.byteOffset,
+		view.byteLength / Uint8Array.BYTES_PER_ELEMENT,
+	);
 }
 
 /** Returns the least common multiple (LCM) for two positive integers. */

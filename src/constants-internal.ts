@@ -7,7 +7,7 @@ declare const PACKAGE_VERSION: string;
 
 export const KTX_WRITER: string = `KTX-Parse v${PACKAGE_VERSION}`;
 
-export const NUL: Uint8Array = new Uint8Array([0x00]);
+export const NUL: Uint8Array<ArrayBuffer> = new Uint8Array([0x00]);
 
 export type vec3 = [number, number, number];
 export type vec2 = [number, number, number];

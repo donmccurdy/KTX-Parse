@@ -56,7 +56,7 @@ export interface KTX2Container {
 	dataFormatDescriptor: KTX2DataFormatDescriptorBasicFormat[];
 
 	/** Key/Value Data. */
-	keyValue: { [key: string]: string | Uint8Array };
+	keyValue: { [key: string]: string | Uint8Array<ArrayBuffer> };
 
 	/** Supercompression Global Data. */
 	globalData: KTX2GlobalDataBasisLZ | null;
@@ -68,7 +68,7 @@ export interface KTX2Container {
 
 export interface KTX2Level {
 	/** Compressed data of the mip level. */
-	levelData: Uint8Array;
+	levelData: Uint8Array<ArrayBuffer>;
 
 	/**
 	 * Size of the mip level after reflation from supercompression, if applicable. When
@@ -117,10 +117,10 @@ export interface KTX2GlobalDataBasisLZ {
 	endpointCount: number;
 	selectorCount: number;
 	imageDescs: KTX2GlobalDataBasisLZImageDesc[];
-	endpointsData: Uint8Array;
-	selectorsData: Uint8Array;
-	tablesData: Uint8Array;
-	extendedData: Uint8Array;
+	endpointsData: Uint8Array<ArrayBuffer>;
+	selectorsData: Uint8Array<ArrayBuffer>;
+	tablesData: Uint8Array<ArrayBuffer>;
+	extendedData: Uint8Array<ArrayBuffer>;
 }
 
 interface KTX2GlobalDataBasisLZImageDesc {

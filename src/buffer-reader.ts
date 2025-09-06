@@ -1,9 +1,9 @@
 export class BufferReader {
-	private _dataView: DataView;
+	private _dataView: DataView<ArrayBuffer>;
 	private _littleEndian: boolean;
 	public _offset: number;
 
-	constructor(data: Uint8Array, byteOffset: number, byteLength: number, littleEndian: boolean) {
+	constructor(data: Uint8Array<ArrayBuffer>, byteOffset: number, byteLength: number, littleEndian: boolean) {
 		this._dataView = new DataView(data.buffer, data.byteOffset + byteOffset, byteLength);
 		this._littleEndian = littleEndian;
 		this._offset = 0;
@@ -43,7 +43,7 @@ export class BufferReader {
 		return value;
 	}
 
-	_nextUint8Array(len: number): Uint8Array {
+	_nextUint8Array(len: number): Uint8Array<ArrayBuffer> {
 		const value = new Uint8Array(this._dataView.buffer, this._dataView.byteOffset + this._offset, len);
 		this._offset += len;
 		return value;
@@ -54,7 +54,7 @@ export class BufferReader {
 		return this;
 	}
 
-	_scan(maxByteLength: number, term = 0x00): Uint8Array {
+	_scan(maxByteLength: number, term = 0x00): Uint8Array<ArrayBuffer> {
 		const byteOffset = this._offset;
 		let byteLength = 0;
 		while (this._dataView.getUint8(this._offset) !== term && byteLength < maxByteLength) {
