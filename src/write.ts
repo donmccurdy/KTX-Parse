@@ -24,7 +24,7 @@ const DEFAULT_OPTIONS: WriteOptions = { keepWriter: false };
  * @param container
  * @param options
  */
-export function write(container: KTX2Container, options: WriteOptions = {}): Uint8Array {
+export function write(container: KTX2Container, options: WriteOptions = {}): Uint8Array<ArrayBuffer> {
 	// biome-ignore lint/style/noParameterAssign: Merging defaults only.
 	options = { ...DEFAULT_OPTIONS, ...options };
 

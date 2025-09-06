@@ -12,12 +12,14 @@ import { decodeText } from './util.js';
  *
  * @param data Bytes of KTX 2.0 file, as Uint8Array or Buffer.
  */
-export function read(data: Uint8Array<ArrayBuffer>): KTX2Container {
+export function read(data: Uint8Array): KTX2Container {
+	const bytes = data as Uint8Array<ArrayBuffer>;
+
 	///////////////////////////////////////////////////
 	// KTX 2.0 Identifier.
 	///////////////////////////////////////////////////
 
-	const id = new Uint8Array(data.buffer, data.byteOffset, KTX2_ID.length);
+	const id = new Uint8Array(bytes.buffer, bytes.byteOffset, KTX2_ID.length);
 	if (
 		id[0] !== KTX2_ID[0] || // '´'
 		id[1] !== KTX2_ID[1] || // 'K'
@@ -42,7 +44,7 @@ export function read(data: Uint8Array<ArrayBuffer>): KTX2Container {
 	///////////////////////////////////////////////////
 
 	const headerByteLength = 17 * Uint32Array.BYTES_PER_ELEMENT;
-	const headerReader = new BufferReader(data, KTX2_ID.length, headerByteLength, true);
+	const headerReader = new BufferReader(bytes, KTX2_ID.length, headerByteLength, true);
 
 	container.vkFormat = headerReader._nextUint32() as VKFormat;
 	container.typeSize = headerReader._nextUint32();
@@ -67,11 +69,11 @@ export function read(data: Uint8Array<ArrayBuffer>): KTX2Container {
 	///////////////////////////////////////////////////
 
 	const levelByteLength = Math.max(container.levelCount, 1) * 3 * 8;
-	const levelReader = new BufferReader(data, KTX2_ID.length + headerByteLength, levelByteLength, true);
+	const levelReader = new BufferReader(bytes, KTX2_ID.length + headerByteLength, levelByteLength, true);
 
 	for (let i = 0, il = Math.max(container.levelCount, 1); i < il; i++) {
 		container.levels.push({
-			levelData: new Uint8Array(data.buffer, data.byteOffset + levelReader._nextUint64(), levelReader._nextUint64()),
+			levelData: new Uint8Array(bytes.buffer, bytes.byteOffset + levelReader._nextUint64(), levelReader._nextUint64()),
 			uncompressedByteLength: levelReader._nextUint64(),
 		});
 	}
@@ -80,7 +82,7 @@ export function read(data: Uint8Array<ArrayBuffer>): KTX2Container {
 	// Data Format Descriptor (DFD).
 	///////////////////////////////////////////////////
 
-	const dfdReader = new BufferReader(data, dfdByteOffset, dfdByteLength, true);
+	const dfdReader = new BufferReader(bytes, dfdByteOffset, dfdByteLength, true);
 
 	dfdReader._skip(4); // totalSize
 	const vendorId = dfdReader._nextUint16();
@@ -157,7 +159,7 @@ export function read(data: Uint8Array<ArrayBuffer>): KTX2Container {
 	// Key/Value Data (KVD).
 	///////////////////////////////////////////////////
 
-	const kvdReader = new BufferReader(data, kvdByteOffset, kvdByteLength, true);
+	const kvdReader = new BufferReader(bytes, kvdByteOffset, kvdByteLength, true);
 
 	while (kvdReader._offset < kvdByteLength) {
 		const keyValueByteLength = kvdReader._nextUint32();
@@ -182,7 +184,7 @@ export function read(data: Uint8Array<ArrayBuffer>): KTX2Container {
 
 	if (sgdByteLength <= 0) return container;
 
-	const sgdReader = new BufferReader(data, sgdByteOffset, sgdByteLength, true);
+	const sgdReader = new BufferReader(bytes, sgdByteOffset, sgdByteLength, true);
 
 	const endpointCount = sgdReader._nextUint16();
 	const selectorCount = sgdReader._nextUint16();
@@ -207,10 +209,10 @@ export function read(data: Uint8Array<ArrayBuffer>): KTX2Container {
 	const tablesByteOffset = selectorsByteOffset + selectorsByteLength;
 	const extendedByteOffset = tablesByteOffset + tablesByteLength;
 
-	const endpointsData = new Uint8Array(data.buffer, data.byteOffset + endpointsByteOffset, endpointsByteLength);
-	const selectorsData = new Uint8Array(data.buffer, data.byteOffset + selectorsByteOffset, selectorsByteLength);
-	const tablesData = new Uint8Array(data.buffer, data.byteOffset + tablesByteOffset, tablesByteLength);
-	const extendedData = new Uint8Array(data.buffer, data.byteOffset + extendedByteOffset, extendedByteLength);
+	const endpointsData = new Uint8Array(bytes.buffer, bytes.byteOffset + endpointsByteOffset, endpointsByteLength);
+	const selectorsData = new Uint8Array(bytes.buffer, bytes.byteOffset + selectorsByteOffset, selectorsByteLength);
+	const tablesData = new Uint8Array(bytes.buffer, bytes.byteOffset + tablesByteOffset, tablesByteLength);
+	const extendedData = new Uint8Array(bytes.buffer, bytes.byteOffset + extendedByteOffset, extendedByteLength);
 
 	container.globalData = {
 		endpointCount,
