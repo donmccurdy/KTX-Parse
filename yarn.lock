@@ -1252,18 +1252,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@biomejs/biome@npm:2.0.6":
-  version: 2.0.6
-  resolution: "@biomejs/biome@npm:2.0.6"
+"@biomejs/biome@npm:2.2.4":
+  version: 2.2.4
+  resolution: "@biomejs/biome@npm:2.2.4"
   dependencies:
-    "@biomejs/cli-darwin-arm64": "npm:2.0.6"
-    "@biomejs/cli-darwin-x64": "npm:2.0.6"
-    "@biomejs/cli-linux-arm64": "npm:2.0.6"
-    "@biomejs/cli-linux-arm64-musl": "npm:2.0.6"
-    "@biomejs/cli-linux-x64": "npm:2.0.6"
-    "@biomejs/cli-linux-x64-musl": "npm:2.0.6"
-    "@biomejs/cli-win32-arm64": "npm:2.0.6"
-    "@biomejs/cli-win32-x64": "npm:2.0.6"
+    "@biomejs/cli-darwin-arm64": "npm:2.2.4"
+    "@biomejs/cli-darwin-x64": "npm:2.2.4"
+    "@biomejs/cli-linux-arm64": "npm:2.2.4"
+    "@biomejs/cli-linux-arm64-musl": "npm:2.2.4"
+    "@biomejs/cli-linux-x64": "npm:2.2.4"
+    "@biomejs/cli-linux-x64-musl": "npm:2.2.4"
+    "@biomejs/cli-win32-arm64": "npm:2.2.4"
+    "@biomejs/cli-win32-x64": "npm:2.2.4"
   dependenciesMeta:
     "@biomejs/cli-darwin-arm64":
       optional: true
@@ -1283,62 +1283,62 @@ __metadata:
       optional: true
   bin:
     biome: bin/biome
-  checksum: 10c0/eafaf3981580314c08085542152396f3417637d08d7b8aaee6a5173a978435d7688b1b6b547096e3a9d3573f03cfe526f7342dd341143c322c03d545df126f18
+  checksum: 10c0/7229fcc743db48f3cfd7417fb3f33d1cd9e7dfe42a12ed3c1046cd3110718237bb71ea3fe5c8b0de9bd3df2b918d0be58027602aa3720b64904b63d9cedf53e3
   languageName: node
   linkType: hard
 
-"@biomejs/cli-darwin-arm64@npm:2.0.6":
-  version: 2.0.6
-  resolution: "@biomejs/cli-darwin-arm64@npm:2.0.6"
+"@biomejs/cli-darwin-arm64@npm:2.2.4":
+  version: 2.2.4
+  resolution: "@biomejs/cli-darwin-arm64@npm:2.2.4"
   conditions: os=darwin & cpu=arm64
   languageName: node
   linkType: hard
 
-"@biomejs/cli-darwin-x64@npm:2.0.6":
-  version: 2.0.6
-  resolution: "@biomejs/cli-darwin-x64@npm:2.0.6"
+"@biomejs/cli-darwin-x64@npm:2.2.4":
+  version: 2.2.4
+  resolution: "@biomejs/cli-darwin-x64@npm:2.2.4"
   conditions: os=darwin & cpu=x64
   languageName: node
   linkType: hard
 
-"@biomejs/cli-linux-arm64-musl@npm:2.0.6":
-  version: 2.0.6
-  resolution: "@biomejs/cli-linux-arm64-musl@npm:2.0.6"
+"@biomejs/cli-linux-arm64-musl@npm:2.2.4":
+  version: 2.2.4
+  resolution: "@biomejs/cli-linux-arm64-musl@npm:2.2.4"
   conditions: os=linux & cpu=arm64 & libc=musl
   languageName: node
   linkType: hard
 
-"@biomejs/cli-linux-arm64@npm:2.0.6":
-  version: 2.0.6
-  resolution: "@biomejs/cli-linux-arm64@npm:2.0.6"
+"@biomejs/cli-linux-arm64@npm:2.2.4":
+  version: 2.2.4
+  resolution: "@biomejs/cli-linux-arm64@npm:2.2.4"
   conditions: os=linux & cpu=arm64 & libc=glibc
   languageName: node
   linkType: hard
 
-"@biomejs/cli-linux-x64-musl@npm:2.0.6":
-  version: 2.0.6
-  resolution: "@biomejs/cli-linux-x64-musl@npm:2.0.6"
+"@biomejs/cli-linux-x64-musl@npm:2.2.4":
+  version: 2.2.4
+  resolution: "@biomejs/cli-linux-x64-musl@npm:2.2.4"
   conditions: os=linux & cpu=x64 & libc=musl
   languageName: node
   linkType: hard
 
-"@biomejs/cli-linux-x64@npm:2.0.6":
-  version: 2.0.6
-  resolution: "@biomejs/cli-linux-x64@npm:2.0.6"
+"@biomejs/cli-linux-x64@npm:2.2.4":
+  version: 2.2.4
+  resolution: "@biomejs/cli-linux-x64@npm:2.2.4"
   conditions: os=linux & cpu=x64 & libc=glibc
   languageName: node
   linkType: hard
 
-"@biomejs/cli-win32-arm64@npm:2.0.6":
-  version: 2.0.6
-  resolution: "@biomejs/cli-win32-arm64@npm:2.0.6"
+"@biomejs/cli-win32-arm64@npm:2.2.4":
+  version: 2.2.4
+  resolution: "@biomejs/cli-win32-arm64@npm:2.2.4"
   conditions: os=win32 & cpu=arm64
   languageName: node
   linkType: hard
 
-"@biomejs/cli-win32-x64@npm:2.0.6":
-  version: 2.0.6
-  resolution: "@biomejs/cli-win32-x64@npm:2.0.6"
+"@biomejs/cli-win32-x64@npm:2.2.4":
+  version: 2.2.4
+  resolution: "@biomejs/cli-win32-x64@npm:2.2.4"
   conditions: os=win32 & cpu=x64
   languageName: node
   linkType: hard
@@ -1659,11 +1659,11 @@ __metadata:
   linkType: hard
 
 "@types/node@npm:*, @types/node@npm:^24.3.1":
-  version: 24.5.2
-  resolution: "@types/node@npm:24.5.2"
+  version: 24.6.1
+  resolution: "@types/node@npm:24.6.1"
   dependencies:
-    undici-types: "npm:~7.12.0"
-  checksum: 10c0/96baaca6564d39c6f7f6eddd73ce41e2a7594ef37225cd52df3be36fad31712af8ae178387a72d0b80f2e2799e7fd30c014bc0ae9eb9f962d9079b691be00c48
+    undici-types: "npm:~7.13.0"
+  checksum: 10c0/f2f8aea441d72139345cfa2e392af51bc27d12eb5f74b9b4d202046a2e82ab70d6da89c46a2ac7feea98854c2919e53070869d4af9d448e173a77249fcb7bca3
   languageName: node
   linkType: hard
 
@@ -4151,12 +4151,12 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "ktx-parse@workspace:."
   dependencies:
-    "@biomejs/biome": "npm:2.0.6"
+    "@biomejs/biome": "npm:2.2.4"
     "@types/node": "npm:^24.3.1"
     ava: "npm:6.4.1"
     c8: "npm:10.1.3"
     microbundle: "npm:0.15.1"
-    typescript: "npm:5.9.2"
+    typescript: "npm:5.9.3"
   languageName: unknown
   linkType: soft
 
@@ -6416,13 +6416,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@npm:5.9.2":
-  version: 5.9.2
-  resolution: "typescript@npm:5.9.2"
+"typescript@npm:5.9.3":
+  version: 5.9.3
+  resolution: "typescript@npm:5.9.3"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: 10c0/cd635d50f02d6cf98ed42de2f76289701c1ec587a363369255f01ed15aaf22be0813226bff3c53e99d971f9b540e0b3cc7583dbe05faded49b1b0bed2f638a18
+  checksum: 10c0/6bd7552ce39f97e711db5aa048f6f9995b53f1c52f7d8667c1abdc1700c68a76a308f579cd309ce6b53646deb4e9a1be7c813a93baaf0a28ccd536a30270e1c5
   languageName: node
   linkType: hard
 
@@ -6436,13 +6436,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@npm%3A5.9.2#optional!builtin<compat/typescript>":
-  version: 5.9.2
-  resolution: "typescript@patch:typescript@npm%3A5.9.2#optional!builtin<compat/typescript>::version=5.9.2&hash=5786d5"
+"typescript@patch:typescript@npm%3A5.9.3#optional!builtin<compat/typescript>":
+  version: 5.9.3
+  resolution: "typescript@patch:typescript@npm%3A5.9.3#optional!builtin<compat/typescript>::version=5.9.3&hash=5786d5"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: 10c0/34d2a8e23eb8e0d1875072064d5e1d9c102e0bdce56a10a25c0b917b8aa9001a9cf5c225df12497e99da107dc379360bc138163c66b55b95f5b105b50578067e
+  checksum: 10c0/ad09fdf7a756814dce65bc60c1657b40d44451346858eea230e10f2e95a289d9183b6e32e5c11e95acc0ccc214b4f36289dcad4bf1886b0adb84d711d336a430
   languageName: node
   linkType: hard
 
@@ -6468,10 +6468,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"undici-types@npm:~7.12.0":
-  version: 7.12.0
-  resolution: "undici-types@npm:7.12.0"
-  checksum: 10c0/326e455bbc0026db1d6b81c76a1cf10c63f7e2f9821db2e24fdc258f482814e5bfa8481f8910d07c68e305937c5c049610fdc441c5e8b7bb0daca7154fb8a306
+"undici-types@npm:~7.13.0":
+  version: 7.13.0
+  resolution: "undici-types@npm:7.13.0"
+  checksum: 10c0/44bbb0935425291351bfd8039571f017295b5d6dc5727045d0a4fea8c6ffe73a6703b48ce010f9cb539b9041a75b463f8cfe1e7309cab7486452505fb0d66151
   languageName: node
   linkType: hard
 
