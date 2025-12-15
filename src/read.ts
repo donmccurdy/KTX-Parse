@@ -7,8 +7,8 @@ import { decodeText } from './util.js';
 
 /**
  * Parses a KTX 2.0 file, returning an unpacked {@link KTX2Container} instance with all associated
- * data. The container's mip levels and other binary data are pointers into the original file, not
- * copies, so the original file should not be overwritten after reading.
+ * data. Returned mip levels and other typed arrays are pointers into the source buffer, not
+ * deep copies — use caution if overwriting bytes of the source buffer later.
  *
  * @param data Bytes of KTX 2.0 file, as Uint8Array or Buffer.
  */
