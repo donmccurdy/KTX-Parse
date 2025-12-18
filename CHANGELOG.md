@@ -2,8 +2,8 @@
 
 ## v2.0
 
-- BREAKING CHANGE: Package is now ESM-only
-- chore: Updated build tool to [`tsdown`](https://tsdown.dev/)
+- BREAKING CHANGE: Package is now ESM-only (#215)
+- chore: Updated build tool to [`tsdown`](https://tsdown.dev/) (#215)
 
 ## v1.1
 
