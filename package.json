@@ -47,11 +47,6 @@
 		"LICENSE",
 		"package.json"
 	],
-	"browserslist": [
-		"defaults",
-		"not IE 11",
-		"node >= 14"
-	],
 	"ava": {
 		"extensions": {
 			"ts": "module"
