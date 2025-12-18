@@ -1,5 +1,10 @@
 # Changelog
 
+## v2.0
+
+- BREAKING CHANGE: Package is now ESM-only (#215)
+- chore: Updated build tool to [`tsdown`](https://tsdown.dev/) (#215)
+
 ## v1.1
 
 - feat: Support `levelCount = 0`, runtime-generated mipmaps (#199)

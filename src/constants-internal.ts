@@ -2,8 +2,8 @@
 // Common.
 ///////////////////////////////////////////////////
 
-// Injected at compile time, from $npm_package_version.
-declare const PACKAGE_VERSION: string;
+// @ts-expect-error Injected at build-time from $npm_package_version.
+export const PACKAGE_VERSION: string = import.meta.env.PACKAGE_VERSION;
 
 export const KTX_WRITER: string = `KTX-Parse v${PACKAGE_VERSION}`;
 
