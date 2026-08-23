@@ -1,14 +1,15 @@
+import { fail } from 'node:assert';
 import { spawn } from 'node:child_process';
 import { glob, mkdtemp, readFile, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { basename, join, sep } from 'node:path';
-import test from 'ava';
+import { test } from 'node:test';
 import { read, write } from 'ktx-parse';
 
 const tmpDir = await mkdtemp(`${tmpdir()}${sep}`);
 
 for await (const srcPath of glob(join('test', 'data', 'reference', '*.ktx2'))) {
-	test(srcPath, async (t) => {
+	test(srcPath, async () => {
 		const srcView = await readFile(srcPath);
 		const srcContainer = read(srcView);
 		const dstPath = join(tmpDir, basename(srcPath));
@@ -19,10 +20,8 @@ for await (const srcPath of glob(join('test', 'data', 'reference', '*.ktx2'))) {
 			await spawnAsync('ktx', ['validate', '--warnings-as-errors', dstPath]);
 		} catch (e) {
 			const { stdout } = e as SpawnResult;
-			t.fail(stdout);
+			fail(stdout);
 		}
-
-		t.pass('ok');
 	});
 }
 

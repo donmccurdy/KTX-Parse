@@ -1,32 +1,33 @@
+import { deepStrictEqual, fail, ok, strictEqual, throws } from 'node:assert';
 import { glob, readFile } from 'node:fs/promises';
 import { basename, join } from 'node:path';
+import { test } from 'node:test';
 import { URL } from 'node:url';
-import test from 'ava';
 import { createDefaultContainer, read, VK_FORMAT_R8G8B8A8_SRGB, write } from 'ktx-parse';
 
 const SAMPLE_RGBA8 = await readFile(new URL('./data/test_rgba8.ktx2', import.meta.url));
 const SAMPLE_ETC1S = await readFile(new URL('./data/test_etc1s.ktx2', import.meta.url));
 const SAMPLE_UASTC = await readFile(new URL('./data/test_uastc.ktx2', import.meta.url));
 
-test('read::invalid', (t) => {
-	t.throws(() => read(new Uint8Array(99)), { message: /Missing KTX 2\.0 identifier/ }, 'rejects invalid header');
+test('read::invalid', () => {
+	throws(() => read(new Uint8Array(99)), { message: /Missing KTX 2\.0 identifier/ }, 'rejects invalid header');
 });
 
-test('read::etc1s', (t) => {
+test('read::etc1s', () => {
 	const container = read(SAMPLE_ETC1S);
 
-	t.assert(container, 'creates container');
-	t.is(container.vkFormat, 0, 'vkFormat');
-	t.is(container.typeSize, 1, 'typeSize');
-	t.is(container.pixelWidth, 256, 'pixelWidth');
-	t.is(container.pixelHeight, 256, 'pixelHeight');
-	t.is(container.pixelDepth, 0, 'pixelDepth');
-	t.is(container.layerCount, 0, 'layerCount');
-	t.is(container.faceCount, 1, 'faceCount');
-	t.is(container.levelCount, 9, 'levelCount');
-	t.is(container.levels.length, 9, 'levels.length');
-	t.is(container.supercompressionScheme, 1, 'supercompressionScheme');
-	t.deepEqual(
+	ok(container, 'creates container');
+	strictEqual(container.vkFormat, 0, 'vkFormat');
+	strictEqual(container.typeSize, 1, 'typeSize');
+	strictEqual(container.pixelWidth, 256, 'pixelWidth');
+	strictEqual(container.pixelHeight, 256, 'pixelHeight');
+	strictEqual(container.pixelDepth, 0, 'pixelDepth');
+	strictEqual(container.layerCount, 0, 'layerCount');
+	strictEqual(container.faceCount, 1, 'faceCount');
+	strictEqual(container.levelCount, 9, 'levelCount');
+	strictEqual(container.levels.length, 9, 'levels.length');
+	strictEqual(container.supercompressionScheme, 1, 'supercompressionScheme');
+	deepStrictEqual(
 		container.keyValue,
 		{
 			KTXorientation: 'rd',
@@ -37,21 +38,21 @@ test('read::etc1s', (t) => {
 	);
 });
 
-test('read::uastc', (t) => {
+test('read::uastc', () => {
 	const container = read(SAMPLE_UASTC);
 
-	t.assert(container, 'creates container');
-	t.is(container.vkFormat, 0, 'vkFormat');
-	t.is(container.typeSize, 1, 'typeSize');
-	t.is(container.pixelWidth, 256, 'pixelWidth');
-	t.is(container.pixelHeight, 256, 'pixelHeight');
-	t.is(container.pixelDepth, 0, 'pixelDepth');
-	t.is(container.layerCount, 0, 'layerCount');
-	t.is(container.faceCount, 1, 'faceCount');
-	t.is(container.levelCount, 9, 'levelCount');
-	t.is(container.levels.length, 9, 'levels.length');
-	t.is(container.supercompressionScheme, 0, 'supercompressionScheme');
-	t.deepEqual(
+	ok(container, 'creates container');
+	strictEqual(container.vkFormat, 0, 'vkFormat');
+	strictEqual(container.typeSize, 1, 'typeSize');
+	strictEqual(container.pixelWidth, 256, 'pixelWidth');
+	strictEqual(container.pixelHeight, 256, 'pixelHeight');
+	strictEqual(container.pixelDepth, 0, 'pixelDepth');
+	strictEqual(container.layerCount, 0, 'layerCount');
+	strictEqual(container.faceCount, 1, 'faceCount');
+	strictEqual(container.levelCount, 9, 'levelCount');
+	strictEqual(container.levels.length, 9, 'levels.length');
+	strictEqual(container.supercompressionScheme, 0, 'supercompressionScheme');
+	deepStrictEqual(
 		container.keyValue,
 		{
 			KTXorientation: 'rd',
@@ -62,7 +63,7 @@ test('read::uastc', (t) => {
 	);
 });
 
-test('read::view-offset', (t) => {
+test('read::view-offset', () => {
 	// Construct a sample such that underlying ArrayBuffer has additional data.
 	const sampleBuffer = new ArrayBuffer(123 + SAMPLE_ETC1S.byteLength);
 	const sampleOffset = new Uint8Array(sampleBuffer, 123);
@@ -72,22 +73,22 @@ test('read::view-offset', (t) => {
 	const a = write(read(SAMPLE_ETC1S));
 	const b = write(read(sampleOffset));
 
-	t.true(typedArrayEquals(b, a), 'identical result');
+	ok(typedArrayEquals(b, a), 'identical result');
 });
 
-test('read::padding', async (t) => {
+test('read::padding', async () => {
 	// This example has a few extra cases to handle in the kvd padding, including
 	// a NUL terminator on a value followed by 3 bytes of padding, for a total of
 	// 4 contiguous NUL bytes.
 	const sample = await readFile(new URL('./data/test_padding.ktx2', import.meta.url));
 	const container = read(sample);
-	t.is(container.keyValue.KTXorientation, 'rd', 'KTXorientation');
-	t.is(
+	strictEqual(container.keyValue.KTXorientation, 'rd', 'KTXorientation');
+	strictEqual(
 		container.keyValue.KTXwriter,
 		'toktx v4.0.beta1.380.g0d851050 / libktx v4.0.beta1.350.g2c40ba4d.dirty',
 		'KTXwriter',
 	);
-	t.deepEqual(
+	deepStrictEqual(
 		container.keyValue.KHRtoktxScParams,
 		new Uint8Array([
 			45, 45, 98, 99, 109, 112, 32, 45, 45, 99, 108, 101, 118, 101, 108, 32, 49, 32, 45, 45, 113, 108, 101, 118, 101,
@@ -97,58 +98,52 @@ test('read::padding', async (t) => {
 	);
 });
 
-test('write::etc1s', (t) => {
+test('write::etc1s', () => {
 	const a = read(SAMPLE_ETC1S);
 	const b = read(write(a));
 
 	// Compare mip levels.
-	t.is(b.levels.length, a.levels.length, 'container.levels.length');
+	strictEqual(b.levels.length, a.levels.length, 'container.levels.length');
 	for (let i = 0; i < 3; i++) {
 		const aByteLength = a.levels[i].uncompressedByteLength;
 		const bByteLength = b.levels[i].uncompressedByteLength;
-		t.is(bByteLength, aByteLength, `container.levels[${i}].uncompressedByteLength`);
-		t.is(bByteLength, aByteLength, `container.levels[${i}].levelData.byteLength`);
-		t.true(typedArrayEquals(b.levels[i].levelData, a.levels[i].levelData), `container.levels[${i}].levelData`);
+		strictEqual(bByteLength, aByteLength, `container.levels[${i}].uncompressedByteLength`);
+		strictEqual(bByteLength, aByteLength, `container.levels[${i}].levelData.byteLength`);
+		ok(typedArrayEquals(b.levels[i].levelData, a.levels[i].levelData), `container.levels[${i}].levelData`);
 	}
 
 	// Compare supercompression global data.
 	if (a.globalData && b.globalData) {
-		t.is(b.globalData.endpointCount, a.globalData.endpointCount, 'container.globalData.endpointCount');
-		t.is(b.globalData.selectorCount, a.globalData.selectorCount, 'container.globalData.selectorCount');
+		strictEqual(b.globalData.endpointCount, a.globalData.endpointCount, 'container.globalData.endpointCount');
+		strictEqual(b.globalData.selectorCount, a.globalData.selectorCount, 'container.globalData.selectorCount');
 
-		t.is(
+		strictEqual(
 			b.globalData.endpointsData.byteLength,
 			a.globalData.endpointsData.byteLength,
 			'container.globalData.endpointsData.byteLength',
 		);
-		t.is(
+		strictEqual(
 			b.globalData.selectorsData.byteLength,
 			a.globalData.selectorsData.byteLength,
 			'container.globalData.selectorsData.byteLength',
 		);
-		t.is(
+		strictEqual(
 			b.globalData.tablesData.byteLength,
 			a.globalData.tablesData.byteLength,
 			'container.globalData.tablesData.byteLength',
 		);
-		t.is(
+		strictEqual(
 			b.globalData.extendedData.byteLength,
 			a.globalData.extendedData.byteLength,
 			'container.globalData.extendedData.byteLength',
 		);
 
-		t.true(
-			typedArrayEquals(b.globalData.endpointsData, a.globalData.endpointsData),
-			'container.globalData.endpointsData',
-		);
-		t.true(
-			typedArrayEquals(b.globalData.selectorsData, a.globalData.selectorsData),
-			'container.globalData.selectorsData',
-		);
-		t.true(typedArrayEquals(b.globalData.tablesData, a.globalData.tablesData), 'container.globalData.tablesData');
-		t.true(typedArrayEquals(b.globalData.extendedData, a.globalData.extendedData), 'container.globalData.extendedData');
+		ok(typedArrayEquals(b.globalData.endpointsData, a.globalData.endpointsData), 'container.globalData.endpointsData');
+		ok(typedArrayEquals(b.globalData.selectorsData, a.globalData.selectorsData), 'container.globalData.selectorsData');
+		ok(typedArrayEquals(b.globalData.tablesData, a.globalData.tablesData), 'container.globalData.tablesData');
+		ok(typedArrayEquals(b.globalData.extendedData, a.globalData.extendedData), 'container.globalData.extendedData');
 	} else {
-		t.fail('container.globalData missing');
+		fail('container.globalData missing');
 	}
 
 	// Remove KTXWriter (intentionally changed) and data too large for deepEquals().
@@ -156,36 +151,36 @@ test('write::etc1s', (t) => {
 	a.levels = b.levels = [];
 	a.globalData = b.globalData = null;
 
-	t.deepEqual(b, a, 'container.*');
+	deepStrictEqual(b, a, 'container.*');
 });
 
-test('write::uastc', (t) => {
+test('write::uastc', () => {
 	const a = read(SAMPLE_UASTC);
 	const b = read(write(a));
 
 	// Compare mip levels.
-	t.is(b.levels.length, a.levels.length, 'container.levels.length');
+	strictEqual(b.levels.length, a.levels.length, 'container.levels.length');
 	for (let i = 0; i < 3; i++) {
 		const aByteLength = a.levels[i].uncompressedByteLength;
 		const bByteLength = b.levels[i].uncompressedByteLength;
-		t.is(bByteLength, aByteLength, `container.levels[${i}].uncompressedByteLength`);
-		t.is(bByteLength, aByteLength, `container.levels[${i}].levelData.byteLength`);
-		t.true(typedArrayEquals(b.levels[i].levelData, a.levels[i].levelData), `container.levels[${i}].levelData`);
+		strictEqual(bByteLength, aByteLength, `container.levels[${i}].uncompressedByteLength`);
+		strictEqual(bByteLength, aByteLength, `container.levels[${i}].levelData.byteLength`);
+		ok(typedArrayEquals(b.levels[i].levelData, a.levels[i].levelData), `container.levels[${i}].levelData`);
 	}
 
 	// UASTC does not have supercompression.
-	t.is(a.globalData, null, 'container.globalData = null (1/2)');
-	t.is(b.globalData, null, 'container.globalData = null (2/2)');
+	strictEqual(a.globalData, null, 'container.globalData = null (1/2)');
+	strictEqual(b.globalData, null, 'container.globalData = null (2/2)');
 
 	// Remove KTXWriter (intentionally changed) and data too large for deepEquals().
 	a.keyValue.KTXwriter = b.keyValue.KTXwriter = 'TEST';
 	a.levels = b.levels = [];
 	a.globalData = b.globalData = null;
 
-	t.deepEqual(b, a, 'container.*');
+	deepStrictEqual(b, a, 'container.*');
 });
 
-test('data format descriptors', (t) => {
+test('data format descriptors', () => {
 	const sample1 = {
 		bitOffset: 0,
 		bitLength: 10,
@@ -203,13 +198,13 @@ test('data format descriptors', (t) => {
 	const dfdA = a.dataFormatDescriptor[0];
 	const dfdB = b.dataFormatDescriptor[0];
 
-	t.is(dfdA.samples.length, 2, 'a.dfd.samples.length === 2');
-	t.is(dfdB.samples.length, 2, 'b.dfd.samples.length === 2');
-	t.deepEqual(dfdA.samples[0], dfdB.samples[0], 'a.dfd.samples[0] === b.dfd.samples[0]');
-	t.deepEqual(dfdA.samples[0], dfdB.samples[0], 'a.dfd.samples[0] === b.dfd.samples[0]');
+	strictEqual(dfdA.samples.length, 2, 'a.dfd.samples.length === 2');
+	strictEqual(dfdB.samples.length, 2, 'b.dfd.samples.length === 2');
+	deepStrictEqual(dfdA.samples[0], dfdB.samples[0], 'a.dfd.samples[0] === b.dfd.samples[0]');
+	deepStrictEqual(dfdA.samples[0], dfdB.samples[0], 'a.dfd.samples[0] === b.dfd.samples[0]');
 });
 
-test('lossless round trip', async (t) => {
+test('lossless round trip', async () => {
 	for await (const path of glob(join('test', 'data', 'reference', '*.ktx2'))) {
 		const srcView = await readFile(path);
 		const srcContainer = read(srcView);
@@ -217,22 +212,22 @@ test('lossless round trip', async (t) => {
 		const dstContainer = read(dstView);
 		// TODO(feat): Try to replicate KTX-Software output byte for byte.
 		// t.ok(typedArrayEquals(srcView, dstView), basename(path));
-		t.deepEqual(srcContainer, dstContainer, basename(path));
+		deepStrictEqual(srcContainer, dstContainer, basename(path));
 	}
 });
 
-test('read kv', (t) => {
+test('read kv', () => {
 	const a = read(SAMPLE_ETC1S);
 	a.keyValue.TestUint8Array = new Uint8Array([0, 0, 0, 16]);
 	const b = write(a);
 	const c = read(b);
-	t.true(
+	ok(
 		typedArrayEquals(c.keyValue.TestUint8Array as Uint8Array, new Uint8Array([0, 0, 0, 16])),
 		'container.keyValue[TestUint8Array]',
 	);
 });
 
-test('sort kv', (t) => {
+test('sort kv', () => {
 	const a = read(SAMPLE_ETC1S);
 	a.keyValue = {
 		b: '123',
@@ -242,40 +237,40 @@ test('sort kv', (t) => {
 	};
 	const b = read(write(a));
 
-	t.deepEqual(Object.keys(b.keyValue), ['KTXwriter', 'a', 'ab', 'b', 'c'], 'sorted keys');
+	deepStrictEqual(Object.keys(b.keyValue), ['KTXwriter', 'a', 'ab', 'b', 'c'], 'sorted keys');
 });
 
-test('createDefaultContainer', (t) => {
+test('createDefaultContainer', () => {
 	const container = createDefaultContainer();
 
-	t.is(container.vkFormat, 0, 'vkFormat');
-	t.is(container.typeSize, 1, 'typeSize');
-	t.is(container.pixelWidth, 0, 'pixelWidth');
-	t.is(container.pixelHeight, 0, 'pixelHeight');
-	t.is(container.pixelDepth, 0, 'pixelDepth');
-	t.is(container.layerCount, 0, 'layerCount');
-	t.is(container.faceCount, 1, 'faceCount');
-	t.is(container.levelCount, 0, 'levels.length');
-	t.is(container.levels.length, 0, 'levels.length');
-	t.is(container.supercompressionScheme, 0, 'supercompressionScheme');
+	strictEqual(container.vkFormat, 0, 'vkFormat');
+	strictEqual(container.typeSize, 1, 'typeSize');
+	strictEqual(container.pixelWidth, 0, 'pixelWidth');
+	strictEqual(container.pixelHeight, 0, 'pixelHeight');
+	strictEqual(container.pixelDepth, 0, 'pixelDepth');
+	strictEqual(container.layerCount, 0, 'layerCount');
+	strictEqual(container.faceCount, 1, 'faceCount');
+	strictEqual(container.levelCount, 0, 'levels.length');
+	strictEqual(container.levels.length, 0, 'levels.length');
+	strictEqual(container.supercompressionScheme, 0, 'supercompressionScheme');
 });
 
-test('levelCount', (t) => {
+test('levelCount', () => {
 	// 0 = runtime mipmaps, 1 = base level only.
 
 	const a = read(SAMPLE_RGBA8);
-	t.is(a.vkFormat, VK_FORMAT_R8G8B8A8_SRGB, 'a.vkFormat');
-	t.is(a.levelCount, 0, 'a.levelCount');
+	strictEqual(a.vkFormat, VK_FORMAT_R8G8B8A8_SRGB, 'a.vkFormat');
+	strictEqual(a.levelCount, 0, 'a.levelCount');
 
 	const b = read(write(a));
-	t.is(b.vkFormat, VK_FORMAT_R8G8B8A8_SRGB, 'b.vkFormat');
-	t.is(b.levelCount, 0, 'b.levelCount');
+	strictEqual(b.vkFormat, VK_FORMAT_R8G8B8A8_SRGB, 'b.vkFormat');
+	strictEqual(b.levelCount, 0, 'b.levelCount');
 
 	a.levelCount = 1;
 
 	const c = read(write(a));
-	t.is(c.vkFormat, VK_FORMAT_R8G8B8A8_SRGB, 'c.vkFormat');
-	t.is(c.levelCount, 1, 'c.levelCount');
+	strictEqual(c.vkFormat, VK_FORMAT_R8G8B8A8_SRGB, 'c.vkFormat');
+	strictEqual(c.levelCount, 1, 'c.levelCount');
 });
 
 function typedArrayEquals(a: Uint8Array, b: Uint8Array): boolean {

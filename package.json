@@ -18,9 +18,9 @@
 	"scripts": {
 		"build": "tsdown --format esm --env.PACKAGE_VERSION=$npm_package_version",
 		"watch": "tsdown --watch --format esm --env.PACKAGE_VERSION=$npm_package_version",
-		"test": "ava --no-worker-threads test/test.ts",
-		"validate": "ava --no-worker-threads test/validate.ts",
-		"coverage": "c8 --reporter=lcov --reporter=text ava --no-worker-threads test/test.ts --tap",
+		"test": "node --test test/test.ts",
+		"validate": "node --test test/validate.ts",
+		"coverage": "c8 --reporter=lcov --reporter=text node --test test/test.ts --tap",
 		"coverage:report": "c8 report --reporter=text-lcov > coverage/coverage.lcov",
 		"lint": "biome check src test",
 		"lint:ci": "biome ci src test",
@@ -35,7 +35,6 @@
 	"devDependencies": {
 		"@biomejs/biome": "2.4.8",
 		"@types/node": "^24.12.0",
-		"ava": "7.0.0",
 		"c8": "11.0.0",
 		"tsdown": "^0.21.4",
 		"typescript": "5.9.3"
@@ -47,13 +46,5 @@
 		"LICENSE",
 		"package.json"
 	],
-	"ava": {
-		"extensions": {
-			"ts": "module"
-		},
-		"nodeArguments": [
-			"--experimental-strip-types"
-		]
-	},
 	"packageManager": "yarn@4.17.1"
 }
