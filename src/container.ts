@@ -60,6 +60,9 @@ export interface KTX2Container {
 
 	/** Supercompression Global Data. */
 	globalData: KTX2GlobalDataBasisLZ | null;
+
+	/** Supercompression Global Data of other schemes (e.g. XUASTC LDR), unparsed. */
+	supercompressionGlobalData?: Uint8Array<ArrayBuffer>;
 }
 
 ///////////////////////////////////////////////////

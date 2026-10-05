@@ -1,5 +1,10 @@
 import { BufferReader } from './buffer-reader.js';
-import { KHR_DF_SAMPLE_DATATYPE_SIGNED, type Supercompression, type VKFormat } from './constants.js';
+import {
+	KHR_DF_SAMPLE_DATATYPE_SIGNED,
+	KHR_SUPERCOMPRESSION_BASISLZ,
+	type Supercompression,
+	type VKFormat,
+} from './constants.js';
 import { KTX2_ID } from './constants-internal.js';
 import type { KTX2BasicFormatSample, KTX2Container, KTX2DataFormatDescriptorBasicFormat } from './container.js';
 import { createDefaultContainer } from './create-default-container.js';
@@ -183,6 +188,15 @@ export function read(data: Uint8Array): KTX2Container {
 	///////////////////////////////////////////////////
 
 	if (sgdByteLength <= 0) return container;
+
+	if (container.supercompressionScheme !== KHR_SUPERCOMPRESSION_BASISLZ) {
+		container.supercompressionGlobalData = new Uint8Array(
+			bytes.buffer,
+			bytes.byteOffset + sgdByteOffset,
+			sgdByteLength,
+		);
+		return container;
+	}
 
 	const sgdReader = new BufferReader(bytes, sgdByteOffset, sgdByteLength, true);
 
