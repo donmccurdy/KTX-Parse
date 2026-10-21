@@ -8,6 +8,7 @@ import { createDefaultContainer, read, VK_FORMAT_R8G8B8A8_SRGB, write } from 'kt
 const SAMPLE_RGBA8 = await readFile(new URL('./data/test_rgba8.ktx2', import.meta.url));
 const SAMPLE_ETC1S = await readFile(new URL('./data/test_etc1s.ktx2', import.meta.url));
 const SAMPLE_UASTC = await readFile(new URL('./data/test_uastc.ktx2', import.meta.url));
+const SAMPLE_XUASTC = await readFile(new URL('./data/test_xuastc.ktx2', import.meta.url));
 
 test('read::invalid', () => {
 	throws(() => read(new Uint8Array(99)), { message: /Missing KTX 2\.0 identifier/ }, 'rejects invalid header');
@@ -61,6 +62,17 @@ test('read::uastc', () => {
 		},
 		'keyValue',
 	);
+});
+
+test('read::xuastc', () => {
+	const container = read(SAMPLE_XUASTC);
+
+	strictEqual(container.vkFormat, 0, 'vkFormat');
+	strictEqual(container.pixelWidth, 32, 'pixelWidth');
+	strictEqual(container.levelCount, 6, 'levelCount');
+	strictEqual(container.supercompressionScheme, 5, 'supercompressionScheme');
+	strictEqual(container.globalData, null, 'globalData');
+	ok(container.supercompressionGlobalData?.byteLength, 'supercompressionGlobalData');
 });
 
 test('read::view-offset', () => {
@@ -178,6 +190,14 @@ test('write::uastc', () => {
 	a.globalData = b.globalData = null;
 
 	deepStrictEqual(b, a, 'container.*');
+});
+
+test('write::xuastc', () => {
+	const a = read(SAMPLE_XUASTC);
+	const b = read(write(a, { keepWriter: true }));
+
+	deepStrictEqual(b.supercompressionGlobalData, a.supercompressionGlobalData, 'supercompressionGlobalData');
+	deepStrictEqual(b.levels, a.levels, 'levels');
 });
 
 test('data format descriptors', () => {

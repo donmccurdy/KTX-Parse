@@ -33,7 +33,9 @@ export function write(container: KTX2Container, options: WriteOptions = {}): Uin
 	///////////////////////////////////////////////////
 
 	let sgdBuffer = new Uint8Array(new ArrayBuffer(0));
-	if (container.globalData) {
+	if (container.supercompressionGlobalData) {
+		sgdBuffer = container.supercompressionGlobalData;
+	} else if (container.globalData) {
 		const sgdHeaderBuffer = new ArrayBuffer(20 + container.globalData.imageDescs.length * 5 * 4);
 		const sgdHeaderView = new DataView(sgdHeaderBuffer);
 		sgdHeaderView.setUint16(0, container.globalData.endpointCount, true);
